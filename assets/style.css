@@ -4,33 +4,33 @@
             amber #F0854B · ink #1C3B38   (light theme)
    Type: Inter Tight, one universal family for the whole site.
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
 
 :root{
   --ivory:#FAF8F3;
-  --surface:#E7F1EE;
-  --surface-2:#F1EDE4;
+  --surface:#F4F0E6;
+  --surface-2:#EFEADF;
   --teal:#0E9C93;
-  --teal-deep:#0B857D;
-  --amber:#F0854B;
+  --teal-deep:#123C39;
+  --amber:#E07A5F;
   --amber-deep:#D96A30;
-  --ink:#1C3B38;
-  --ink-soft:rgba(28,59,56,.62);
-  --ink-mut:rgba(28,59,56,.42);
-  --line:rgba(28,59,56,.12);
-  --line-soft:rgba(28,59,56,.07);
-  --shadow:rgba(28,42,40,.10);
-  --grad:linear-gradient(135deg,#0E9C93,#0B857D);
-  --font:"Inter Tight",system-ui,sans-serif;
-  --serif:var(--font);
+  --ink:#18201E;
+  --ink-soft:rgba(24,32,30,.68);
+  --ink-mut:rgba(24,32,30,.45);
+  --line:rgba(18,60,57,.12);
+  --line-soft:rgba(18,60,57,.08);
+  --shadow:rgba(18,42,40,.12);
+  --grad:linear-gradient(135deg,#0E9C93,#123C39);
+  --font:"Outfit",system-ui,-apple-system,sans-serif;
+  --serif:"Playfair Display",Georgia,serif;
   --body:var(--font);
   --disp:var(--font);
-  --maxw:1240px;
+  --maxw:1280px;
   --ease:cubic-bezier(.22,1,.36,1);
   --nav-h:78px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
 body{
   font-family:var(--body);
   background:var(--ivory);

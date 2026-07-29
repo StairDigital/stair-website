@@ -213,7 +213,7 @@ void main() {
     host.appendChild(canvas);
 
     var vis = window.FX ? window.FX.watch(host) : null;
-    var dpr = Math.min(window.devicePixelRatio || 1, window.FX && window.FX.coarse ? 1 : 1.5);
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.0);
     var w = 0, h = 0;
     function resize() {
       var cw = vis ? vis.w : host.clientWidth;
