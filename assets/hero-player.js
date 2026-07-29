@@ -27,7 +27,7 @@
 
   /* ---- frame store: bounded ImageBitmap ring buffer (pre-decoded, GPU-ready, memory-capped) ---- */
   var blobs=new Array(N), bitmaps=new Map(), pending=new Map();
-  var CACHE_MAX=32, AHEAD=10;
+  var CACHE_MAX=50, AHEAD=15;
   var imgs=null; /* legacy fallback */
 
   function b64ToBlob(b64){
@@ -66,12 +66,10 @@
   /* ---- geometry: measured once per resize, never inside the draw loop ---- */
   var geo={pw:0,ph:0,dx:0,dy:0,dw:0,dh:0,natW:1680,natH:944};
   var hsPt={x:0,y:0}, deltas=[{x:0,y:0},{x:0,y:0},{x:0,y:0}];
-  function smoothingOn(){ ctx.imageSmoothingEnabled=true; try{ctx.imageSmoothingQuality='medium';}catch(e){} }
+  function smoothingOn(){ ctx.imageSmoothingEnabled=true; try{ctx.imageSmoothingQuality='high';}catch(e){} }
   function measure(){
     var cw=canvas.clientWidth, ch=canvas.clientHeight;
-    /* Cap dpr to 1.25 maximum for the canvas. The source frames are 1680x944, so allocating
-       3000x1800 2x DPR buffers wastes GPU memory and causes heavy fill-rate lag. */
-    var dpr=Math.max(1, Math.min(window.devicePixelRatio||1, 1.25));
+    var dpr=Math.max(1, Math.min(window.devicePixelRatio||1, 1.5));
     var pw=Math.round(cw*dpr), ph=Math.round(ch*dpr);
     if(canvas.width!==pw||canvas.height!==ph){ canvas.width=pw; canvas.height=ph; smoothingOn(); }
     geo.pw=pw; geo.ph=ph;
