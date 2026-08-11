@@ -5,7 +5,15 @@
 
   /* ---- nav ---- */
   var nav=document.getElementById('nav');
-  if(nav) window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>30);},{passive:true});
+  if(nav){
+    /* Native window.scroll fires with Lenis too (Lenis still ticks native scroll
+       for ScrollTrigger), but we use Lenis's own event as the source of truth so
+       the nav state is always in step with what Lenis reports. */
+    var updateNav=function(scroll){ nav.classList.toggle('scrolled',(scroll||window.scrollY)>30); };
+    if(window.__lenis){ window.__lenis.on('scroll',function(e){ updateNav(e.scroll); }); }
+    else { window.addEventListener('scroll',function(){ updateNav(); },{passive:true}); }
+    updateNav();
+  }
   /* ---- fullscreen menu ---- */
   var burger=document.getElementById('burger'), drawer=document.getElementById('drawer');
   function setMenu(open){

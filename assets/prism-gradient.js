@@ -246,7 +246,7 @@
       gate: function(){ var d = container.closest('.drawer'); return !d || d.classList.contains('open'); }
     });
     function resize(){
-      var pr = Math.min(window.devicePixelRatio || 1, window.FX.coarse ? 1 : 1.5);
+      var pr = Math.min(window.devicePixelRatio || 1, 1.0);
       canvas.width = Math.max(1, Math.round(container.clientWidth * pr));
       canvas.height = Math.max(1, Math.round(container.clientHeight * pr));
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -260,11 +260,18 @@
     var mouseOn = container.getAttribute('data-mouse') !== 'false';
     var mx = 0.5, my = 0.5, tmx = 0.5, tmy = 0.5;
     if (mouseOn) {
-      container.closest('section, .drawer, body').addEventListener('mousemove', function(e){
-        var r = container.getBoundingClientRect();
-        if(!r.width || !r.height) return;
-        tmx = (e.clientX - r.left) / r.width;
-        tmy = 1 - (e.clientY - r.top) / r.height;   /* gl uv origin is bottom-left */
+      /* Cache the container rect so mousemove never forces a layout flush.
+         A ResizeObserver keeps it up to date cheaply. */
+      var _rect = container.getBoundingClientRect();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(function(){ _rect = container.getBoundingClientRect(); }).observe(container);
+      }
+      window.addEventListener('scroll', function(){ _rect = container.getBoundingClientRect(); }, { passive: true });
+      var _src = container.closest('section, .drawer, body') || document.body;
+      _src.addEventListener('mousemove', function(e){
+        if(!_rect.width || !_rect.height) return;
+        tmx = (e.clientX - _rect.left) / _rect.width;
+        tmy = 1 - (e.clientY - _rect.top) / _rect.height;
       }, {passive:true});
     }
 

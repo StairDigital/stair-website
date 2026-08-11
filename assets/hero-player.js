@@ -27,7 +27,7 @@
 
   /* ---- frame store: bounded ImageBitmap ring buffer (pre-decoded, GPU-ready, memory-capped) ---- */
   var blobs=new Array(N), bitmaps=new Map(), pending=new Map();
-  var CACHE_MAX=16, AHEAD=7;
+  var CACHE_MAX=50, AHEAD=15;
   var imgs=null; /* legacy fallback */
 
   function b64ToBlob(b64){
@@ -69,10 +69,7 @@
   function smoothingOn(){ ctx.imageSmoothingEnabled=true; try{ctx.imageSmoothingQuality='high';}catch(e){} }
   function measure(){
     var cw=canvas.clientWidth, ch=canvas.clientHeight;
-    /* never oversample past what the 1680x944 source can supply: a touch of
-       headroom for the fit-scale, then let the compositor do the last step */
-    var srcCap = cw > 0 ? (geo.natW * 1.15) / cw : 2;
-    var dpr=Math.max(1, Math.min(window.devicePixelRatio||1, 2, srcCap));
+    var dpr=Math.max(1, Math.min(window.devicePixelRatio||1, 1.5));
     var pw=Math.round(cw*dpr), ph=Math.round(ch*dpr);
     if(canvas.width!==pw||canvas.height!==ph){ canvas.width=pw; canvas.height=ph; smoothingOn(); }
     geo.pw=pw; geo.ph=ph;
@@ -104,30 +101,17 @@
       src=im;
     }
     ctx.clearRect(0,0,geo.pw,geo.ph);
+    ctx.fillStyle='#FAF8F3';
+    ctx.fillRect(0,0,geo.pw,geo.ph);
     ctx.drawImage(src,geo.dx,geo.dy,geo.dw,geo.dh);
     lastDrawnIndex=i;
   }
 
-  /* ---- one smoothing layer: a lerped virtual playhead in a self-terminating rAF loop ---- */
+  /* ---- unified ticker: advances film frame AND drives UI in one rAF pass ---- */
   var targetPos=0, curPos=0, raf=null;
-  function tick(){
-    var d=targetPos-curPos;
-    curPos = Math.abs(d)<0.04 ? targetPos : curPos + d*0.34;
-    var idx=Math.round(curPos);
-    if(useBitmaps){
-      var dir=d>=0?1:-1;
-      ensure(idx);
-      for(var k=1;k<=AHEAD;k++) ensure(idx+k*dir);
-      ensure(idx-dir);
-    }
-    if(idx!==lastDrawnIndex) draw(idx);
-    raf = Math.abs(targetPos-curPos)>0.02 ? requestAnimationFrame(tick) : null;
-  }
-  function seek(pos){ targetPos=pos; if(!raf) raf=requestAnimationFrame(tick); }
   function posFor(p){ var t=(p-FILM_START)/(FILM_END-FILM_START); return Math.max(0,Math.min(1,t))*maxIdx; }
 
-  /* ---- UI timeline: a lightly damped progress feeds every overlay so numbers, cards and film ---- */
-  /* ---- read the same clock instead of the raw wheel signal snapping ahead of the picture.   ---- */
+  /* ---- UI animation: driven from tick() above, not its own rAF ---- */
   var uiPos=0;
   function sm(a,b,x){var t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);}
   function outCubic(t){t=Math.max(0,Math.min(1,t));return 1-Math.pow(1-t,3);}
@@ -139,7 +123,7 @@
   function figShow(el,a,b,p,fade){
     var v=sm(a,b,p)*(1-fade);
     el.style.opacity=v.toFixed(3);
-    el.style.transform='translateY('+((1-v)*16).toFixed(1)+'px)';
+    el.style.transform='translate3d(0,'+((1-v)*16).toFixed(1)+'px,0)';
   }
 
   var CARDW=[[0.855,0.955],[0.885,0.985],[0.915,1.0]];
@@ -147,9 +131,9 @@
     /* title crossfade: large centred intro hands over to the docked mark */
     var dk=sm(0.012,0.05,p);
     title.style.opacity=(1-dk).toFixed(3);
-    title.style.transform='translate(-50%,-50%) translateY('+(-26*dk).toFixed(1)+'px) scale('+(1-0.05*dk).toFixed(3)+')';
+    title.style.transform='translate3d(-50%,-50%,0) translateY('+(-26*dk).toFixed(1)+'px) scale('+(1-0.05*dk).toFixed(3)+')';
     titleDock.style.opacity=dk.toFixed(3);
-    titleDock.style.transform='translateY('+(10*(1-dk)).toFixed(1)+'px)';
+    titleDock.style.transform='translate3d(0,'+(10*(1-dk)).toFixed(1)+'px,0)';
     canvas.style.opacity = p>0.006 ? 1 : 0;
 
     /* the three input figures */
@@ -165,19 +149,19 @@
     var pu=sm(0.80,0.90,p);
     var puOp = (pu<=0||pu>=1) ? 0 : (pu<0.25 ? pu/0.25 : 1-(pu-0.25)/0.75);
     pulse.style.opacity=puOp.toFixed(3);
-    pulse.style.transform='scale('+(1+pu*26).toFixed(2)+')';
+    pulse.style.transform='scale3d('+(1+pu*26).toFixed(2)+','+(1+pu*26).toFixed(2)+',1)';
 
     /* caption: settles in below the cards, once they have arrived */
     var c=sm(0.93,0.99,p);
     cap.style.opacity=c.toFixed(3);
-    cap.style.transform='translateY('+((1-c)*12).toFixed(1)+'px)';
+    cap.style.transform='translate3d(0,'+((1-c)*12).toFixed(1)+'px,0)';
 
     /* outcome cards: emerge from the handshake point with stagger */
     for(var i=0;i<3;i++){
       var e=outCubic(sm(CARDW[i][0],CARDW[i][1],p));
       var d=deltas[i];
       cards[i].style.opacity=Math.min(1,e*1.5).toFixed(3);
-      cards[i].style.transform='translate('+(d.x*(1-e)).toFixed(1)+'px,'+(d.y*(1-e)).toFixed(1)+'px) scale('+(0.42+0.58*e).toFixed(3)+')';
+      cards[i].style.transform='translate3d('+(d.x*(1-e)).toFixed(1)+'px,'+(d.y*(1-e)).toFixed(1)+'px,0) scale('+(0.42+0.58*e).toFixed(3)+')';
     }
     cnt(n10,10,CARDW[0][0],CARDW[0][1],p);
     cnt(n24,24,CARDW[1][0],CARDW[1][1],p); cnt(n36,36,CARDW[1][0],CARDW[1][1],p);
@@ -196,6 +180,10 @@
   }
 
   var uiRaf=null, lastP=0, animated=false;
+  function uiTick(){
+    uiPos = lastP;
+    updateUI(lastP);
+  }
   function applyStatic(){
     title.style.opacity=0;
     titleDock.style.opacity=1; titleDock.style.transform='none';
@@ -204,18 +192,7 @@
     cards.forEach(function(cd){ cd.style.opacity=1; cd.style.transform='none'; });
     n10.textContent='10'; n24.textContent='24'; n36.textContent='36'; n40b.textContent='40'; n70.textContent='70';
     canvas.style.opacity=1;
-    setNavLinks(true); /* no scrub here, so the buttons are available immediately */
-  }
-  function scheduleUI(){
-    if(uiRaf) return;
-    uiRaf=requestAnimationFrame(uiTick);
-  }
-  function uiTick(){
-    uiRaf=null;
-    var d=lastP-uiPos;
-    uiPos = Math.abs(d)<0.0006 ? lastP : uiPos + d*0.4;
-    updateUI(uiPos);
-    if(Math.abs(lastP-uiPos)>0.0004) uiRaf=requestAnimationFrame(uiTick);
+    setNavLinks(true);
   }
   function remeasure(){ measure(); if(animated) updateUI(uiPos); else applyStatic(); if(lastDrawnIndex>=0) draw(lastDrawnIndex); }
 
@@ -225,7 +202,7 @@
   smoothingOn();
   measure();
 
-  /* ---- boot: decode the poster frame immediately, warm the opening run and the finale ---- */
+  /* ---- boot: decode poster frame immediately, pre-warm Blobs in idle background tasks ---- */
   function bootBitmaps(){
     blobs[0]=b64ToBlob(FRAMES[0]);
     createImageBitmap(blobs[0]).then(function(bm){
@@ -235,6 +212,22 @@
     });
     for(var k=1;k<=16;k++) ensure(k);
     ensure(maxIdx);
+
+    /* Background idle pre-decoding: convert all base64 frames to Blobs off the scroll loop */
+    var bgIdx = 17;
+    function preDecodeIdle(){
+      var end = Math.min(N, bgIdx + 8);
+      for(var i = bgIdx; i < end; i++){
+        if(!blobs[i]) blobs[i] = b64ToBlob(FRAMES[i]);
+      }
+      bgIdx = end;
+      if(bgIdx < N){
+        if('requestIdleCallback' in window) requestIdleCallback(preDecodeIdle);
+        else setTimeout(preDecodeIdle, 20);
+      }
+    }
+    if('requestIdleCallback' in window) requestIdleCallback(preDecodeIdle);
+    else setTimeout(preDecodeIdle, 40);
   }
   function bootImages(onFirst){
     imgs=new Array(N);
@@ -268,16 +261,35 @@
     animated=true;
     if(useBitmaps) bootBitmaps();
     else bootImages(function(){ if(heroLoad) heroLoad.classList.add('hide'); draw(0); });
-    /* ScrollTrigger bakes the pinned element's width into the pin-spacer at
-       creation time. If it is created before layout has settled (pane still
-       collapsing in, fonts pending) it locks width:0 and the hero renders
-       blank forever. So: wait for a real width, then create, then refresh
-       again once fonts and images have landed. */
+
+    /* Direct response scrub on GSAP's ticker: map targetPos directly to curPos.
+       Lenis ALREADY smoothly eases the scroll progress. Direct response means zero
+       artificial double-lerp delay — 1:1 crisp responsiveness! */
+    gsap.ticker.add(function(){
+      if(!animated) return;
+      curPos = targetPos;
+      var idx = Math.round(curPos);
+      if(useBitmaps){
+        var dir = targetPos >= curPos ? 1 : -1;
+        ensure(idx);
+        for(var k=1; k<=AHEAD; k++) ensure(idx + k);
+        for(var m=1; m<=3; m++) ensure(idx - m);
+      }
+      if(idx!==lastDrawnIndex) draw(idx);
+      uiTick();
+    });
+
     function buildHeroTrigger(){
       ScrollTrigger.create({
         trigger:'#hero', start:'top top', end:'bottom bottom',
         pin:'#heroPin', pinSpacing:true, scrub:true,
-        onUpdate:function(self){ lastP=self.progress; seek(posFor(lastP)); scheduleUI(); },
+        anticipatePin: 1,
+        onUpdate:function(self){
+          /* Just write the targets — the gsap.ticker callback above
+             picks them up in the same frame, no rAF scheduling needed. */
+          lastP=self.progress;
+          targetPos=posFor(lastP);
+        },
         onRefresh:function(){ remeasure(); }
       });
       updateUI(0);
