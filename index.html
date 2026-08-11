@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAIR Digital | Where the Boardroom Meets Frontier AI</title>
+<meta name="description" content="STAIR Digital unites four decades of boardroom experience with 13 years at the frontier of artificial intelligence to build organisations that scale 10X.">
+<meta name="theme-color" content="#FAF8F3">
+<link rel="icon" href="assets/stair-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=72">
+<link rel="stylesheet" href="assets/hero.css?v=72">
+<link rel="stylesheet" href="assets/home.css?v=72">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand" aria-label="STAIR Digital, Home">
+      <img src="assets/stair-mark.png" alt="STAIR Digital">
+      <span class="wm"><b>STAIR</b><span>D I G I T A L</span></span>
+    </a>
+    <!-- home only: section buttons fade in once the hero sequence has played out -->
+    <nav class="nav-links" id="navLinks" aria-label="Sections">
+      <a href="company.html">About</a>
+      <a href="capabilities.html">Capabilities</a>
+      <a href="enterprise-brain.html">Enterprise Brain</a>
+      <a href="industries.html">Industries</a>
+      <a href="research.html">Research</a>
+      <a href="engagements.html">Engagements</a>
+      <a href="leadership.html">Leadership</a>
+      <a href="proposal.html">Blueprint</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ FULLSCREEN MENU ============ -->
+<div class="drawer" id="drawer" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu-bg" data-prism data-mouse="false" aria-hidden="true"></div>
+  <nav class="menu-list" aria-label="Primary">
+    <a href="company.html">About</a>
+    <a href="capabilities.html">Capabilities</a>
+    <a href="enterprise-brain.html">Enterprise Brain</a>
+    <a href="industries.html">Industries</a>
+    <a href="research.html">Research</a>
+    <a href="engagements.html">Engagements</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="proposal.html">Blueprint</a>
+  </nav>
+  <button class="btn btn-glass lg lg-dark" data-consult>Let's Talk
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+
+<!-- ============ HERO (scroll-scrubbed image sequence) ============ -->
+<section class="hero" id="hero">
+  <div class="hero-pin" id="heroPin">
+    <canvas id="heroCanvas" aria-label="An executive and an AI robot walk toward each other and shake hands"></canvas>
+    <div class="hero-ui">
+      <h1 class="hero-title" id="heroTitle">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</h1>
+      <div class="hero-title-docked" id="heroTitleDocked" aria-hidden="true">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</div>
+      <div class="hero-scrim" id="heroScrim"></div>
+      <div class="pulse" id="pulse"></div>
+      <div class="figures" id="figures">
+        <div class="fig l" id="figL">
+          <div class="big"><span id="n40">0</span><i>+</i></div>
+          <div class="lbl">Years in the boardroom</div>
+        </div>
+        <div class="fig c" id="figC">
+          <div class="big"><span id="n100">0</span><i>+</i></div>
+          <div class="lbl">Board &amp; advisory positions</div>
+        </div>
+        <div class="fig r" id="figR">
+          <div class="big"><span id="n13">0</span><i>+</i></div>
+          <div class="lbl">Years at the frontier of AI</div>
+        </div>
+      </div>
+      <div class="outcomes" id="outcomes">
+        <div class="row">
+          <div class="o" id="o1"><div class="v"><span id="n10">0</span><span class="suf">X</span></div><div class="k">Scalable impact via ExO frameworks</div></div>
+          <div class="o" id="o2"><div class="v"><span id="n24">0</span><span class="dash">&ndash;</span><span id="n36">0</span></div><div class="k">Months to institutional grade</div></div>
+          <div class="o" id="o3"><div class="v"><span id="n40b">0</span><span class="dash">&ndash;</span><span id="n70">0</span><span class="suf">%</span></div><div class="k">Reduction in financial close cycles</div></div>
+        </div>
+        <div class="cap" id="cap">Two forces. <em>One measurable outcome.</em></div>
+      </div>
+      <div class="hero-load" id="heroLoad">Preparing the meeting</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENT LOGOS ============
+     Sits immediately after the hero film, so the marks land the moment the
+     handshake sequence has finished playing. -->
+<section class="hp-logos" id="clients">
+  <div class="wrap">
+    <h2 class="rv">The enterprises already <em>running on this work.</em></h2>
+  </div>
+  <div class="hp-track-wrap rv">
+    <div class="hp-track">
+      <img src="assets/logos/Dinshaws.png" alt="Dinshaws" loading="lazy">
+      <img src="assets/logos/Larsen_and_Toubro.png" alt="Larsen &amp; Toubro" loading="lazy">
+      <img src="assets/logos/ICICI_Securities.png" alt="ICICI Securities" loading="lazy">
+      <img src="assets/logos/Blue_Star.png" alt="Blue Star" loading="lazy">
+      <img src="assets/logos/Agile_Connects.png" alt="Agile Connects" loading="lazy">
+      <img src="assets/logos/Tookitaki.png" alt="Tookitaki" loading="lazy">
+      <img src="assets/logos/Adani_Gas.png" alt="Adani Gas" loading="lazy">
+      <img src="assets/logos/Solus.png" alt="Solus" loading="lazy">
+      <img src="assets/logos/Vakils.png" alt="Vakils" loading="lazy">
+      <img src="assets/logos/Dinshaws.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Larsen_and_Toubro.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/ICICI_Securities.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Blue_Star.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Agile_Connects.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Tookitaki.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Adani_Gas.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Solus.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Vakils.png" alt="" aria-hidden="true" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEAD ============ -->
+<section class="lead">
+  <div class="wrap">
+    <div class="lead-single">
+      <div class="eyebrow rv">Who We Are</div>
+      <p class="lead-statement rv">STAIR partners with India's largest listed enterprises, uniting <em>4 decades on the boards</em> of the country's biggest companies with <em>thirteen years at the frontier of AI</em>, to build organisations that scale <span class="hl">10X</span>.</p>
+      <a class="lead-more rv" href="company.html">Explore the firm
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION PREVIEWS ============
+     A slice of each section, so the whole story reads in one scroll. Every
+     block links through to the full page, which keeps its own hero and
+     animations untouched. The mark beside each one is a symbol for the
+     section rather than a photograph. -->
+
+<section class="hp" id="p-about">
+  <div class="wrap">
+    <article class="hp-row rv" style="--c:#0E9C93">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">01</span>
+        <svg class="hp-glyph" viewBox="0 0 48 48"><path d="M24 5 5 14.5 24 24l19-9.5z"/><path d="M5 24l19 9.5L43 24"/><path d="M5 33.5 24 43l19-9.5"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">About</div>
+        <h2>Not an agency. <em>Not a vendor.</em></h2>
+        <p>An operating platform for the exponential age. Four decades in the boardrooms of India's largest listed companies, joined to thirteen years at the frontier of artificial intelligence, run as one accountable system rather than a set of separate engagements.</p>
+        <ul class="hp-list">
+          <li>Governance</li>
+          <li>Strategy</li>
+          <li>Intelligence</li>
+          <li>Operations</li>
+          <li>Execution</li>
+          <li>Capital</li>
+        </ul>
+        <a class="hp-go" href="company.html">Explore the firm
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="hp" id="p-capabilities">
+  <div class="wrap">
+    <article class="hp-row alt rv" style="--c:#0B857D">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">02</span>
+        <svg class="hp-glyph" viewBox="0 0 48 48"><rect x="5" y="10" width="11.5" height="11.5" rx="2.6"/><rect x="18.2" y="10" width="11.5" height="11.5" rx="2.6"/><rect x="31.5" y="10" width="11.5" height="11.5" rx="2.6"/><rect x="5" y="26.5" width="11.5" height="11.5" rx="2.6"/><rect x="18.2" y="26.5" width="11.5" height="11.5" rx="2.6"/><rect x="31.5" y="26.5" width="11.5" height="11.5" rx="2.6"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">Capabilities</div>
+        <h2>Six capabilities. <em>One accountable partner.</em></h2>
+        <p>A vertically integrated transformation stack, from board level AI strategy to capital orchestration and deployed intelligence. Most firms sell one slice; STAIR runs all six as a single system, so nothing is lost in the handoffs.</p>
+        <ul class="hp-list one">
+          <li>Chief AI Officer as a Service</li>
+          <li>Exponential Organisation Transformation</li>
+          <li>Capital &amp; Growth Advisory</li>
+          <li>AI Agents &amp; The Lab</li>
+          <li>Governance, Risk &amp; AI Assurance</li>
+          <li>DeepTech &amp; National Infrastructure</li>
+        </ul>
+        <a class="hp-go" href="capabilities.html">See all six capabilities
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="hp" id="p-brain">
+  <div class="wrap">
+    <article class="hp-row rv" style="--c:#7A5C8E">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">03</span>
+        <!-- a lattice with one lit centre: nodes holding still, the middle recalling -->
+        <svg class="hp-glyph" viewBox="0 0 48 48"><circle cx="24" cy="24" r="4.6"/><circle cx="24" cy="7" r="2.6"/><circle cx="39.7" cy="15.5" r="2.6"/><circle cx="39.7" cy="32.5" r="2.6"/><circle cx="24" cy="41" r="2.6"/><circle cx="8.3" cy="32.5" r="2.6"/><circle cx="8.3" cy="15.5" r="2.6"/><path d="M24 9.6v9.8M37.4 16.8 28 22.1M37.4 31.2 28 25.9M24 38.4v-9.8M10.6 31.2 20 25.9M10.6 16.8 20 22.1"/><path d="M24 7 39.7 15.5v17L24 41 8.3 32.5v-17z"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">Enterprise Brain</div>
+        <h2>Every enterprise has data. <em>Few have a memory.</em></h2>
+        <p>One governed memory for the whole organisation, and the private language model layer that reasons over it. It reads from the systems you already run, answers in plain language, and shows the source behind every claim, so the output can be taken to a board rather than only to a demo.</p>
+        <ul class="hp-list">
+          <li>Unified memory</li>
+          <li>Private model layer</li>
+          <li>Cited answers</li>
+          <li>Inherited permissions</li>
+          <li>Evaluation harness</li>
+          <li>Runs in your estate</li>
+        </ul>
+        <a class="hp-go" href="enterprise-brain.html">Go inside the brain
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="hp" id="p-industries">
+  <div class="wrap">
+    <article class="hp-row alt rv" style="--c:#3D6B8A">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">04</span>
+        <svg class="hp-glyph" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17.5"/><path d="M24 6.5v35M8.8 15.2l30.4 17.6M8.8 32.8 39.2 15.2"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">Industries</div>
+        <h2>Six sectors, <em>read from the inside.</em></h2>
+        <p>The work changes shape with the sector it lands in. What a bank needs from governance is not what a plant floor needs from intelligence, and the operating model is built for the industry rather than dressed up for it.</p>
+        <ul class="hp-list">
+          <li>Financial Services</li>
+          <li>Manufacturing &amp; Industrials</li>
+          <li>Healthcare &amp; Life Sciences</li>
+          <li>Energy &amp; Infrastructure</li>
+          <li>Retail &amp; Consumer</li>
+          <li>Technology &amp; Telecom</li>
+        </ul>
+        <a class="hp-go" href="industries.html">Explore the sectors
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="hp" id="p-research">
+  <div class="wrap">
+    <article class="hp-row rv" style="--c:#D96A30">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">05</span>
+        <svg class="hp-glyph" viewBox="0 0 48 48"><path d="M24 13.5c-4.2-3-9.3-4.5-14.5-4.5v26c5.2 0 10.3 1.5 14.5 4.5"/><path d="M24 13.5c4.2-3 9.3-4.5 14.5-4.5v26c-5.2 0-10.3 1.5-14.5 4.5"/><path d="M24 13.5v25.5"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">Research</div>
+        <h2>Doctrine, <em>not decks.</em></h2>
+        <p>Original frameworks and published work, shaping how India's enterprises think about governance, AI and capital. The flagship is <em>The AI Auditor</em>, written for the people who carry the risk: CFOs, CROs, audit chairs and assurance partners.</p>
+        <ul class="hp-list">
+          <li>The AI Auditor</li>
+          <li>Bharat Protect</li>
+          <li>The ExO Playbook</li>
+        </ul>
+        <a class="hp-go" href="research.html">Read the research
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="hp" id="p-engagements">
+  <div class="wrap">
+    <article class="hp-row alt rv" style="--c:#B8863B">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">06</span>
+        <svg class="hp-glyph" viewBox="0 0 48 48"><path d="M42 29.5a5 5 0 0 1-5 5H17l-9 7.5V13a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5z"/><path d="M17.5 18.5h6.5v6.5a4 4 0 0 1-4 4"/><path d="M27.5 18.5H34V25a4 4 0 0 1-4 4"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">Engagements</div>
+        <h2>Measured outcomes, <em>in their own words.</em></h2>
+        <p>The proof of the work is what leaders say once the report would normally have been filed and forgotten. Every engagement is confidential, so the voices are attributed by sector, not by name. The words are theirs.</p>
+        <div class="hp-figs">
+          <div><b>91</b><span>Page operating map</span></div>
+          <div><b>23</b><span>Engagements delivered</span></div>
+          <div><b>60+</b><span>Leaders interviewed</span></div>
+        </div>
+        <a class="hp-go" href="engagements.html">Hear from clients
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="hp" id="p-leadership">
+  <div class="wrap">
+    <article class="hp-row rv" style="--c:#1C3B38">
+      <div class="hp-mark" aria-hidden="true">
+        <span class="hp-num">07</span>
+        <svg class="hp-glyph" viewBox="0 0 48 48"><circle cx="17" cy="16.5" r="6.2"/><circle cx="33" cy="18.5" r="5.2"/><path d="M7.5 36c0-5.8 4.2-9.5 9.5-9.5s9.5 3.7 9.5 9.5"/><path d="M28.5 36c0-4.8 2.9-7.8 6.9-7.8s6.6 3 6.6 7.8"/><path d="M5 40.5h38"/></svg>
+      </div>
+      <div class="hp-body">
+        <div class="hp-k">Leadership</div>
+        <h2>Two founders. <em>One accountable table.</em></h2>
+        <p>The boardroom and the frontier, sitting on the same side of the table. Every engagement is owned by a founder, which is why the governance argument and the technical architecture never arrive in separate documents.</p>
+        <ul class="hp-list one">
+          <li>Shailesh V. Haribhakti &middot; Cofounder &amp; Chairman</li>
+          <li>Shubham Saraff &middot; Cofounder &amp; Director</li>
+        </ul>
+        <a class="hp-go" href="leadership.html">Meet the founders
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band" id="cta">
+  <div class="wrap">
+    <div class="cta-panel rv">
+      <div class="glow"></div>
+      <div class="eyebrow">Begin the Conversation</div>
+      <h2 class="rv">Build your <em>exponential</em> organisation.</h2>
+      <p>Start with a confidential executive consultation. We will map where the rigour of the boardroom and the force of AI can take your enterprise next.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn-pop" data-consult>Let's Talk
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/stair-logo-full.png" alt="STAIR Digital">
+        <p>An enterprise transformation platform uniting governance, artificial intelligence and capital for the exponential age.</p>
+      </div>
+      <div class="ft-col"><h5>Explore</h5><ul>
+        <li><a href="company.html">About</a></li><li><a href="capabilities.html">Capabilities</a></li>
+        <li><a href="enterprise-brain.html">Enterprise Brain</a></li>
+        <li><a href="industries.html">Industries</a></li><li><a href="research.html">Research</a></li></ul></div>
+      <div class="ft-col"><h5>Firm</h5><ul>
+        <li><a href="engagements.html">Engagements</a></li><li><a href="leadership.html">Leadership</a></li>
+        <li><a href="proposal.html">Blueprint</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.linkedin.com/company/stair-digital/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+      <div class="ft-col"><h5>Contact</h5><div class="ct">
+        <a href="mailto:saraff@stair.digital">saraff@stair.digital</a><br>
+        <a href="tel:+919930220342">+91 99302 20342</a><br><br>
+        42, Free Press House,<br>215, Free Press Journal Marg,<br>Nariman Point, Mumbai 400021</div></div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 STAIR Digital Private Limited. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CONSULTATION CHOOSER ============ -->
+<div class="chooser" id="chooser" aria-hidden="true">
+  <div class="chooser-back" data-close></div>
+  <div class="chooser-card" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Request a private consultation" data-kinetic-surface>
+    <div class="chooser-grid" data-animgrad data-preset="Aurora" data-color1="#F1EDE4" data-color2="#6FC9BF" data-color3="#0E9C93" data-speed="6" data-distortion="30" data-swirl="70" data-softness="100" aria-hidden="true"></div>
+    <button class="chooser-x lg" data-close aria-label="Close">&times;</button>
+    <h3>How would you like to connect?</h3>
+    <div class="chooser-opts">
+      <a class="chooser-opt lg" href="mailto:saraff@stair.digital?subject=Private%20Consultation%20Request">
+        <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span class="tx"><b>Email us</b><span>saraff@stair.digital</span></span>
+      </a>
+      <a class="chooser-opt lg" href="tel:+919930220342">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
+        <span class="tx"><b>Call us</b><span>+91 99302 20342</span></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="assets/fx-core.js?v=72"></script>
+<script src="assets/perf-probe.js?v=72"></script>
+<script src="assets/lenis-init.js?v=72"></script>
+<script src="assets/site.js?v=72"></script>
+<script src="assets/prism-gradient.js?v=72"></script>
+<script src="assets/hero-frames.js?v=72"></script>
+<script src="assets/hero-player.js?v=72"></script>
+<script src="assets/kinetic-grid.js?v=72"></script>
+<script src="assets/animated-gradient.js?v=72"></script>
+<script src="assets/liquid-glass.js?v=72"></script>
+</body>
+</html>

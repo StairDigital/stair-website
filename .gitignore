@@ -1,0 +1,15 @@
+# Local dev only - never needed by the live site
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Never commit a key. The Anthropic key lives ONLY as a Cloudflare
+# Worker secret (see worker/DEPLOY.md), never in a file in this repo.
+.env
+*.key
+secrets.*
+
+# Local editor config - not part of the site, and it names unrelated projects
+.claude/

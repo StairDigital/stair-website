@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAIR Digital | The Enterprise Brain</title>
+<meta name="description" content="One governed memory for the whole organisation, and the private language model layer that reasons over it. Built by STAIR Digital.">
+<meta name="theme-color" content="#0A1614">
+<link rel="icon" href="assets/stair-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=72">
+<link rel="stylesheet" href="assets/brain.css?v=72">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand" aria-label="STAIR Digital, Home">
+      <img src="assets/stair-mark.png" alt="STAIR Digital">
+      <span class="wm"><b>STAIR</b><span>D I G I T A L</span></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ FULLSCREEN MENU ============ -->
+<div class="drawer" id="drawer" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu-bg" data-prism data-mouse="false" aria-hidden="true"></div>
+  <nav class="menu-list" aria-label="Primary">
+    <a href="company.html">About</a>
+    <a href="capabilities.html">Capabilities</a>
+    <a href="enterprise-brain.html">Enterprise Brain</a>
+    <a href="industries.html">Industries</a>
+    <a href="research.html">Research</a>
+    <a href="engagements.html">Engagements</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="proposal.html">Blueprint</a>
+  </nav>
+  <button class="btn btn-glass lg lg-dark" data-consult>Let's Talk
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+
+<!-- ============ HERO ============
+     The synapse field is the argument: nodes hold still, signals travel
+     between them. That is what a memory looks like. -->
+<section class="eb-hero">
+  <div class="eb-field" data-synapse data-line="#0E9C93" data-node="#5FC9BF" data-hot="#F0854B"
+       data-density="1" data-speed="1" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow"><i></i>The Enterprise Brain</p>
+    <h1>Every enterprise has data.<br><em>Few have a memory.</em></h1>
+    <p class="lead">Thirty years of decisions sit in your systems, and almost none of it can be
+      recalled when it matters. The Enterprise Brain is the layer that turns that scattered record
+      into one governed memory, and the private model layer that lets your people and your agents
+      ask it questions in plain language.</p>
+    <div class="eb-hero-meta">
+      <span>Unified memory</span>
+      <span>Private model layer</span>
+      <span>Cited answers</span>
+      <span>Runs in your estate</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE GAP ============ -->
+<section class="eb-sec eb-gap">
+  <div class="wrap">
+    <div class="eb-head rv">
+      <p class="eyebrow">Why this exists</p>
+      <h2>The problem was never storage. <em>It was recall.</em></h2>
+      <p>Large organisations have spent two decades getting good at keeping things. They have not
+        spent them getting good at finding things, and the gap shows up in the same three places
+        in almost every enterprise we open up.</p>
+    </div>
+
+    <div class="eb-frictions rv">
+      <div class="eb-fr">
+        <div class="eb-fr-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <h3>It is scattered</h3>
+        <p>The answer to a single board question lives across the ERP, a shared drive, four years of
+          minutes, a contract nobody has opened since signing and one person's inbox. No system holds
+          all of it, so nobody can answer it quickly and honestly.</p>
+      </div>
+      <div class="eb-fr">
+        <div class="eb-fr-ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3.2v5.1c0 5.1-3.2 8.3-7.5 10.4-4.3-2.1-7.5-5.3-7.5-10.4V6.2z"/><path d="M12 9.2v3.6"/><circle cx="12" cy="15.8" r=".9" fill="currentColor" stroke="none"/></svg></div>
+        <h3>It cannot be trusted on sight</h3>
+        <p>A number in a deck is only as good as the source behind it, and by the third slide nobody
+          remembers where it came from. Anything a board acts on has to be able to show its working,
+          which is exactly what most AI tools cannot do.</p>
+      </div>
+      <div class="eb-fr">
+        <div class="eb-fr-ic"><svg viewBox="0 0 24 24"><path d="M16 20v-1.6a3.4 3.4 0 0 0-3.4-3.4H6.4A3.4 3.4 0 0 0 3 18.4V20"/><circle cx="9.5" cy="7.6" r="3.6"/><path d="M19 11.5v-1M19 8.2V4.4"/><path d="M21.6 13.2 19 15.8l-2.6-2.6"/></svg></div>
+        <h3>It walks out of the door</h3>
+        <p>The person who knows why a decision was taken in 2019 retires, and the reasoning goes with
+          them. Institutional knowledge is held in people rather than in the institution, and every
+          exit is a quiet write-down.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE STACK ============ -->
+<section class="eb-sec eb-stack">
+  <div class="wrap">
+    <div class="eb-head rv">
+      <p class="eyebrow">What it is</p>
+      <h2>Three layers. <em>One accountable memory.</em></h2>
+      <p>The Enterprise Brain is not another place to put documents. It sits above the systems you
+        already run, reads from them continuously, and becomes the single thing that everything
+        else asks.</p>
+    </div>
+
+    <div class="eb-layers">
+      <div class="eb-diagram rv">
+        <svg viewBox="0 0 460 392" role="img" aria-label="Diagram: systems of record feed the Enterprise Brain, which serves agents, people and the board">
+          <!-- ---- top: where it is used ---- -->
+          <text class="eb-d-cap" x="230" y="14" text-anchor="middle">Where it is used</text>
+          <g>
+            <rect class="eb-d-box" x="0"   y="40" width="140" height="44" rx="5"/>
+            <rect class="eb-d-box" x="160" y="40" width="140" height="44" rx="5"/>
+            <rect class="eb-d-box" x="320" y="40" width="140" height="44" rx="5"/>
+            <text class="eb-d-lbl" x="70"  y="61" text-anchor="middle">AI agents</text>
+            <text class="eb-d-sub" x="70"  y="74" text-anchor="middle">Finance, audit, legal, ops</text>
+            <text class="eb-d-lbl" x="230" y="61" text-anchor="middle">Your people</text>
+            <text class="eb-d-sub" x="230" y="74" text-anchor="middle">Ask in plain language</text>
+            <text class="eb-d-lbl" x="390" y="61" text-anchor="middle">The board</text>
+            <text class="eb-d-sub" x="390" y="74" text-anchor="middle">Cited, on the record</text>
+          </g>
+
+          <!-- brain to top -->
+          <path class="eb-d-wire" d="M110 170 C110 138 70 126 70 84"/>
+          <path class="eb-d-wire" d="M230 170 L230 84"/>
+          <path class="eb-d-wire" d="M350 170 C350 138 390 126 390 84"/>
+          <path class="eb-d-flow"    d="M110 170 C110 138 70 126 70 84"/>
+          <path class="eb-d-flow d2" d="M230 170 L230 84"/>
+          <path class="eb-d-flow d3" d="M350 170 C350 138 390 126 390 84"/>
+
+          <!-- ---- middle: the brain ---- -->
+          <text class="eb-d-cap" x="230" y="158" text-anchor="middle">The Enterprise Brain</text>
+          <rect class="eb-d-brain" x="30" y="170" width="400" height="110" rx="9"/>
+          <text class="eb-d-lbl" x="230" y="196" text-anchor="middle">Governed memory and reasoning</text>
+          <g>
+            <rect class="eb-d-box" x="39"  y="212" width="88" height="30" rx="4"/>
+            <rect class="eb-d-box" x="137" y="212" width="88" height="30" rx="4"/>
+            <rect class="eb-d-box" x="235" y="212" width="88" height="30" rx="4"/>
+            <rect class="eb-d-box" x="333" y="212" width="88" height="30" rx="4"/>
+            <text class="eb-d-sub" x="83"  y="231" text-anchor="middle">Semantic index</text>
+            <text class="eb-d-sub" x="181" y="231" text-anchor="middle">Entity graph</text>
+            <text class="eb-d-sub" x="279" y="231" text-anchor="middle">Permissions</text>
+            <text class="eb-d-sub" x="377" y="231" text-anchor="middle">Provenance</text>
+          </g>
+          <text class="eb-d-sub" x="230" y="266" text-anchor="middle">Private model layer, running inside your estate</text>
+
+          <!-- systems to brain -->
+          <path class="eb-d-wire" d="M50 330 C50 306 110 304 110 280"/>
+          <path class="eb-d-wire" d="M170 330 C170 306 180 304 180 280"/>
+          <path class="eb-d-wire" d="M290 330 C290 306 280 304 280 280"/>
+          <path class="eb-d-wire" d="M410 330 C410 306 350 304 350 280"/>
+          <path class="eb-d-flow d2" d="M50 330 C50 306 110 304 110 280"/>
+          <path class="eb-d-flow"    d="M170 330 C170 306 180 304 180 280"/>
+          <path class="eb-d-flow d4" d="M290 330 C290 306 280 304 280 280"/>
+          <path class="eb-d-flow d3" d="M410 330 C410 306 350 304 350 280"/>
+
+          <!-- ---- bottom: systems of record ---- -->
+          <text class="eb-d-cap" x="230" y="318" text-anchor="middle">Systems of record</text>
+          <g>
+            <rect class="eb-d-box" x="0"   y="330" width="100" height="44" rx="5"/>
+            <rect class="eb-d-box" x="120" y="330" width="100" height="44" rx="5"/>
+            <rect class="eb-d-box" x="240" y="330" width="100" height="44" rx="5"/>
+            <rect class="eb-d-box" x="360" y="330" width="100" height="44" rx="5"/>
+            <text class="eb-d-lbl" x="50"  y="351" text-anchor="middle">ERP and core</text>
+            <text class="eb-d-sub" x="50"  y="364" text-anchor="middle">Finance, HR, supply</text>
+            <text class="eb-d-lbl" x="170" y="351" text-anchor="middle">Documents</text>
+            <text class="eb-d-sub" x="170" y="364" text-anchor="middle">Policies, reports</text>
+            <text class="eb-d-lbl" x="290" y="351" text-anchor="middle">Contracts</text>
+            <text class="eb-d-sub" x="290" y="364" text-anchor="middle">Terms and obligations</text>
+            <text class="eb-d-lbl" x="410" y="351" text-anchor="middle">Minutes and mail</text>
+            <text class="eb-d-sub" x="410" y="364" text-anchor="middle">Decisions and context</text>
+          </g>
+        </svg>
+      </div>
+
+      <ol class="eb-key rv">
+        <li>
+          <h3>Ground it in what you already run</h3>
+          <p>Connectors read from the ERP, the document estate, the contract repository, board packs
+            and mail. Nothing is migrated and nothing is replaced, because a memory that requires a
+            migration never gets built.</p>
+        </li>
+        <li>
+          <h3>Give it structure, not just search</h3>
+          <p>A semantic index makes text findable by meaning. An entity graph on top of it knows that
+            a vendor, a contract, a payment and a board resolution are the same story, so the brain can
+            follow a thread rather than return a list of files.</p>
+        </li>
+        <li>
+          <h3>Inherit your permissions, keep the trail</h3>
+          <p>The brain answers each person only from what that person is already entitled to see, and
+            every answer carries its sources. Nothing becomes visible because it was indexed.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MODEL LAYER ============ -->
+<section class="eb-sec eb-llm">
+  <div class="wrap">
+    <div class="eb-head rv">
+      <p class="eyebrow">The LLM capability</p>
+      <h2>We do not sell you a model. <em>We build the layer around it.</em></h2>
+      <p>The frontier moves every few months, and an enterprise cannot re-architect itself each time
+        it does. So STAIR builds the layer that outlives any one model: selection, private deployment,
+        grounding, evaluation and cost control, with the model itself kept swappable underneath.</p>
+    </div>
+
+    <div class="eb-mods rv">
+      <div class="eb-mod">
+        <span class="eb-m-n">01</span>
+        <h3>Choosing, and proving the choice</h3>
+        <p>We evaluate frontier and open-weight models against your work rather than against a public
+          leaderboard, using a test set built from your own documents and your own questions. The
+          answer is often not the largest model, and it is almost never one model for everything.</p>
+        <ul><li>Task-level benchmarking</li><li>Open-weight and frontier</li><li>Routing by task</li></ul>
+      </div>
+      <div class="eb-mod">
+        <span class="eb-m-n">02</span>
+        <h3>Running it inside your estate</h3>
+        <p>Deployment in your own cloud tenancy, your data centre or a sovereign region, so regulated
+          material never leaves the boundary your auditors already understand. Where a hosted frontier
+          model is the right call, it is used under contract terms that keep your data out of training.</p>
+        <ul><li>In-VPC and on-premise</li><li>Sovereign regions</li><li>No training on your data</li></ul>
+      </div>
+      <div class="eb-mod">
+        <span class="eb-m-n">03</span>
+        <h3>Teaching it your language</h3>
+        <p>Every organisation has its own vocabulary, its own approval thresholds and its own way of
+          writing a note. We ground the model on the brain and tune it on your corpus so it answers in
+          your terms, cites your documents, and says it does not know rather than filling the gap.</p>
+        <ul><li>Retrieval over the brain</li><li>Domain tuning</li><li>House style and tone</li></ul>
+      </div>
+      <div class="eb-mod">
+        <span class="eb-m-n">04</span>
+        <h3>Holding it to a standard</h3>
+        <p>A model in production needs the same treatment as any other control: a regression suite that
+          runs on every change, guardrails on what it may act on unaided, human sign-off where the stakes
+          require it, and a log the second and third lines of defence can audit after the fact.</p>
+        <ul><li>Evaluation harness</li><li>Guardrails and escalation</li><li>Audit logging</li></ul>
+      </div>
+    </div>
+
+    <div class="eb-pledge rv">
+      <p>Your corpus trains your brain. It does not train anyone else's model.
+        <span>This is the first question every board asks, and it should be. The commercial and
+          architectural decisions on this page are made so the answer can be given plainly, in writing,
+          and shown to hold in the deployment itself.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROVENANCE ============ -->
+<section class="eb-sec eb-prov">
+  <div class="wrap">
+    <div class="eb-head rv">
+      <p class="eyebrow">Why it can be used at board level</p>
+      <h2>An answer you cannot check <em>is not an answer.</em></h2>
+      <p>Most enterprise AI fails its first real test in the same way: it is fluent, it is plausible,
+        and it cannot tell you where it got that from. The brain is built the other way round, with the
+        citation as the point rather than as a footnote.</p>
+    </div>
+
+    <div class="eb-prov-grid">
+      <ul class="eb-checks rv">
+        <li><i></i><div><b>Every claim carries its source</b><span>Answers are assembled from retrieved
+          documents, and each statement links back to the page, clause or line it came from. If a source
+          cannot be shown, the claim is not made.</span></div></li>
+        <li><i></i><div><b>It declines rather than guesses</b><span>Where the memory has nothing to
+          support an answer, the brain says so. A confident wrong answer costs far more than a blank one
+          in the settings we work in.</span></div></li>
+        <li><i></i><div><b>Access is inherited, not granted</b><span>The brain never widens what someone
+          can see. Two people asking the same question get answers drawn only from their own entitlements.</span></div></li>
+        <li><i></i><div><b>The trail survives the answer</b><span>Question, sources, model version and
+          the person who asked are all logged, so an internal auditor can reconstruct any answer months
+          later. This is the same discipline set out in The AI Auditor.</span></div></li>
+      </ul>
+
+      <!-- a worked example, because "traceable" is meaningless in the abstract -->
+      <div class="eb-answer rv">
+        <div class="eb-answer-bar"><i></i><span>Asked of the Enterprise Brain</span></div>
+        <p class="eb-answer-q">Which vendor contracts renew in the next ninety days, and which of
+          those carry an automatic price escalation?</p>
+        <p class="eb-answer-a">Nine agreements fall inside the window. Four contain an escalation
+          clause that applies unless notice is served, and two of those four sit above the delegation
+          threshold the board reset last year, so they need approval before the renewal date rather
+          than after it.</p>
+        <div class="eb-cites">
+          <p>Drawn from</p>
+          <span class="src"><em>Contract</em>Master services agreement, clause 11.4, price review</span>
+          <span class="src"><em>Contract</em>Supply agreement, schedule 2, indexation</span>
+          <span class="src"><em>Minutes</em>Board meeting, delegation of authority, revised limits</span>
+          <span class="src"><em>ERP</em>Vendor master, renewal dates and current spend</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT LANDS ============ -->
+<section class="eb-sec eb-land">
+  <div class="wrap">
+    <div class="eb-head rv">
+      <p class="eyebrow">How it lands</p>
+      <h2>Narrow first. <em>Then wide.</em></h2>
+      <p>A brain built for the whole enterprise on day one is a programme that never ships. We start
+        with one function where the memory is already painful, prove it against that function's own
+        standard, and widen from something that works.</p>
+    </div>
+
+    <div class="eb-phases">
+      <article class="eb-ph rv" style="--c:#0E9C93">
+        <div class="eb-ph-k">Phase one</div>
+        <h3>Ground</h3>
+        <p>Map where knowledge actually lives, connect the first sources, and stand the memory up
+          against one function, most often finance, audit or legal. Permissions and provenance are
+          built in at this point, not retrofitted later.</p>
+        <div class="eb-ph-t">Ends with: a working memory over real sources, and the questions it must answer</div>
+      </article>
+      <article class="eb-ph rv" style="--c:#D96A30">
+        <div class="eb-ph-k">Phase two</div>
+        <h3>Prove</h3>
+        <p>Run it against the questions that function is asked every month, side by side with how they
+          are answered today. The evaluation harness is written here, so improvement becomes measurable
+          rather than anecdotal.</p>
+        <div class="eb-ph-t">Ends with: measured accuracy, a cost per answer, and a decision on what it may act on</div>
+      </article>
+      <article class="eb-ph rv" style="--c:#3D6B8A">
+        <div class="eb-ph-k">Phase three</div>
+        <h3>Widen</h3>
+        <p>Extend the memory across functions and put agents on top of it, each one operating inside
+          the same permissions and the same audit trail. The brain becomes the thing every new AI
+          initiative connects to rather than another silo beside them.</p>
+        <div class="eb-ph-t">Ends with: a shared memory the rest of the AI estate is built on</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="eb-close">
+  <div class="wrap">
+    <p class="eyebrow">Where to start</p>
+    <h2>Find out what your <em>own</em> brain would hold.</h2>
+    <p>Tell us the company and we will draft a blueprint for it, or speak to the founders directly
+      about what the first ninety days would look like.</p>
+    <div class="eb-close-btns">
+      <a class="btn btn-primary" href="proposal.html">Draft my blueprint
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="btn btn-outline" data-consult>Talk to the founders</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/stair-logo-full.png" alt="STAIR Digital">
+        <p>An enterprise transformation platform uniting governance, artificial intelligence and capital for the exponential age.</p>
+      </div>
+      <div class="ft-col"><h5>Explore</h5><ul>
+        <li><a href="company.html">About</a></li><li><a href="capabilities.html">Capabilities</a></li>
+        <li><a href="enterprise-brain.html">Enterprise Brain</a></li>
+        <li><a href="industries.html">Industries</a></li><li><a href="research.html">Research</a></li></ul></div>
+      <div class="ft-col"><h5>Firm</h5><ul>
+        <li><a href="engagements.html">Engagements</a></li><li><a href="leadership.html">Leadership</a></li>
+        <li><a href="proposal.html">Blueprint</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.linkedin.com/company/stair-digital/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+      <div class="ft-col"><h5>Contact</h5><div class="ct">
+        <a href="mailto:saraff@stair.digital">saraff@stair.digital</a><br>
+        <a href="tel:+919930220342">+91 99302 20342</a><br><br>
+        42, Free Press House,<br>215, Free Press Journal Marg,<br>Nariman Point, Mumbai 400021</div></div>
+    </div>
+    <div class="ft-bottom"><p>&copy; 2026 STAIR Digital Private Limited. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<!-- ============ CONSULTATION CHOOSER ============ -->
+<div class="chooser" id="chooser" aria-hidden="true">
+  <div class="chooser-back" data-close></div>
+  <div class="chooser-card" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Request a private consultation" data-kinetic-surface>
+    <div class="chooser-grid" data-animgrad data-preset="Aurora" data-color1="#F1EDE4" data-color2="#6FC9BF" data-color3="#0E9C93" data-speed="6" data-distortion="30" data-swirl="70" data-softness="100" aria-hidden="true"></div>
+    <button class="chooser-x lg" data-close aria-label="Close">&times;</button>
+    <h3>How would you like to connect?</h3>
+    <div class="chooser-opts">
+      <a class="chooser-opt lg" href="mailto:saraff@stair.digital?subject=Enterprise%20Brain">
+        <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span class="tx"><b>Email us</b><span>saraff@stair.digital</span></span>
+      </a>
+      <a class="chooser-opt lg" href="tel:+919930220342">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
+        <span class="tx"><b>Call us</b><span>+91 99302 20342</span></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="assets/fx-core.js?v=72"></script>
+<script src="assets/perf-probe.js?v=72"></script>
+<script src="assets/lenis-init.js?v=72"></script>
+<script src="assets/site.js?v=72"></script>
+<script src="assets/prism-gradient.js?v=72"></script>
+<script src="assets/synapse-field.js?v=72"></script>
+<script src="assets/kinetic-grid.js?v=72"></script>
+<script src="assets/animated-gradient.js?v=72"></script>
+<script src="assets/liquid-glass.js?v=72"></script>
+</body>
+</html>

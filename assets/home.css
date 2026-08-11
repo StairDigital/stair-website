@@ -1,0 +1,121 @@
+/* ============================================================
+   HOME: client logos + the six section previews.
+
+   The home page now carries a slice of every section, so a visitor can read
+   the whole story in one scroll and only leave the page when they want depth.
+   Each preview links through to the full page, which keeps its own hero and
+   animations exactly as they were.
+   ============================================================ */
+
+/* ============ CLIENT LOGOS (after the hero film) ============ */
+.hp-logos{background:var(--ivory);padding:clamp(64px,9vh,120px) 0 clamp(30px,4vh,56px)}
+.hp-logos .wrap{max-width:var(--maxw)}
+.hp-logos .eyebrow{justify-content:flex-start}
+.hp-logos h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3.1vw,42px);
+  letter-spacing:-.025em;line-height:1.14;max-width:24ch;margin-top:14px;color:var(--ink)}
+.hp-logos h2 em{font-style:normal;color:var(--teal-deep)}
+.hp-track-wrap{position:relative;overflow:hidden;margin-top:clamp(30px,4.4vh,52px);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.hp-track{display:flex;align-items:center;width:max-content;gap:clamp(52px,6.4vw,92px);
+  animation:hpScroll 34s linear infinite}
+.hp-track-wrap:hover .hp-track{animation-play-state:paused}
+.hp-track img{height:clamp(28px,2.6vw,38px);width:auto;flex:none;opacity:.92;
+  transition:transform .4s var(--ease),opacity .4s}
+.hp-track img:hover{transform:translateY(-3px);opacity:1}
+@keyframes hpScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.hp-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
+
+/* Failsafe for the reveal.
+   Site-wide, .rv starts at opacity:0 and only becomes visible when site.js's
+   ScrollTrigger batch adds .in. These previews are now the main content of the
+   home page, so they must never depend on that: if GSAP fails to load, an
+   observer misfires, or rAF is throttled, the page would be blank below the
+   hero. This animation forces them visible after 2.5s no matter what. When the
+   reveal does work it fires long before then, so nothing changes visually. */
+@keyframes hpFailsafe{to{opacity:1;transform:none}}
+.hp-row,.hp-track-wrap,.hp-logos h2,.hp-logos .eyebrow{animation:hpFailsafe .3s linear 2.5s forwards}
+@media(prefers-reduced-motion:reduce){
+  .hp-row,.hp-track-wrap,.hp-logos h2,.hp-logos .eyebrow{animation:none;opacity:1;transform:none}
+}
+
+/* ============ SECTION PREVIEWS ============ */
+.hp{background:var(--ivory);padding:clamp(48px,7vh,92px) 0}
+.hp:nth-of-type(even){background:linear-gradient(180deg,var(--ivory),var(--surface) 55%,var(--ivory))}
+.hp .wrap{max-width:var(--maxw)}
+
+.hp-row{display:grid;grid-template-columns:1.02fr 1fr;align-items:center;
+  gap:clamp(30px,4.6vw,76px)}
+.hp-row.alt .hp-mark{order:2}
+.hp-row.alt .hp-body{order:1}
+
+/* --- the mark: a symbol for the section, not a photograph --- */
+.hp-mark{position:relative;display:grid;place-items:center;aspect-ratio:16/11;
+  border-radius:22px;overflow:hidden;border:1px solid var(--line);
+  background:
+    radial-gradient(120% 100% at 24% 14%,color-mix(in srgb,var(--c) 15%,transparent),transparent 62%),
+    linear-gradient(158deg,#fff 0%,var(--surface) 100%);
+  box-shadow:0 26px 52px -42px rgba(28,42,40,.5)}
+/* two quiet concentric rings give the glyph somewhere to sit */
+.hp-mark::before{content:"";position:absolute;width:min(72%,330px);aspect-ratio:1;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--c) 22%,transparent)}
+.hp-mark::after{content:"";position:absolute;width:min(50%,232px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,color-mix(in srgb,var(--c) 16%,transparent),transparent 72%)}
+.hp-glyph{position:relative;z-index:2;width:min(33%,140px);height:auto;
+  fill:none;stroke:var(--c);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .8s var(--ease)}
+.hp-row:hover .hp-glyph{transform:scale(1.05) rotate(-2deg)}
+.hp-num{position:absolute;left:20px;top:15px;z-index:2;font-family:var(--serif);font-weight:800;
+  font-size:clamp(28px,3.2vw,46px);letter-spacing:-.04em;line-height:1;
+  color:transparent;-webkit-text-stroke:1.3px color-mix(in srgb,var(--c) 34%,transparent)}
+
+/* --- the words --- */
+.hp-k{display:inline-block;font-family:var(--disp);
+  font-size:clamp(9.5px,.82vw,11.5px);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--c);font-weight:600}
+.hp-body h2{font-family:var(--serif);font-weight:750;font-size:clamp(26px,3.3vw,46px);
+  letter-spacing:-.03em;line-height:1.08;color:var(--ink);margin-top:14px}
+.hp-body h2 em{font-style:normal;color:var(--c)}
+.hp-body > p{font-size:clamp(14.5px,1.05vw,17px);color:var(--ink-soft);line-height:1.72;
+  margin-top:16px;max-width:52ch}
+
+.hp-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 clamp(20px,2.6vw,44px);margin-top:clamp(18px,2.4vh,26px);list-style:none;
+  border-top:1px solid var(--line)}
+.hp-list.one{grid-template-columns:1fr}
+.hp-list li{display:flex;align-items:center;gap:11px;padding:11px 2px;
+  border-bottom:1px solid var(--line-soft);
+  font-family:var(--disp);font-size:clamp(11.5px,.94vw,14px);font-weight:500;
+  letter-spacing:.012em;color:var(--ink);line-height:1.35}
+.hp-list li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;
+  background:var(--c);opacity:.9}
+@media(max-width:560px){.hp-list{grid-template-columns:1fr}}
+
+/* figures variant, used by the engagements preview */
+.hp-figs{display:flex;gap:clamp(20px,3vw,42px);margin-top:clamp(16px,2.2vh,24px);flex-wrap:wrap}
+.hp-figs div{min-width:max-content}
+.hp-figs b{display:block;font-family:var(--serif);font-weight:800;
+  font-size:clamp(26px,3vw,44px);letter-spacing:-.035em;line-height:1;color:var(--c)}
+.hp-figs span{display:block;font-family:var(--disp);font-size:clamp(8.5px,.74vw,10.5px);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut);margin-top:7px}
+
+/* --- the link through to the full page --- */
+.hp-go{display:inline-flex;align-items:center;gap:11px;margin-top:clamp(20px,2.8vh,32px);
+  padding:12px 22px 12px 24px;border-radius:999px;text-decoration:none;
+  font-family:var(--disp);font-size:clamp(11.5px,.95vw,13.5px);font-weight:600;letter-spacing:.04em;
+  color:#fff;background:var(--c);position:relative;
+  box-shadow:0 18px 34px -20px color-mix(in srgb,var(--c) 80%,transparent);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),filter .4s}
+.hp-go:hover{transform:translateY(-2px);filter:saturate(1.08);
+  box-shadow:0 24px 44px -20px color-mix(in srgb,var(--c) 92%,transparent)}
+.hp-go:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+.hp-go svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;
+  transition:transform .4s var(--ease)}
+.hp-go:hover svg{transform:translateX(4px)}
+
+@media(max-width:900px){
+  .hp-row{grid-template-columns:1fr;gap:24px}
+  .hp-row.alt .hp-mark{order:0}
+  .hp-row.alt .hp-body{order:0}
+  .hp-mark{aspect-ratio:16/9}
+}
