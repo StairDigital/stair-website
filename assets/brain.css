@@ -1,7 +1,7 @@
 /* ============================================================
    ENTERPRISE BRAIN
    Two dark bands and an ivory middle. The dark carries the two things
-   that are infrastructure - the memory itself and the model layer - and
+   that are infrastructure - the memory itself and the SLM that reasons over it - and
    the ivory carries everything a reader has to actually study. Long
    specification copy on a dark ground is where sites like this usually
    lose people.
@@ -110,7 +110,7 @@
   letter-spacing:-.02em;margin-bottom:9px;padding-top:6px}
 .eb-key p{font-size:15px;line-height:1.72;color:var(--eb-body)}
 
-/* ============ THE MODEL LAYER (dark band) ============ */
+/* ============ THE SLM LAYER (dark band) ============ */
 .eb-llm{position:relative;background:#0A1614;color:rgba(250,248,243,.84);overflow:hidden}
 .eb-llm::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 80% at 78% 12%,rgba(14,156,147,.16),transparent 62%)}
@@ -143,6 +143,49 @@
   letter-spacing:-.02em;line-height:1.45;color:#fff}
 .eb-pledge span{display:block;margin-top:12px;font-size:14px;font-weight:400;
   letter-spacing:0;color:rgba(250,248,243,.62);line-height:1.7;font-family:var(--font)}
+
+/* ---- rented vs owned ----
+   A table would be the honest markup, but a real <table> fights every attempt
+   to restack on a phone. This is a grid carrying table roles, so it reads
+   correctly to a screen reader and still collapses into cards below 760px. */
+.eb-cmp{margin-top:clamp(40px,6vh,68px)}
+.eb-cmp-h{font-family:var(--serif);font-weight:700;font-size:clamp(19px,1.8vw,26px);
+  letter-spacing:-.02em;color:#fff;margin-bottom:22px}
+.eb-cmp-grid{border:1px solid rgba(250,248,243,.14);border-radius:5px;overflow:hidden}
+.eb-cmp-hd,.eb-cmp-r{display:grid;grid-template-columns:1.05fr 1.2fr 1.2fr;
+  gap:clamp(14px,2vw,28px);padding:15px clamp(16px,2vw,26px);align-items:baseline}
+.eb-cmp-r{border-top:1px solid rgba(250,248,243,.1)}
+/* the owned column is the answer, so it is lit for the whole height of the table */
+.eb-cmp-hd .on,.eb-cmp-r .on{position:relative;color:#fff;font-weight:500}
+.eb-cmp-hd .on::before,.eb-cmp-r .on::before{content:"";position:absolute;
+  left:calc(clamp(14px,2vw,28px) / -2);top:-15px;bottom:-15px;width:1px;
+  background:rgba(14,156,147,.45)}
+.eb-cmp-hd{background:rgba(14,156,147,.1);font-family:var(--disp);font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,243,.66)}
+.eb-cmp-hd .on{color:var(--teal);font-weight:600}
+.eb-cmp-r .k{font-family:var(--disp);font-size:12.5px;letter-spacing:.02em;
+  color:rgba(250,248,243,.6)}
+.eb-cmp-r span{font-size:14.5px;line-height:1.6;color:rgba(250,248,243,.7)}
+.eb-cmp-r .k{color:rgba(250,248,243,.6)}
+.eb-cmp-r .on{color:#fff}
+.eb-cmp-n{margin-top:20px;font-size:14px;line-height:1.72;max-width:72ch;
+  color:rgba(250,248,243,.62)}
+
+@media(max-width:760px){
+  /* one card per row; the column headings become inline tags on each value,
+     since a header row above a stacked list means nothing */
+  .eb-cmp-hd{display:none}
+  .eb-cmp-r{grid-template-columns:1fr;gap:9px;padding:18px clamp(16px,4vw,22px)}
+  .eb-cmp-r .on::before{display:none}
+  .eb-cmp-r .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:2px}
+  .eb-cmp-r span:nth-child(2)::before,
+  .eb-cmp-r span:nth-child(3)::before{
+    display:block;font-family:var(--disp);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(250,248,243,.42);margin-bottom:3px}
+  .eb-cmp-r span:nth-child(2)::before{content:"Rented"}
+  .eb-cmp-r span:nth-child(3)::before{content:"Owned"}
+}
 
 /* ============ PROVENANCE ============ */
 .eb-prov{background:var(--ivory)}

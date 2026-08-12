@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STAIR Digital | The Enterprise Brain</title>
-<meta name="description" content="One governed memory for the whole organisation, and the private language model layer that reasons over it. Built by STAIR Digital.">
+<meta name="description" content="One governed memory for the whole organisation, and a small language model of your own that reasons over it. Enterprise SLMs built by STAIR Digital.">
 <meta name="theme-color" content="#0A1614">
 <link rel="icon" href="assets/stair-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=72">
-<link rel="stylesheet" href="assets/brain.css?v=72">
+<link rel="stylesheet" href="assets/style.css?v=73">
+<link rel="stylesheet" href="assets/brain.css?v=73">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
 </head>
 <body>
@@ -55,11 +55,12 @@
     <h1>Every enterprise has data.<br><em>Few have a memory.</em></h1>
     <p class="lead">Thirty years of decisions sit in your systems, and almost none of it can be
       recalled when it matters. The Enterprise Brain is the layer that turns that scattered record
-      into one governed memory, and the private model layer that lets your people and your agents
-      ask it questions in plain language.</p>
+      into one governed memory, and a small language model of your own, trained on your work and
+      running inside your estate, that lets your people and your agents ask it questions in plain
+      language.</p>
     <div class="eb-hero-meta">
       <span>Unified memory</span>
-      <span>Private model layer</span>
+      <span>Your own small model</span>
       <span>Cited answers</span>
       <span>Runs in your estate</span>
     </div>
@@ -153,7 +154,7 @@
             <text class="eb-d-sub" x="279" y="231" text-anchor="middle">Permissions</text>
             <text class="eb-d-sub" x="377" y="231" text-anchor="middle">Provenance</text>
           </g>
-          <text class="eb-d-sub" x="230" y="266" text-anchor="middle">Private model layer, running inside your estate</text>
+          <text class="eb-d-sub" x="230" y="266" text-anchor="middle">Your own small language model, running inside your estate</text>
 
           <!-- systems to brain -->
           <path class="eb-d-wire" d="M50 330 C50 306 110 304 110 280"/>
@@ -207,57 +208,100 @@
   </div>
 </section>
 
-<!-- ============ THE MODEL LAYER ============ -->
+<!-- ============ THE MODEL LAYER: the SLM argument ============ -->
 <section class="eb-sec eb-llm">
   <div class="wrap">
     <div class="eb-head rv">
-      <p class="eyebrow">The LLM capability</p>
-      <h2>We do not sell you a model. <em>We build the layer around it.</em></h2>
-      <p>The frontier moves every few months, and an enterprise cannot re-architect itself each time
-        it does. So STAIR builds the layer that outlives any one model: selection, private deployment,
-        grounding, evaluation and cost control, with the model itself kept swappable underneath.</p>
+      <p class="eyebrow">The SLM capability</p>
+      <h2>The biggest model is rarely <em>the right one.</em></h2>
+      <p>A small language model is one trained tightly on a narrow domain rather than on everything.
+        For an enterprise that is not a compromise. All of its capacity goes to your work instead of
+        to poetry and trivia, it runs on hardware you already own, and it is small enough to be
+        frozen, versioned and audited like any other control. STAIR builds them.</p>
     </div>
 
     <div class="eb-mods rv">
       <div class="eb-mod">
         <span class="eb-m-n">01</span>
-        <h3>Choosing, and proving the choice</h3>
-        <p>We evaluate frontier and open-weight models against your work rather than against a public
-          leaderboard, using a test set built from your own documents and your own questions. The
-          answer is often not the largest model, and it is almost never one model for everything.</p>
-        <ul><li>Task-level benchmarking</li><li>Open-weight and frontier</li><li>Routing by task</li></ul>
+        <h3>Right-sized, not downsized</h3>
+        <p>We measure the task before choosing the model. A frontier model sets the standard on your
+          own questions, then we distil that behaviour down into something small enough to own. What
+          you end up with is not a weaker model; it is one that spends everything it has on your work.</p>
+        <ul><li>Task-level benchmarking</li><li>Distillation</li><li>Open-weight base</li></ul>
       </div>
       <div class="eb-mod">
         <span class="eb-m-n">02</span>
-        <h3>Running it inside your estate</h3>
-        <p>Deployment in your own cloud tenancy, your data centre or a sovereign region, so regulated
-          material never leaves the boundary your auditors already understand. Where a hosted frontier
-          model is the right call, it is used under contract terms that keep your data out of training.</p>
-        <ul><li>In-VPC and on-premise</li><li>Sovereign regions</li><li>No training on your data</li></ul>
+        <h3>Runs where your data already lives</h3>
+        <p>Small enough for a single GPU in your own data centre, a modest instance in your cloud
+          tenancy, or a box on the plant floor. Regulated material never crosses the boundary your
+          auditors already understand, and no per-token meter runs against a vendor you do not control.</p>
+        <ul><li>On-premise and in-VPC</li><li>Edge deployment</li><li>No per-token meter</li></ul>
       </div>
       <div class="eb-mod">
         <span class="eb-m-n">03</span>
-        <h3>Teaching it your language</h3>
-        <p>Every organisation has its own vocabulary, its own approval thresholds and its own way of
-          writing a note. We ground the model on the brain and tune it on your corpus so it answers in
-          your terms, cites your documents, and says it does not know rather than filling the gap.</p>
-        <ul><li>Retrieval over the brain</li><li>Domain tuning</li><li>House style and tone</li></ul>
+        <h3>Fluent in your language, not everyone's</h3>
+        <p>Trained on your contracts, your policies, your minutes and your house style, so it uses your
+          vocabulary and your approval thresholds. Narrow beats broad here: a small model tuned on one
+          enterprise's corpus often outperforms a far larger general model on that enterprise's own work.</p>
+        <ul><li>Domain tuning</li><li>Retrieval over the brain</li><li>House style and tone</li></ul>
       </div>
       <div class="eb-mod">
         <span class="eb-m-n">04</span>
-        <h3>Holding it to a standard</h3>
-        <p>A model in production needs the same treatment as any other control: a regression suite that
-          runs on every change, guardrails on what it may act on unaided, human sign-off where the stakes
-          require it, and a log the second and third lines of defence can audit after the fact.</p>
-        <ul><li>Evaluation harness</li><li>Guardrails and escalation</li><li>Audit logging</li></ul>
+        <h3>Frozen, versioned, auditable</h3>
+        <p>A model you own is an artifact you can pin. Freeze a version for a year and the answer it
+          gave in March can still be reproduced in December. That is the difference between a tool and
+          a control, and it is what lets the second and third lines of defence sign off on it.</p>
+        <ul><li>Pinned versions</li><li>Reproducible answers</li><li>Audit logging</li></ul>
       </div>
     </div>
 
+    <!-- The comparison is the argument. Renting is the default path every
+         enterprise is currently on, so the case for owning has to be made
+         against it directly rather than in the abstract. -->
+    <div class="eb-cmp rv">
+      <h3 class="eb-cmp-h">What changes when the model is yours</h3>
+      <div class="eb-cmp-grid" role="table" aria-label="Renting a frontier API compared with owning a small language model">
+        <div class="eb-cmp-hd" role="row">
+          <span role="columnheader"></span>
+          <span role="columnheader">Renting a frontier API</span>
+          <span class="on" role="columnheader">An SLM you own</span>
+        </div>
+        <div class="eb-cmp-r" role="row">
+          <span class="k" role="rowheader">Where it runs</span>
+          <span role="cell">Someone else's data centre</span>
+          <span class="on" role="cell">Inside your own estate</span>
+        </div>
+        <div class="eb-cmp-r" role="row">
+          <span class="k" role="rowheader">What a question costs</span>
+          <span role="cell">A meter, per token, indefinitely</span>
+          <span class="on" role="cell">Hardware you have already paid for</span>
+        </div>
+        <div class="eb-cmp-r" role="row">
+          <span class="k" role="rowheader">Who sees the question</span>
+          <span role="cell">The prompt leaves the building</span>
+          <span class="on" role="cell">Nothing leaves</span>
+        </div>
+        <div class="eb-cmp-r" role="row">
+          <span class="k" role="rowheader">When the vendor updates</span>
+          <span role="cell">Your answers change without notice</span>
+          <span class="on" role="cell">Nothing changes until you change it</span>
+        </div>
+        <div class="eb-cmp-r" role="row">
+          <span class="k" role="rowheader">Proving what answered</span>
+          <span role="cell">A version you cannot pin</span>
+          <span class="on" role="cell">A frozen artifact you can re-run</span>
+        </div>
+      </div>
+      <p class="eb-cmp-n">Frontier models still have their place, and we use them: to set the benchmark,
+        to distil from, and for genuinely open-ended work. What they should not be is the thing your
+        close cycle depends on.</p>
+    </div>
+
     <div class="eb-pledge rv">
-      <p>Your corpus trains your brain. It does not train anyone else's model.
-        <span>This is the first question every board asks, and it should be. The commercial and
-          architectural decisions on this page are made so the answer can be given plainly, in writing,
-          and shown to hold in the deployment itself.</span></p>
+      <p>Your corpus trains your model, and the model belongs to you.
+        <span>It does not train anyone else's, and it does not leave with us. This is the first
+          question every board asks, and it should be. The architecture on this page exists so the
+          answer can be given plainly, in writing, and shown to hold in the deployment itself.</span></p>
     </div>
   </div>
 </section>
@@ -413,14 +457,14 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="assets/fx-core.js?v=72"></script>
-<script src="assets/perf-probe.js?v=72"></script>
-<script src="assets/lenis-init.js?v=72"></script>
-<script src="assets/site.js?v=72"></script>
-<script src="assets/prism-gradient.js?v=72"></script>
-<script src="assets/synapse-field.js?v=72"></script>
-<script src="assets/kinetic-grid.js?v=72"></script>
-<script src="assets/animated-gradient.js?v=72"></script>
-<script src="assets/liquid-glass.js?v=72"></script>
+<script src="assets/fx-core.js?v=73"></script>
+<script src="assets/perf-probe.js?v=73"></script>
+<script src="assets/lenis-init.js?v=73"></script>
+<script src="assets/site.js?v=73"></script>
+<script src="assets/prism-gradient.js?v=73"></script>
+<script src="assets/synapse-field.js?v=73"></script>
+<script src="assets/kinetic-grid.js?v=73"></script>
+<script src="assets/animated-gradient.js?v=73"></script>
+<script src="assets/liquid-glass.js?v=73"></script>
 </body>
 </html>
