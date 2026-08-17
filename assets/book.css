@@ -54,12 +54,21 @@
 /* Flex-wrap put the third figure on its own line, which pushed it past the
    bottom of the page and clipped it against .bkx-spread's overflow:hidden.
    A three-column grid cannot wrap, so all three always fit. */
+/* "40-70%" and "90%" were running together and reading as one figure.
+   Splitting a numeric range across two lines looks worse than the problem,
+   so the separation is done with air and a hairline instead: a wider gap,
+   and a rule down the left of every column after the first. */
 .bkx-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(8px,1.2vw,16px);margin-top:clamp(12px,1.8vw,22px);
+  gap:clamp(14px,2vw,24px);margin-top:clamp(12px,1.8vw,22px);
   padding-top:clamp(10px,1.4vw,18px);border-top:1px solid rgba(28,59,56,.12)}
 .bkx-stats > div{min-width:0}
+.bkx-stats > div + div{padding-left:clamp(14px,2vw,24px);
+  border-left:1px solid rgba(28,59,56,.14)}
+/* nowrap kept "40-70%" on one line, which ran it into the 90% beside it.
+   Letting it break after the hyphen puts 70% under 40% and gives the two
+   figures clear air between them. */
 .bkx-stats b{display:block;font-family:var(--serif);font-weight:800;font-size:clamp(15px,1.5vw,26px);
-  letter-spacing:-.03em;color:var(--teal-deep);line-height:1;white-space:nowrap}
+  letter-spacing:-.03em;color:var(--teal-deep);line-height:1.08}
 /* the labels may wrap; the figures may not */
 .bkx-stats span{display:block;font-family:var(--disp);font-size:clamp(7px,.66vw,9.5px);letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-mut);margin-top:6px;line-height:1.35}

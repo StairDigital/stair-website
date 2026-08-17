@@ -15,6 +15,20 @@
   var nodes = document.querySelectorAll('.lg');
   if (!nodes.length) return;
 
+  /* Skip any surface that carries a backdrop-filter.
+     Writing --mx/--my repaints the element, and repainting an element with
+     a backdrop-filter forces the browser to re-sample and re-blur the
+     whole area behind it. On a page with several such surfaces that is a
+     full-viewport blur per pointer move, which is what made hovering feel
+     heavy. Those surfaces keep the static centred highlight; everything
+     else still tracks the cursor. */
+  nodes = Array.prototype.filter.call(nodes, function (el) {
+    var cs = getComputedStyle(el);
+    var bf = cs.backdropFilter || cs.webkitBackdropFilter || 'none';
+    return bf === 'none' || bf === '';
+  });
+  if (!nodes.length) return;
+
   nodes.forEach(function (el) {
     var raf = null, px = 50, py = 50;
 

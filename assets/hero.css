@@ -1,10 +1,8 @@
 /* ============================================================
    HOME HERO — "The Ascent"
 
-   An isometric staircase: the brand name as an object. Each step is
-   three flat polygons (tread, riser, side) filled with three tints of
-   the brand teal, which is how solid geometry reads as lit without any
-   3D engine. The projection is a true isometric one, computed rather
+   A staircase: the brand name as a picture. Six ascending blocks,
+   each a step lighter than the one below it. The projection is a true isometric one, computed rather
    than eyeballed: X = (y - x)*cos30, Y = (x + y)*sin30 - z, with the
    steps painted back to front so they occlude each other correctly.
 
@@ -17,43 +15,37 @@
   background:var(--ivory);overflow:hidden;
   padding:calc(var(--nav-h) + clamp(56px,9vh,104px)) 0 clamp(64px,10vh,120px)}
 
-/* ---- the staircase ---- */
-/* The flight climbs out of the bottom of the section and finishes at the
-   top right, so the art box is anchored to that corner rather than centred. */
-.hx-art{position:absolute;right:0;top:0;bottom:0;width:min(60%,940px);z-index:0;pointer-events:none}
-.hx-art svg{position:absolute;right:0;bottom:-4%;
-  height:min(104%,820px);width:auto;overflow:visible}
+/* ---- the staircase ----
+   Flat elevation, not isometric. The 3D build read as a solid wedge from
+   most angles and its bounding box fought the section edges. Six plain
+   rectangles ascending left to right, each a step lighter than the last,
+   with a pale cap on every tread so the treads separate.
 
-/* a soft wash so the type side stays clean and the stair side has depth */
+   preserveAspectRatio is xMidYMax so the flight always sits on the
+   bottom of its box, and the viewBox carries 16 units of padding on
+   every side, so no step can ever be clipped at any aspect ratio. */
+.hx-art{position:absolute;right:0;bottom:0;width:min(56%,860px);
+  height:min(78%,560px);z-index:0;pointer-events:none}
+/* overflow:visible so the 30px dip each step starts from is not clipped by
+   the viewBox edge while the entrance is playing. At rest the content fits
+   the viewBox exactly. */
+.hx-art svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+
+.s2-riser{transition:fill .4s var(--ease)}
+.s2-tread{fill:rgba(255,255,255,.75)}
+
+.s2-step{opacity:0;transform:translateY(30px);
+  animation:s2Rise .8s cubic-bezier(.22,.61,.36,1) var(--d,0s) forwards}
+@keyframes s2Rise{to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+  .s2-step{animation:none;opacity:1;transform:none}
+}
+
+/* a soft wash so the type side stays clean */
 .hx::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(90deg,var(--ivory) 0%,var(--ivory) 34%,rgba(250,248,243,.72) 52%,rgba(250,248,243,0) 76%),
-    radial-gradient(70% 58% at 76% 34%,rgba(14,156,147,.10),transparent 70%)}
+  background:linear-gradient(90deg,var(--ivory) 0%,var(--ivory) 30%,rgba(250,248,243,.62) 48%,rgba(250,248,243,0) 72%)}
 
 .hx .wrap{position:relative;z-index:2;width:100%}
-
-/* the three faces of every step */
-.s3-tread{fill:url(#s3t)}
-.s3-riser{fill:url(#s3r)}
-.s3-side {fill:url(#s3s)}
-/* A hairline on every face edge is what separates one step from the next.
-   Without it the six blocks fuse into a single wedge, which is exactly how
-   the first build read. */
-.s3-tread,.s3-riser,.s3-side{stroke-linejoin:round}
-.s3-tread{stroke:rgba(255,255,255,.55);stroke-width:.8}
-.s3-riser{stroke:rgba(255,255,255,.22);stroke-width:.7}
-.s3-side {stroke:rgba(4,42,39,.30);stroke-width:.7}
-
-.s3-step{opacity:0;transform:translate(-14px,22px);
-  animation:s3Rise .95s cubic-bezier(.22,.61,.36,1) var(--d,0s) forwards}
-@keyframes s3Rise{to{opacity:1;transform:translate(0,0)}}
-
-.s3-shadow{opacity:0;animation:s3Fade 1.2s ease .5s forwards}
-@keyframes s3Fade{to{opacity:1}}
-
-@media(prefers-reduced-motion:reduce){
-  .s3-step,.s3-shadow{animation:none;opacity:1;transform:none}
-}
 
 /* ---- the copy ----
    Entrance is CSS rather than the site-wide .rv ScrollTrigger batch: the
@@ -110,10 +102,8 @@
    a band under the copy instead of a panel beside it. */
 @media(max-width:950px){
   .hx{min-height:0;padding:calc(var(--nav-h) + 62px) 0 0;display:block}
-  .hx-art{position:relative;right:auto;top:auto;bottom:auto;width:100%;
-    height:clamp(240px,42vw,340px);margin-top:38px}
-  .hx-art svg{position:absolute;left:50%;right:auto;top:50%;
-    transform:translate(-50%,-50%);height:100%;width:auto}
+  .hx-art{position:relative;right:auto;bottom:auto;width:100%;
+    height:clamp(200px,38vw,300px);margin-top:34px}
   .hx::after{background:radial-gradient(80% 40% at 50% 88%,rgba(14,156,147,.1),transparent 72%)}
   .hx h1{max-width:none}
   .hx-lead{max-width:none}

@@ -1,56 +1,57 @@
-/* ============ AURORA HERO ============ */
+/* ============ AURORA HERO ============
+   The look is kept; the way it was built is not.
+
+   The old version stacked, on one full-viewport element: two gradient
+   layers animated by background-position, background-attachment:fixed,
+   filter:blur(10px) saturate(200%), a radial mask, TWO mix-blend-mode
+   :difference layers, filter:invert(1) on the content, and a
+   backdrop-filter of contrast + blur + url(#fluted) where #fluted was an
+   SVG feImage/feTile/feDisplacementMap chain. Every one of those is a
+   per-frame repaint of the whole viewport, and background-attachment
+   :fixed alone is a well known scroll-jank source.
+
+   Now: one oversized gradient layer moved with translate3d, which the
+   compositor owns, over a dark ground. No blend modes, no backdrop
+   filters, no fixed attachment, no SVG filter. The colours and the drift
+   are the same. */
 .aurora-hero-wrapper{
-  --stripe-color:#0d1b1a;
-  --bg-filter:blur(10px) opacity(60%) saturate(200%);
-  background:var(--stripe-color);
-  position:relative;overflow:hidden;
-  width:100%;min-height:520px;height:100vh}
-@keyframes smoothBg{
-  from{background-position:50% 50%,50% 50%}
-  to{background-position:350% 50%,350% 50%}
+  position:relative;overflow:hidden;isolation:isolate;
+  width:100%;min-height:520px;height:100vh;background:#0d1b1a}
+.aurora-hero-bg{position:absolute;top:-30%;left:-60%;width:220%;height:160%;
+  pointer-events:none;will-change:transform;
+  background-image:repeating-linear-gradient(100deg,
+    #0E9C93 0%,#5FC9BF 6%,#F0854B 11%,#CFE9E3 16%,#0B857D 22%,#0E9C93 28%);
+  opacity:.5;
+  -webkit-mask-image:radial-gradient(ellipse at 68% 12%,#000 26%,transparent 66%);
+  mask-image:radial-gradient(ellipse at 68% 12%,#000 26%,transparent 66%);
+  animation:auroraDrift 48s linear infinite alternate}
+@keyframes auroraDrift{
+  from{transform:translate3d(0,0,0) rotate(-2deg)}
+  to  {transform:translate3d(-16%,3%,0) rotate(2deg)}
 }
-.aurora-hero-bg{
-  width:100%;height:100%;position:absolute;inset:0;
-  --stripes:repeating-linear-gradient(100deg,
-    var(--stripe-color) 0%,var(--stripe-color) 7%,
-    transparent 10%,transparent 12%,var(--stripe-color) 16%);
-  /* brand aurora: teal, amber and pale mint rather than the demo blues */
-  --rainbow:repeating-linear-gradient(100deg,
-    #0E9C93 10%,#5FC9BF 15%,#F0854B 20%,#CFE9E3 25%,#0B857D 30%);
-  background-image:var(--stripes),var(--rainbow);
-  background-size:300%,200%;
-  background-position:50% 50%,50% 50%;
-  filter:var(--bg-filter);
-  -webkit-mask-image:radial-gradient(ellipse at 100% 0%,black 40%,transparent 70%);
-  mask-image:radial-gradient(ellipse at 100% 0%,black 40%,transparent 70%)}
-.aurora-hero-bg::after{
-  content:"";position:absolute;inset:0;
-  background-image:var(--stripes),var(--rainbow);
-  background-size:200%,100%;
-  animation:smoothBg 60s linear infinite;
-  background-attachment:fixed;
-  mix-blend-mode:difference}
+/* a second, slower band gives the depth the blend modes used to fake */
+.aurora-hero-bg::after{content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(88deg,
+    transparent 0%,rgba(13,27,26,.85) 5%,transparent 11%);
+  will-change:transform;
+  animation:auroraBands 64s linear infinite}
+@keyframes auroraBands{
+  from{transform:translate3d(0,0,0)}
+  to  {transform:translate3d(12%,0,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .aurora-hero-bg,.aurora-hero-bg::after{animation:none}
+}
 
 .aurora-content{
-  position:absolute;inset:0;width:100%;height:100%;
+  position:absolute;inset:0;z-index:2;
   display:flex;place-content:center;place-items:center;flex-flow:column;
-  gap:4.5%;text-align:center;padding:0 24px;
-  backdrop-filter:contrast(.9) blur(7px) url(#fluted);
-  -webkit-backdrop-filter:contrast(.9) blur(7px) url(#fluted);
-  mix-blend-mode:difference;filter:invert(1)}
+  gap:4.5%;text-align:center;padding:0 24px}
 .h1-scalingSize{
-  font-family:var(--serif);font-size:clamp(17px,3.05vw,54px);position:relative;isolation:isolate;
+  font-family:var(--serif);font-size:clamp(20px,3.4vw,58px);
   font-weight:800;letter-spacing:-.035em;line-height:1.05;
+  color:#fff;text-shadow:0 4px 30px rgba(6,14,13,.7);
   white-space:nowrap;max-width:none}
-.h1-scalingSize::before{
-  content:attr(data-text);position:absolute;inset:0;
-  background:white;text-shadow:0 0 1px #ffffff;
-  background-clip:text;-webkit-text-fill-color:transparent;background-color:white;
-  -webkit-mask:linear-gradient(#000 0 0) luminance;
-  mask:linear-gradient(#000 0 0) luminance,alpha;
-  backdrop-filter:blur(19px) brightness(12.5);
-  -webkit-text-stroke:1px white;
-  display:flex;margin:auto;z-index:1;pointer-events:none}
 
 .ld-hero-sub{position:absolute;left:0;right:0;bottom:clamp(26px,5vh,52px);z-index:3;
   text-align:center;padding:0 24px;
@@ -64,7 +65,7 @@
 .ld-hero-cue{position:absolute;left:50%;bottom:clamp(26px,5vh,52px);transform:translateX(-50%);z-index:4;
   display:flex;flex-direction:column;align-items:center;gap:9px;
   font-family:var(--disp);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(250,248,243,.82);text-shadow:0 2px 12px rgba(6,14,13,.8);mix-blend-mode:difference}
+  color:rgba(250,248,243,.86);text-shadow:0 2px 12px rgba(6,14,13,.8)}
 .ld-hero-cue svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;
   stroke-linecap:round;stroke-linejoin:round;animation:ldBob 2s var(--ease) infinite}
 @keyframes ldBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
@@ -176,7 +177,21 @@
 /* ============ CLOSE ============ */
 .ld-close{position:relative;overflow:hidden;background:#0d1b1a;text-align:center;
   padding:clamp(66px,10vh,124px) 0}
-.ld-close-wave{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* Was a WebGL pulse-lines field. Two drifting gradient blobs give the same slow
+   wash for one paint and no GL context. */
+.ld-close-wave{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+  background:linear-gradient(150deg,#0d1b1a,#16302d 56%,#0a1513)}
+.ld-close-wave::before,.ld-close-wave::after{content:"";position:absolute;
+  width:70%;aspect-ratio:1.3;border-radius:50%;will-change:transform}
+.ld-close-wave::before{left:-12%;top:-26%;
+  background:radial-gradient(closest-side,rgba(14,156,147,.40),transparent 72%);
+  animation:ldwA 28s ease-in-out infinite alternate}
+.ld-close-wave::after{right:-14%;bottom:-28%;
+  background:radial-gradient(closest-side,rgba(240,133,75,.24),transparent 74%);
+  animation:ldwB 35s ease-in-out infinite alternate}
+@keyframes ldwA{to{transform:translate3d(20%,22%,0) scale(1.18)}}
+@keyframes ldwB{to{transform:translate3d(-18%,-20%,0) scale(1.14)}}
+@media(prefers-reduced-motion:reduce){.ld-close-wave::before,.ld-close-wave::after{animation:none}}
 /* hold the centre back so the headline reads over the pulsing lines */
 .ld-close::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(70% 60% at 50% 50%,rgba(13,27,26,.86),rgba(13,27,26,.5))}

@@ -9,8 +9,22 @@
   box-shadow:0 50px 64px -60px rgba(18,18,31,.9)}
 .ac-glow{display:none}
 /* the instanced cube grid fills the panel */
-.ac-wave{position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:26px}
-.ac-wave canvas{display:block;width:100%;height:100%}
+/* Was a WebGL wave-grid, which pulled in three.js. Two drifting gradient blobs give the same slow
+   wash for one paint and no GL context. */
+.ac-wave{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+  background:linear-gradient(150deg,#1a1a2b,#232338 58%,#141422)}
+.ac-wave::before,.ac-wave::after{content:"";position:absolute;
+  width:72%;aspect-ratio:1.3;border-radius:50%;will-change:transform}
+.ac-wave::before{left:-12%;top:-26%;
+  background:radial-gradient(closest-side,rgba(255,122,61,.42),transparent 72%);
+  animation:acwA 24s ease-in-out infinite alternate}
+.ac-wave::after{right:-14%;bottom:-28%;
+  background:radial-gradient(closest-side,rgba(95,201,191,.34),transparent 74%);
+  animation:acwB 30s ease-in-out infinite alternate}
+@keyframes acwA{to{transform:translate3d(20%,22%,0) scale(1.18)}}
+@keyframes acwB{to{transform:translate3d(-18%,-20%,0) scale(1.14)}}
+@media(prefers-reduced-motion:reduce){.ac-wave::before,.ac-wave::after{animation:none}}
+.ac-wave{border-radius:26px}
 /* hold the type off the brightest part of the field */
 .ac-panel::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:26px;
   background:radial-gradient(120% 80% at 50% 40%,rgba(12,12,22,.72),rgba(12,12,22,.9))}
