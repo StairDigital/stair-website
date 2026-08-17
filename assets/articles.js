@@ -23,7 +23,8 @@
       date: '2026-07-28',
       dateLabel: 'July 2026',
       read: 6,
-      img: 'assets/img/cap-assurance.jpg',
+      accent: '#0E9C93',
+      glyph: '<path d="M12 3l7.5 3.2v5.1c0 5.1-3.2 8.3-7.5 10.4-4.3-2.1-7.5-5.3-7.5-10.4V6.2z"/><path d="m8.6 12.1 2.4 2.4 4.4-4.6"/>',
       title: 'The checkpoint nobody can name',
       deck: 'Every large organisation has an AI governance framework. Very few can tell you the moment a model is cleared to run in production, and who signed.',
       body: [
@@ -49,8 +50,7 @@
         {h: 'What to do this quarter'},
         {p: 'Pick the function where AI is furthest along, most often finance, audit or legal. Write down the four answers above for every model already live there. The exercise usually takes a fortnight and it produces two things: a control that did not exist before, and an honest list of what is running without an owner.'},
         {p: 'That list is uncomfortable. It is also the most useful document a board will read this year.'}
-      ],
-      sources: ['BCG, McKinsey and Deloitte enterprise AI research, 2026', 'Anthropic, State of AI Agents Report, 2026', 'Reserve Bank of India, draft model-risk guidance', 'European Union, AI Act phasing schedule']
+      ]
     },
 
     {
@@ -59,7 +59,8 @@
       date: '2026-04-30',
       dateLabel: 'April 2026',
       read: 6,
-      img: 'assets/img/cap-exo.jpg',
+      accent: '#3D6B8A',
+      glyph: '<rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/>',
       title: 'Structure precedes scale',
       deck: 'The gating factor on AI returns is organisational design, not model selection. The evidence on that is now uncomfortably consistent.',
       body: [
@@ -79,8 +80,7 @@
         {h: 'The question to put to the board'},
         {p: 'Not "which model should we standardise on". That question has a shelf life of about six months and no bearing on outcomes.'},
         {p: 'The question is: which end-to-end process are we redesigning this year, who owns it across every function it touches, and what is the number against their name. If nobody in the room can answer that, the AI budget is funding experiments rather than change.'}
-      ],
-      sources: ['BCG, agent-first adoption and cost research, 2026', 'Deloitte, enterprise AI governance and operating model research, 2026', 'STAIR Digital AI Intelligence Briefing, April 2026']
+      ]
     },
 
     {
@@ -89,7 +89,8 @@
       date: '2026-07-31',
       dateLabel: 'July 2026',
       read: 5,
-      img: 'assets/img/cap-agents.jpg',
+      accent: '#D96A30',
+      glyph: '<rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><circle cx="12" cy="15.4" r="1.4"/>',
       title: 'Rented intelligence has no moat',
       deck: 'Savings from off-the-shelf tools get competed away, because your competitor buys the same licence. What survives is the logic you own.',
       body: [
@@ -105,8 +106,7 @@
         {h: 'Where this leaves the CIO'},
         {p: 'The uncomfortable question for anyone who has already signed a large platform commitment is what proportion of it funds capability that a competitor could match by signing the same contract. For most enterprises the honest answer is: most of it.'},
         {p: 'That does not make the spend wrong. Frontier models still set the benchmark and are what you distil from, and for genuinely open-ended work they remain the right tool. It makes the spend insufficient on its own. The differentiated part has to be built, and building it is a decision that gets made once, deliberately, rather than arrived at by default.'}
-      ],
-      sources: ['MIT Technology Review and BCG analysis on foundation-model scaling returns, 2026', 'STAIR Digital AI Intelligence Briefing, July 2026']
+      ]
     },
 
     {
@@ -115,7 +115,8 @@
       date: '2026-04-30',
       dateLabel: 'April 2026',
       read: 5,
-      img: 'assets/img/cap-capital.jpg',
+      accent: '#B8863B',
+      glyph: '<path d="M4 20h16"/><path d="M7 20v-5M12 20v-9M17 20v-13"/><path d="M14.4 8.2 17 5.6l2.6 2.6"/>',
       title: 'The budget doubled. The question changed.',
       deck: 'AI spending is accelerating and CEOs have taken direct ownership of it. The hard part is no longer deployment. It is proving the return.',
       body: [
@@ -132,8 +133,7 @@
         {p: 'The discipline that separates the organisations getting returns is unglamorous. Continued investment is tied to financial outcomes rather than to pilot counts. Each tranche of funding is released against a number that someone has put their name to.'},
         {p: 'That is ordinary capital discipline. It is applied as a matter of course to a new plant or an acquisition, and it is very often suspended for AI on the grounds that the technology is new. The technology being new is exactly why the discipline is needed.'},
         {p: 'One test, before the next budget cycle: for every AI initiative currently funded, can you name the executive accountable and the financial line it moves? Where you cannot, you are not looking at an investment. You are looking at an experiment that has been running long enough to look like one.'}
-      ],
-      sources: ['Gartner, AI model and platform spend forecast, 2026', 'BCG, enterprise AI budget research, 2026', 'STAIR Digital AI Intelligence Briefing, April and July 2026']
+      ]
     },
 
     {
@@ -142,7 +142,8 @@
       date: '2026-07-31',
       dateLabel: 'July 2026',
       read: 6,
-      img: 'assets/img/cap-deeptech.jpg',
+      accent: '#7A5C8E',
+      glyph: '<path d="M12 3v3M6.5 5.5 8.6 7.6M17.5 5.5 15.4 7.6"/><path d="M4 10h16"/><path d="M7 10v7M12 10v7M17 10v7"/><path d="M4.5 20h15"/>',
       title: 'India is writing deployment-first rules',
       deck: 'While the EU regulates by category of risk, India is regulating by sector and by point of use. For Indian enterprises that is the more immediate constraint.',
       body: [
@@ -164,8 +165,7 @@
           'Validate vendor capability claims against independent benchmarks before committing capital, because a supervisor will not accept a vendor datasheet as evidence.'
         ]},
         {p: 'India is emerging as a deployment-first regulatory pole. For enterprises headquartered here, that is not a distant compliance exercise. It is the environment the next three years of AI investment will be supervised in.'}
-      ],
-      sources: ['Reserve Bank of India, draft model-risk guidance', 'European Union AI Act phasing schedule', 'Ministry of Electronics and Information Technology, IndiaAI Mission', 'NITI Aayog commentary on India technology services', 'Stanford HAI, national AI sovereignty tracking']
+      ]
     },
 
     {
@@ -174,7 +174,8 @@
       date: '2026-07-31',
       dateLabel: 'July 2026',
       read: 5,
-      img: 'assets/img/ind-technology.jpg',
+      accent: '#5F8A5A',
+      glyph: '<circle cx="5" cy="12" r="2.4"/><circle cx="19" cy="6.5" r="2.4"/><circle cx="19" cy="17.5" r="2.4"/><path d="M7.3 11.1 16.7 7.4M7.3 12.9l9.4 3.7"/>',
       title: 'One model no longer fits',
       deck: 'Compute inflation and data-residency rules have made the single centralised model strategy untenable. Routing is now a budget decision.',
       body: [
@@ -194,8 +195,7 @@
           'What would our annual inference cost be under routing, against what we are paying now?'
         ]},
         {p: 'The answers usually make the case on their own. Single-architecture, centralised model strategies are becoming financially and legally unsustainable for any firm operating across more than one jurisdiction — and hybrid is not a compromise position. It is the architecture that survives both the cost curve and the regulator.'}
-      ],
-      sources: ['NVIDIA and Microsoft enterprise AI architecture frameworks, 2026', 'European Union and MeitY data-residency mandates', 'STAIR Digital AI Intelligence Briefing, July 2026']
+      ]
     }
   ];
 
@@ -211,26 +211,34 @@
     return n;
   }
 
-  function card(a, featured) {
-    var c = el('article', 'art-card' + (featured ? ' art-feat' : ''));
+  /* One row per briefing, separated by a rule rather than boxed. The mark
+     on the left is a flat block of the article's own colour carrying a
+     glyph that stands for its argument: no photography, because generic
+     stock had nothing to do with any of these pieces. */
+  function row(a, n) {
+    var c = el('article', 'art-row');
     c.setAttribute('data-cat', a.cat);
+    c.style.setProperty('--c', a.accent);
     c.innerHTML =
       '<button class="art-open" aria-label="Read: ' + a.title + '">' +
-        '<span class="art-shot"><img src="' + a.img + '" alt="" loading="lazy" decoding="async"></span>' +
+        '<span class="art-n">' + (n < 9 ? '0' : '') + (n + 1) + '</span>' +
+        '<span class="art-mark" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24">' + a.glyph + '</svg>' +
+        '</span>' +
         '<span class="art-body">' +
           '<span class="art-meta"><em>' + a.cat + '</em><i></i>' + a.dateLabel + '<i></i>' + a.read + ' min read</span>' +
           '<span class="art-title">' + a.title + '</span>' +
           '<span class="art-deck">' + a.deck + '</span>' +
-          '<span class="art-go">Read the briefing' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>' +
-          '</span>' +
+        '</span>' +
+        '<span class="art-go" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>' +
         '</span>' +
       '</button>';
     c.querySelector('.art-open').addEventListener('click', function () { open(a); });
     return c;
   }
 
-  ARTICLES.forEach(function (a, i) { grid.appendChild(card(a, i === 0)); });
+  ARTICLES.forEach(function (a, i) { grid.appendChild(row(a, i)); });
 
   /* category filter */
   if (filters) {
@@ -241,7 +249,7 @@
       b.addEventListener('click', function () {
         filters.querySelectorAll('.art-chip').forEach(function (x) { x.classList.remove('on'); });
         b.classList.add('on');
-        grid.querySelectorAll('.art-card').forEach(function (c) {
+        grid.querySelectorAll('.art-row').forEach(function (c) {
           var show = cat === 'All' || c.getAttribute('data-cat') === cat;
           c.classList.toggle('art-hide', !show);
         });
@@ -267,18 +275,16 @@
   function open(a) {
     if (!reader || !readerBody) return;
     lastFocus = document.activeElement;
+    readerBody.style.setProperty('--c', a.accent);
     readerBody.innerHTML =
       '<header class="ar-head">' +
+        '<span class="ar-mark" aria-hidden="true"><svg viewBox="0 0 24 24">' + a.glyph + '</svg></span>' +
         '<p class="ar-meta"><em>' + a.cat + '</em><i></i>' + a.dateLabel + '<i></i>' + a.read + ' min read</p>' +
         '<h2>' + a.title + '</h2>' +
         '<p class="ar-deck">' + a.deck + '</p>' +
         '<div class="ar-byline">STAIR Digital &middot; AI Intelligence Briefing</div>' +
       '</header>' +
-      '<figure class="ar-shot"><img src="' + a.img + '" alt=""></figure>' +
-      '<div class="ar-copy">' + blocks(a.body) + '</div>' +
-      '<footer class="ar-src"><h4>Sources</h4><ul>' +
-        a.sources.map(function (s) { return '<li>' + s + '</li>'; }).join('') +
-      '</ul></footer>';
+      '<div class="ar-copy">' + blocks(a.body) + '</div>';
 
     /* the print sheet is built from the same data, on the STAIR letterhead */
     var sheet = document.getElementById('artPrintBody');
@@ -287,10 +293,7 @@
         '<p class="ap-kicker">AI Intelligence Briefing &middot; ' + a.dateLabel + '</p>' +
         '<h1>' + a.title + '</h1>' +
         '<p class="ap-deck">' + a.deck + '</p>' +
-        '<div class="ap-copy">' + blocks(a.body) + '</div>' +
-        '<div class="ap-src"><h4>Sources</h4><ul>' +
-          a.sources.map(function (s) { return '<li>' + s + '</li>'; }).join('') +
-        '</ul></div>';
+        '<div class="ap-copy">' + blocks(a.body) + '</div>';
     }
 
     reader.classList.add('open');

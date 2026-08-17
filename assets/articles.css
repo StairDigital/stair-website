@@ -47,57 +47,65 @@
 .art-chip.on{background:#08706A;border-color:#08706A;color:#fff}
 .art-chip:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
-/* ---- grid ---- */
-.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px)}
-.art-card.art-hide{display:none}
-/* the newest briefing runs full width, two columns of it as a landscape card */
-.art-card.art-feat{grid-column:1 / -1}
+/* ---- the index ----
+   Rules, not boxes. A card grid put six framed rectangles on a page that
+   already has plenty; a ruled list reads as an index of published work,
+   which is what this is. Each row carries a flat block of the article's
+   own colour with a glyph standing for its argument - no photography,
+   because the stock available had nothing to do with any of these pieces
+   and generic imagery on a briefing undercuts the briefing. */
+.art-grid{border-top:1px solid var(--line)}
+.art-row{border-bottom:1px solid var(--line)}
+.art-row.art-hide{display:none}
 
-.art-card{position:relative}
-.art-open{display:block;width:100%;text-align:left;cursor:pointer;
-  background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;padding:0;
-  box-shadow:0 26px 52px -46px rgba(28,42,40,.5);
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
-.art-open:hover{transform:translateY(-5px);border-color:rgba(14,156,147,.42);
-  box-shadow:0 40px 70px -44px rgba(28,42,40,.6)}
-.art-open:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.art-open{display:grid;
+  grid-template-columns:auto auto minmax(0,1fr) auto;
+  align-items:center;gap:clamp(16px,2.4vw,34px);
+  width:100%;text-align:left;cursor:pointer;background:transparent;border:0;
+  padding:clamp(22px,2.8vh,34px) clamp(6px,1vw,14px);
+  transition:background .45s var(--ease),padding-left .45s var(--ease)}
+.art-open:hover{background:rgba(14,156,147,.045);padding-left:clamp(14px,1.8vw,26px)}
+.art-open:focus-visible{outline:2px solid var(--teal);outline-offset:-3px}
 
-.art-shot{display:block;position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--surface-2)}
-.art-shot img{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .8s var(--ease)}
-.art-open:hover .art-shot img{transform:scale(1.05)}
-/* a teal veil keeps the photographs in the brand rather than each being its own mood */
-.art-shot::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(165deg,rgba(14,156,147,.30),rgba(10,22,20,.42) 72%);
-  mix-blend-mode:multiply}
+.art-n{font-family:var(--disp);font-size:clamp(11px,.9vw,13px);font-weight:600;
+  letter-spacing:.08em;color:var(--ar-mut);align-self:start;padding-top:4px}
 
-.art-body{display:block;padding:clamp(20px,2.2vw,28px)}
+/* the mark: a solid field of the article's colour, and its glyph */
+.art-mark{display:grid;place-items:center;flex:none;
+  width:clamp(56px,5.4vw,74px);aspect-ratio:1;border-radius:12px;
+  background:var(--c);
+  box-shadow:0 14px 26px -16px color-mix(in srgb,var(--c) 85%,transparent);
+  transition:transform .5s var(--ease)}
+.art-open:hover .art-mark{transform:translateY(-3px) scale(1.04)}
+.art-mark svg{width:52%;height:52%;fill:none;stroke:#fff;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
+
+.art-body{display:block;min-width:0}
 .art-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;
   font-family:var(--disp);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ar-mut)}
-.art-meta em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+.art-meta em{font-style:normal;font-weight:600;color:color-mix(in srgb,var(--c) 62%,var(--ink))}
 .art-meta i{width:3px;height:3px;border-radius:50%;background:var(--line);display:block}
 .art-title{display:block;font-family:var(--serif);font-weight:750;
-  font-size:clamp(19px,1.75vw,26px);letter-spacing:-.026em;line-height:1.12;
-  color:var(--ink);margin-top:13px}
-.art-deck{display:block;font-size:clamp(13.5px,.98vw,15.5px);color:var(--ar-soft);
-  line-height:1.68;margin-top:11px}
-.art-go{display:inline-flex;align-items:center;gap:9px;margin-top:16px;
-  font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.04em;
-  color:var(--teal-deep);transition:gap .4s var(--ease)}
-.art-open:hover .art-go{gap:15px}
-.art-go svg{width:15px;height:15px}
+  font-size:clamp(19px,1.9vw,29px);letter-spacing:-.026em;line-height:1.14;
+  color:var(--ink);margin-top:10px}
+.art-deck{display:block;font-size:clamp(13.5px,1vw,16px);color:var(--ar-soft);
+  line-height:1.68;margin-top:9px;max-width:62ch}
 
-/* the featured card lays the picture beside the words */
-@media(min-width:861px){
-  .art-feat .art-open{display:grid;grid-template-columns:1.15fr 1fr;align-items:stretch}
-  .art-feat .art-shot{aspect-ratio:auto;height:100%;min-height:330px}
-  .art-feat .art-body{padding:clamp(28px,3.2vw,48px);align-self:center}
-  .art-feat .art-title{font-size:clamp(26px,2.9vw,42px)}
-  .art-feat .art-deck{font-size:clamp(15px,1.15vw,18px);max-width:46ch}
+.art-go{display:grid;place-items:center;flex:none;
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--line);color:var(--ink);
+  transition:background .45s var(--ease),border-color .45s,color .45s,transform .45s var(--ease)}
+.art-open:hover .art-go{background:var(--c);border-color:transparent;color:#fff;transform:translateX(4px)}
+.art-go svg{width:17px;height:17px}
+
+@media(max-width:820px){
+  .art-open{grid-template-columns:auto minmax(0,1fr);gap:16px;
+    padding:22px clamp(4px,1vw,10px)}
+  .art-n,.art-go{display:none}
+  .art-mark{width:48px;border-radius:10px;align-self:start}
+  .art-open:hover{padding-left:clamp(4px,1vw,10px)}
 }
-@media(max-width:1080px){.art-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:860px){.art-grid{grid-template-columns:1fr}}
 
 /* ============ READER OVERLAY ============ */
 .art-reader{position:fixed;inset:0;z-index:220;display:flex;justify-content:center;
@@ -149,12 +157,15 @@
 .ar-byline{font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ar-mut);margin-top:20px;padding-top:18px;border-top:1px solid var(--line-soft)}
 
-.ar-shot{margin:clamp(26px,3.6vh,40px) 0;border-radius:14px;overflow:hidden;
-  aspect-ratio:16/9;background:var(--surface-2)}
-.ar-shot img{width:100%;height:100%;object-fit:cover;display:block}
+.ar-mark{display:grid;place-items:center;width:56px;aspect-ratio:1;border-radius:13px;
+  background:var(--c,var(--teal));margin-bottom:24px;
+  box-shadow:0 16px 30px -18px color-mix(in srgb,var(--c,var(--teal)) 85%,transparent)}
+.ar-mark svg{width:52%;height:52%;fill:none;stroke:#fff;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
 
 /* the reading column: measure held near 68 characters */
-.ar-copy{max-width:66ch}
+.ar-copy{max-width:66ch;margin-top:clamp(26px,3.4vh,38px);
+  padding-top:clamp(24px,3vh,34px);border-top:2px solid var(--c,var(--teal))}
 .ar-copy p{font-size:clamp(15px,1.12vw,17.5px);line-height:1.78;color:var(--ar-body);
   margin-top:18px}
 .ar-copy h3{font-family:var(--serif);font-weight:750;font-size:clamp(19px,1.7vw,25px);
@@ -168,16 +179,6 @@
   border-left:3px solid var(--amber);
   font-family:var(--serif);font-weight:650;font-size:clamp(17px,1.55vw,23px);
   line-height:1.42;letter-spacing:-.018em;color:var(--ar-quote)}
-.ar-src{max-width:66ch;margin-top:clamp(40px,5.4vh,62px);padding-top:clamp(22px,3vh,30px);
-  border-top:1px solid var(--line)}
-.ar-src h4{font-family:var(--disp);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--ar-mut)}
-.ar-src ul{margin-top:13px;list-style:none}
-.ar-src li{font-size:13.5px;line-height:1.66;color:var(--ar-soft);
-  padding-left:16px;position:relative;margin-top:7px}
-.ar-src li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;
-  background:var(--ar-mut)}
-
 @media(max-width:620px){
   .ar-bar{padding:12px 18px}
   .ar-brand span{display:none}
@@ -239,11 +240,5 @@
   .ap-copy blockquote{margin:5mm 0;padding-left:5mm;border-left:2pt solid #E08A3C;
     font-family:var(--serif);font-size:11.5pt;font-weight:650;line-height:1.36;
     color:#0B6B64;break-inside:avoid;page-break-inside:avoid}
-  .ap-src{margin-top:8mm;padding-top:4mm;border-top:1px solid #ddd;
-    break-inside:avoid;page-break-inside:avoid}
-  .ap-src h4{font-family:var(--disp);font-size:8pt;letter-spacing:.18em;text-transform:uppercase;
-    color:#777;margin:0 0 2mm}
-  .ap-src li{font-size:8.4pt;line-height:1.5;color:#555;margin-bottom:1.2mm;list-style:none}
-
   a[href]::after{content:""}   /* no URL dumps in the margins */
 }
