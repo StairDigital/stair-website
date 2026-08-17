@@ -85,6 +85,27 @@ it as `url(img/x.jpg)`, relative to `assets/`. This silently broke five images o
 the Research page for a while, because a missing background just looks like a
 design choice.
 
+**An inline SVG with no styles becomes a black blob.** Icons here are written
+bare (`<svg viewBox="0 0 24 24"><path .../></svg>`) and get `fill:none;
+stroke:currentColor` plus a size from CSS. Delete or rename that rule and the
+SVG falls back to its own defaults: stretched to fill its container, with the
+path filled solid black. A chevron rendered that way looks exactly like a giant
+play button, which is how it was found. There is no global guard, because some
+icons (the LinkedIn mark) genuinely rely on the default fill, so check the CSS
+for an icon before deleting it.
+
+**Prefer gradients to `filter: blur()` for glows.** `filter:blur(51px)` over a
+1500x1000 element is one of the most expensive things a browser can paint, and
+animating `filter` re-rasterises the whole subtree every frame. A
+`radial-gradient` with soft stops is the same picture, painted once. Animate
+only `transform` and `opacity`.
+
+**WebGL contexts add up.** Each `data-` effect is its own context. The Research
+page ran three.js with an EffectComposer post-processing chain for a hero
+background, plus three more fields; it now runs none, and the same looks come
+from drifting gradients. Reach for GL when the effect genuinely needs per-pixel
+work, not for a slow wash of colour.
+
 **Pinned sections cost scroll distance.** A `height:200vh` section with a pinned
 child means two full screens of scrolling where the page does not advance. That
 is what "sticky" means to a visitor. Keep the total across a page modest, and

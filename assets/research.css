@@ -1,7 +1,35 @@
 /* ============ RESEARCH HERO: kinetic knowledge lattice ============ */
 .res-hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;
   background:#0a1614}
-.res-hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* Was a three.js wave-grid running an EffectComposer post-processing chain:
+   render the scene to a framebuffer, then extra full-screen shader passes,
+   every frame, at viewport size, for a hero background. It also pulled the
+   whole three.module.js plus three postprocessing modules over the wire.
+   That was the bulk of this page's lag.
+
+   The lattice is now CSS: a ruled grid that drifts, and two slow blooms
+   over it. One paint, no GL context, no library, and the motion is
+   transform-only so the compositor runs it off the main thread. */
+.res-hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:#EAF2EF}
+.res-hero-grid::before{content:"";position:absolute;inset:-20%;
+  background-image:
+    repeating-linear-gradient(90deg,rgba(14,156,147,.16) 0 1px,transparent 1px 62px),
+    repeating-linear-gradient(0deg, rgba(14,156,147,.16) 0 1px,transparent 1px 62px);
+  transform-origin:center;will-change:transform;
+  animation:resGrid 42s linear infinite alternate}
+.res-hero-grid::after{content:"";position:absolute;inset:-30%;
+  background:
+    radial-gradient(38% 42% at 26% 34%,rgba(95,201,191,.55),transparent 68%),
+    radial-gradient(34% 38% at 76% 68%,rgba(240,133,75,.24),transparent 70%),
+    radial-gradient(46% 50% at 62% 18%,rgba(14,156,147,.34),transparent 72%);
+  will-change:transform;
+  animation:resBloom 34s ease-in-out infinite alternate}
+@keyframes resGrid{to{transform:translate3d(-58px,-34px,0) scale(1.06)}}
+@keyframes resBloom{to{transform:translate3d(4%,-5%,0) scale(1.14)}}
+@media(prefers-reduced-motion:reduce){
+  .res-hero-grid::before,.res-hero-grid::after{animation:none}
+}
 /* a quiet pocket on the left so the headline always wins against the lattice */
 .res-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
@@ -148,10 +176,26 @@
              linear-gradient(180deg,rgba(241,237,228,.82),rgba(241,237,228,.93))}
 .wk:hover::before{opacity:1}
 /* the morphing field sits under the photo and the ivory wash */
+/* Was a WebGL fluid-morph per card. Two more GL contexts on a page that
+   already ran three, for what is a slow wash of colour behind a card.
+   This is the same wash from two drifting radial gradients: one paint,
+   no context, and the movement is a transform the compositor owns. */
 .wk-morph{position:absolute;inset:0;z-index:-3;overflow:hidden;border-radius:22px;
-  opacity:.30;transition:opacity .7s var(--ease)}
-.wk:hover .wk-morph{opacity:.46}
-.wk-morph svg{position:absolute;inset:0;width:100%;height:100%}
+  opacity:.55;transition:opacity .7s var(--ease)}
+.wk:hover .wk-morph{opacity:.8}
+.wk-morph::before,.wk-morph::after{content:"";position:absolute;
+  width:78%;aspect-ratio:1;border-radius:50%;will-change:transform}
+.wk-morph::before{left:-14%;top:-24%;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 62%,transparent),transparent 72%);
+  animation:wkDriftA 19s ease-in-out infinite alternate}
+.wk-morph::after{right:-18%;bottom:-26%;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 38%,transparent),transparent 74%);
+  animation:wkDriftB 23s ease-in-out infinite alternate}
+@keyframes wkDriftA{to{transform:translate(26%,18%) scale(1.18)}}
+@keyframes wkDriftB{to{transform:translate(-22%,-16%) scale(1.12)}}
+@media(prefers-reduced-motion:reduce){
+  .wk-morph::before,.wk-morph::after{animation:none}
+}
 .wk:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--c) 40%,var(--line));
   box-shadow:0 40px 80px -46px rgba(28,42,40,.6)}
 
@@ -253,11 +297,24 @@
 /* ============ HANDOVER TO ENGAGEMENTS (gradient flow, light) ============ */
 .to-eng{position:relative;overflow:hidden;background:var(--surface-2);
   padding:clamp(70px,11vh,132px) 0 clamp(70px,11vh,130px)}
-.eng-wave{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-/* the buffer is deliberately under-sized (see PIXEL_BUDGET in gradient-wave.js);
-   stretch it back over the band — it is a soft gradient, so this is lossless */
-.eng-wave canvas{display:block;width:100%;height:100%}
-.eng-wave.gw-fallback{background:linear-gradient(120deg,#F1EDE4,#CFE9E3 50%,#F6E3D6)}
+/* Was a WebGL gradient-wave. It is a soft moving wash, which two drifting
+   gradient blobs give for free; the GL context did not earn its keep on a
+   page that was already running one. */
+.eng-wave{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:linear-gradient(120deg,#F1EDE4,#E7F1EE 46%,#F6E3D6)}
+.eng-wave::before,.eng-wave::after{content:"";position:absolute;
+  width:60%;aspect-ratio:1.4;border-radius:50%;will-change:transform}
+.eng-wave::before{left:-8%;top:-30%;
+  background:radial-gradient(closest-side,rgba(95,201,191,.55),transparent 72%);
+  animation:ewDriftA 26s ease-in-out infinite alternate}
+.eng-wave::after{right:-10%;bottom:-34%;
+  background:radial-gradient(closest-side,rgba(240,133,75,.34),transparent 74%);
+  animation:ewDriftB 31s ease-in-out infinite alternate}
+@keyframes ewDriftA{to{transform:translate(22%,26%) scale(1.2)}}
+@keyframes ewDriftB{to{transform:translate(-20%,-22%) scale(1.15)}}
+@media(prefers-reduced-motion:reduce){
+  .eng-wave::before,.eng-wave::after{animation:none}
+}
 /* soften the flow so the ink type reads cleanly over it */
 .to-eng::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,rgba(250,248,243,.58),rgba(250,248,243,.34))}
