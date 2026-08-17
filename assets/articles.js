@@ -18,6 +18,216 @@
 
   var ARTICLES = [
     {
+      id: "cs-oem",
+      cat: "Case study",
+      dateLabel: "2001 to present",
+      read: 5,
+      accent: "#B85C3E",
+      glyph: "<path d=\"M3 21h18V9l-6 4V9l-6 4V6L3 9z\"/><path d=\"M8 21v-4h4v4\"/>",
+      title: "Transforming a Leading OEM Player in India",
+      deck: "A family-run cooling and refrigeration business, listed and under pressure, rebuilt into a governance-driven leader. Revenue from INR 1,000 crores in 2001 to INR 7,907 crores in FY 2022-23.",
+      body: [
+        {h: "Company Background"},
+        {p: "This narrative centers on a leading Original Equipment Manufacturer (OEM) in India, a titan in the cooling and refrigeration sector. Established in 1943, it began as a modest trading entity and grew into a powerhouse producing air conditioners, commercial refrigeration units, and air purifiers. Today, it’s a publicly listed giant on the Bombay Stock Exchange (BSE) and National Stock Exchange (NSE), commanding a vast network of offices and channel partners across India. By the early 2020s, its revenues soared past INR 7,000 crores, driven by India’s urbanization and rising demand for climate control solutions."},
+        {p: "The team of Stair Digital has been engaged with this industry leader since 2001, with our founder Shailesh Haribhakti joining the board in 2001 and ascending to Chairman in 2019."},
+        {p: "Initially a family-run enterprise, it transitioned into a professionally managed corporation, competing with global brands and local innovators. Its listing brought investor expectations, but its family-led roots raised governance concerns, setting the stage for a transformative journey under the team’s guidance."},
+        {h: "Challenges Faced"},
+        {p: "The company grappled with significant obstacles:"},
+        {ul: [
+          "<b>Succession Uncertainty:</b> As a family business, it faced internal disputes over leadership transitions, risking strategic paralysis.",
+          "<b>Pandemic Disruptions:</b> COVID-19 crippled its supply chain, halting imports of critical components and slashing production and sales.",
+          "<b>Competitive Pressure:</b> Low-cost imports and aggressive marketing from rivals eroded its market share, necessitating innovation.",
+          "<b>Financial Strain:</b> Pre-pandemic expansion inflated debt, and the downturn squeezed liquidity, demanding swift capital solutions."
+        ]},
+        {p: "These challenges underscored the need for robust governance and operational resilience."},
+        {h: "Leadership and Interventions"},
+        {p: "Stair Digital’s founder Shailesh Haribhakti, spearheaded a comprehensive transformation:"},
+        {ul: [
+          "<b>Succession Framework:</b> Introducing a retirement age policy for senior roles, ensuring seamless transitions and injecting fresh leadership talent.",
+          "<b>Governance Overhaul:</b> Revamping board processes, implementing transparent evaluations and independent oversight to align with long-term objectives.",
+          "<b>Crisis Management:</b> During the pandemic, Stair Digital secured short-term financing and optimized working capital, stabilizing cash flows.",
+          "<b>Capital Infusion:</b> In 2023, the team orchestrated a INR 1,000 crore equity raise via institutional investors, fortifying the balance sheet for growth."
+        ]},
+        {p: "These interventions professionalized the company, aligning it with global benchmarks."},
+        {h: "Growth Journey During Engagement (2001–Present)"},
+        {p: "Since the team’s engagement in 2001, the company’s trajectory has been remarkable:"},
+        {ul: [
+          "<b>Early 2000s:</b> Revenue hovered around INR 1,000 crores, with a focus on domestic manufacturing.",
+          "<b>2010s:</b> Expansion into new product lines like air purifiers and a growing export presence doubled revenues to INR 2,500 crores by 2015.",
+          "<b>Post-2019 (Shailesh Haribhakti as Chairman):</b> Revenue surged from INR 5,200 crores in FY 2019-20 to INR 7,907 crores in FY 2022-23, reflecting a 52% jump. Market share in room air conditioners grew to 13.5% by 2023."
+        ]},
+        {p: "This growth reflects our strategic influence over two decades."},
+        {h: "Outcomes and Achievements"},
+        {p: "The transformation yielded impressive results:"},
+        {ul: [
+          "<b>Governance Milestone:</b> Our succession and board reforms attracted top talent and institutional trust.",
+          "<b>Financial Turnaround:</b> The 2023 equity raise and product innovation drove revenue from INR 5,200 crores (FY 2019-20) to INR 7,907 crores (FY 2022-23).",
+          "<b>Operational Resilience:</b> Diversified sourcing and capacity expansion countered supply chain risks.",
+          "<b>Industry Leadership:</b> The company reinforced its status as a market leader, earning accolades."
+        ]},
+        {h: "Summary"},
+        {p: "Key achievements under Stair Digital’s engagement:"},
+        {ul: [
+          "INR 1,000 crore equity raise in 2023.",
+          "Revenue growth from INR 1,000 crores in 2001 to INR 7,907 crores in FY 2022-23.",
+          "Evolution into a governance-driven, professionally managed leader."
+        ]}
+      ]
+    },
+
+    {
+      id: "cs-digital",
+      cat: "Case study",
+      dateLabel: "Early 2000s to present",
+      read: 5,
+      accent: "#12A79D",
+      glyph: "<path d=\"M12 3l7.5 3.2v5.1c0 5.1-3.2 8.3-7.5 10.4-4.3-2.1-7.5-5.3-7.5-10.4V6.2z\"/><circle cx=\"12\" cy=\"10.8\" r=\"2.2\"/><path d=\"M9.3 16.3a3.4 3.4 0 0 1 5.4 0\"/>",
+      title: "Building a Pioneering Digital Solutions Provider in India",
+      deck: "From a conglomerate subsidiary to a standalone public company: a 2021 rebrand, a INR 490 crore IPO, and a market cap beyond INR 8,000 crores.",
+      body: [
+        {h: "Company Background"},
+        {p: "This case study explores a pioneering digital solutions provider in India, a trailblazer in public infrastructure and e-governance. Founded in the mid-1990s as part of a financial conglomerate, it emerged as an independent entity offering identity verification, pension management, and digital services."},
+        {p: "By the early 2020s, it generated over INR 700 crores in revenue, capitalizing on India’s digital revolution. Stair Digital has been engaged since the early 2000s, with our founder Shailesh Haribhakti serving as Chairperson since that time."},
+        {p: "Listed on the BSE, it serves governments, banks, and fintechs, navigating a competitive landscape of tech giants and startups. A strategic demerger and rebranding in 2021 marked its ascent as a standalone innovator."},
+        {h: "Challenges Faced"},
+        {p: "The company faced critical hurdles:"},
+        {ul: [
+          "<b>Identity Overhaul:</b> Post-demerger, it needed a distinct brand to stand apart from its parent.",
+          "<b>IPO Execution:</b> Preparing for a public listing required financial rigor and global investor outreach.",
+          "<b>Global Expansion:</b> Regulatory and market entry barriers challenged its international ambitions.",
+          "<b>Profitability Lag:</b> Despite revenue growth, margins trailed competitors, demanding operational efficiency."
+        ]},
+        {p: "These issues tested its ability to lead India’s digital charge."},
+        {h: "Leadership and Interventions"},
+        {p: "With Shailesh Haribhakti at the helm, drove a bold transformation:"},
+        {ul: [
+          "<b>Rebranding Mastery:</b> Stair Digital led the 2021 rebranding, positioning it as a cutting-edge digital innovator.",
+          "<b>Leadership Build:</b> We recruited a top-tier CEO and management team to fuel growth.",
+          "<b>IPO Triumph:</b> Stair Digital executed a INR 490 crore IPO in November 2023, amplifying its global presence.",
+          "<b>Governance Elevation:</b> We introduced independent directors and ESG metrics, boosting investor confidence."
+        ]},
+        {p: "These steps redefined its market stature."},
+        {h: "Growth Journey During Engagement (Early 2000s–Present)"},
+        {p: "Since our involvement:"},
+        {ul: [
+          "<b>Early 2000s:</b> Revenue was modest at INR 50 crores, focused on niche e-governance services.",
+          "<b>2010s:</b> Expansion into new verticals like tax filing grew revenue to INR 300 crores by 2015.",
+          "<b>Post-Rebranding (2021):</b> Revenue climbed to INR 742 crores by FY 2022-23, with profit after tax rising from INR 100 crores (FY 2021-22) to INR 150 crores (FY 2022-23). The IPO in 2023 propelled its market cap beyond INR 8,000 crores."
+        ]},
+        {p: "This reflects our two-decade impact."},
+        {h: "Outcomes and Achievements"},
+        {p: "The results were transformative:"},
+        {ul: [
+          "<b>Digital Leadership:</b> The rebrand solidified its role in India’s digital infrastructure.",
+          "<b>IPO Success:</b> The oversubscribed IPO saw shares soar from INR 792 to nearly INR 2,000 within a year.",
+          "<b>Global Footprint:</b> Partnerships in Africa and Southeast Asia launched its international journey.",
+          "<b>Financial Leap:</b> Profit margins improved with streamlined operations."
+        ]},
+        {h: "Summary"},
+        {p: "Key achievements under Stair Digital:"},
+        {ul: [
+          "Successful rebranding in 2021.",
+          "INR 490 crore IPO in 2023.",
+          "Market cap growth to over INR 8,000 crores."
+        ]}
+      ]
+    },
+
+    {
+      id: "cs-nbfc",
+      cat: "Case study",
+      dateLabel: "2015 to present",
+      read: 5,
+      accent: "#4A5A6B",
+      glyph: "<path d=\"M3 21h18\"/><path d=\"M5 21V10M9.5 21V10M14.5 21V10M19 21V10\"/><path d=\"M12 3 3 8h18z\"/>",
+      title: "Transforming a Diversified Financial Services Firm in India",
+      deck: "An NBFC carrying wholesale risk through the 2018 crisis, pivoted to 94% retail lending with AUM at INR 80,000 crores and 95% digital collections.",
+      body: [
+        {h: "Company Background"},
+        {p: "This story tracks a diversified financial services firm in India, a major non-banking financial company (NBFC) founded in the 1990s under a prominent conglomerate. Spanning retail loans, infrastructure financing, and real estate funding, it managed assets worth INR 80,000 crores by the early 2020s. Stair Digital has been engaged since the mid-2010s (specifically 2015), with our founder Shailesh Haribhakti serving on the board."},
+        {p: "Listed on the BSE and NSE, it initially thrived on wholesale lending but shifted toward retail to mitigate risks, a pivot accelerated by Stair Digital’s involvement."},
+        {h: "Challenges Faced"},
+        {p: "The firm faced pressing issues:"},
+        {ul: [
+          "<b>Portfolio Risk:</b> Heavy wholesale exposure led to bad loans during the 2018 NBFC crisis.",
+          "<b>Digital Disruption:</b> Fintechs eroded its retail share, necessitating a tech overhaul.",
+          "<b>Liquidity Crunch:</b> Post-crisis funding dried up, requiring capital diversification.",
+          "<b>Conglomerate Alignment:</b> It had to balance group restructuring with independent growth."
+        ]},
+        {p: "These demanded a strategic reset."},
+        {h: "Leadership and Interventions"},
+        {p: "Stair Digital worked on a sweeping overhaul:"},
+        {ul: [
+          "<b>Retail Pivot:</b> Shift in lending to 94% retail by FY 2023, reducing risk.",
+          "<b>Financial Resilience:</b> Stair Digital diversified funding with Green Bonds and bolstered capital reserves.",
+          "<b>Digital Leap:</b> The company achieved 95% digital collections during the pandemic, integrating fintech partnerships.",
+          "<b>Governance Innovation:</b> The board introduced a 360-degree feedback loop for the board, enhancing decision-making and compliance."
+        ]},
+        {p: "These changes modernized the firm."},
+        {h: "Growth Journey During Engagement (2015–Present)"},
+        {p: "Since Stair Digital’s engagement:"},
+        {ul: [
+          "<b>2015:</b> Assets under management (AUM) were INR 50,000 crores, with retail at 20%.",
+          "<b>2019:</b> AUM grew to INR 65,000 crores, with retail rising to 50%.",
+          "<b>2023:</b> AUM hit INR 80,000 crores, retail loans surging from INR 30,000 crores (FY 2019-20) to INR 75,000 crores (FY 2022-23). Profit after tax rose from INR 1,000 crores to INR 1,500 crores."
+        ]},
+        {p: "This showcases Stair Digital’s transformative role."},
+        {h: "Outcomes and Achievements"},
+        {p: "The turnaround was profound:"},
+        {ul: [
+          "<b>Portfolio Strength:</b> Retail dominance improved asset quality.",
+          "<b>Profit Growth:</b> Earnings climbed with operational efficiency.",
+          "<b>Digital Leadership:</b> 95% digital collections set an industry standard.",
+          "<b>Governance Excellence:</b> The 360-degree feedback loop earned recognition."
+        ]},
+        {h: "Summary"},
+        {p: "Key achievements:"},
+        {ul: [
+          "94% retail lending transformation.",
+          "AUM growth to INR 80,000 crores.",
+          "Profit increase to INR 1,500 crores in FY 2022-23."
+        ]}
+      ]
+    },
+
+    {
+      id: "recruitment",
+      cat: "Perspective",
+      dateLabel: "March 2025",
+      read: 6,
+      accent: "#A6862F",
+      glyph: "<circle cx=\"9.4\" cy=\"8\" r=\"3.6\"/><path d=\"M3 20v-1.6A3.4 3.4 0 0 1 6.4 15h6a3.4 3.4 0 0 1 3.4 3.4V20\"/><circle cx=\"17.9\" cy=\"9.3\" r=\"2.9\"/><path d=\"m20.3 11.7 2.2 2.2\"/>",
+      title: "The AI Revolution in Recruitment: Promise, Peril, and the Path to Responsibility",
+      deck: "Algorithms now sift resumes, predict candidate success and assess personality traits. The question is whether AI in recruitment can deliver on its potential without tripping over its own circuits.",
+      body: [
+        {p: "The artificial intelligence revolution is sweeping through industries with the subtlety of a gale-force wind, and recruitment is no exception. Algorithms now sift resumes, predict candidate success, and even assess personality traits—all at speeds that would leave a human recruiter blinking in disbelief."},
+        {p: "The promise is tantalizing: a process stripped of inefficiency, honed to precision, and scaled to meet the demands of a global talent war. Yet, beneath the glossy veneer lies a paradox. The very tools designed to level the playing field can, if mishandled, entrench biases, erode trust, and raise ethical red flags."},
+        {q: "In this high-stakes dance between innovation and responsibility, the question looms: can AI in recruitment deliver on its potential without tripping over its own circuits?"},
+        {h: "1. The Allure of Efficiency—and Its Hidden Costs"},
+        {p: "Picture a bustling corporate headquarters, drowning in a sea of job applications. Enter an AI system, trained to spot the wheat from the chaff. In mere hours, it slashes the pile by half, delivering a shortlist that dazzles with efficiency. A recent survey found that firms adopting such tools cut their hiring time by 40%, with some reporting a 20% uptick in employee retention—a statistic that would make any HR director salivate. The numbers paint a rosy picture: faster hires, better fits, happier teams."},
+        {p: "But the canvas isn’t flawless. Imagine that same AI, fed a diet of historical data, quietly learning to favor candidates from elite schools or with certain job titles. Dig deeper, and a darker pattern emerges: a tilt toward one gender or demographic, not by design but by default."},
+        {p: "Studies suggest this isn’t hypothetical—over 60% of AI hiring tools show signs of bias, mirroring the skewed datasets they inherit. In one real-world case, a financial institution’s AI tool, lauded for its speed, was later found to disproportionately exclude candidates with atypical cognitive profiles. The fallout? Legal headaches and a bruised reputation. Efficiency, it seems, comes with a caveat: unchecked, it can amplify the past’s imperfections rather than pave a fairer future."},
+        {h: "2. Trust in the Machine: A Fragile Commodity"},
+        {p: "The public isn’t blind to these risks. A 2025 study revealed a stark decline in faith: only 30% of job seekers now trust AI to judge them fairly, down from 45% two years prior. This isn’t mere Luddite grumbling. High-profile blunders—like the time an AI system erroneously rejected thousands of qualified applicants due to a glitch—have stoked skepticism."},
+        {p: "In another instance, a breach exposed the personal data of millions of candidates, spotlighting a grim reality: AI’s appetite for information can clash with privacy imperatives. When algorithms handle everything from CVs to social media trails, a single misstep can unravel trust—and with it, a company’s ability to attract top talent."},
+        {p: "Yet, the stakes extend beyond optics. In a world where human capital drives innovation, a recruitment process seen as opaque or unfair risks alienating the very people it seeks to woo. The data backs this up: firms perceived as ethical in their tech use see 25% higher applicant interest, according to a 2024 analysis. Trust, it turns out, is as much a currency as competence."},
+        {h: "3. Responsible AI: Beyond Buzzwords"},
+        {p: "So, how do we thread this needle—reaping AI’s rewards without sowing chaos? The answer hinges on a concept gaining traction: responsible AI. This isn’t about stifling progress with bureaucracy; it’s about weaving ethics into the warp and weft of technology. Think transparent algorithms, where decisions can be traced and questioned. Picture diverse training data, reflecting not just privilege but the full spectrum of humanity. And imagine systems built to be audited, their logic laid bare for scrutiny."},
+        {p: "Real-world efforts hint at what’s possible. In one case, a tech-savvy outfit opened up its AI hiring model to external review, revealing—and fixing—flaws that boosted diverse hires by a quarter. Elsewhere, an innovative startup crafted a tool to spot bias in real time, flagging inequities before they calcified into decisions. The payoff? Not just fairness, but sharper predictions—a reminder that ethics and efficacy can align."},
+        {p: "Privacy, too, demands attention. With AI gorging on sensitive data, robust safeguards—encryption, anonymization, tight access rules—are non-negotiable. A recent incident, where a platform’s lax security exposed millions of profiles, serves as a cautionary tale. Companies that skimp here don’t just risk fines; they court disaster."},
+        {h: "4. The Human Factor: Augmentation, Not Automation"},
+        {p: "Yet, for all its prowess, AI isn’t a solo act. The most effective setups pair it with human judgment—a hybrid harmony that tempers cold code with warm intuition. Data supports this: firms blending AI screening with human final calls report 30% higher candidate satisfaction."},
+        {p: "In one striking example, a retailer used AI to narrow its applicant pool, then leaned on recruiters to assess cultural fit. The result? A workforce that clicked, not just ticked boxes. Technology, it seems, shines brightest when it amplifies humanity, not supplants it."},
+        {h: "5. Navigating the Tightrope: Innovation vs. Oversight"},
+        {p: "The road to responsible AI isn’t without potholes. Regulators are racing to catch up—think sweeping frameworks like the EU’s AI Act or America’s nascent AI Bill of Rights. But laws alone won’t suffice; they’re too blunt for a field this fluid. The real action unfolds elsewhere: in labs where developers wrestle with bias, in boardrooms where leaders weigh risks, in teams where ethicists and technologists spar over trade-offs."},
+        {p: "Companies must step up. That means investing in AI literacy—ensuring everyone, from executives to frontline staff, grasps the tech’s promise and perils. It means fostering a culture where questioning an algorithm isn’t taboo but expected. And it means candor with candidates: explaining how AI shapes their fate and offering a lifeline if it falters. One firm, for instance, began sharing “AI decision reports” with applicants, detailing why they were passed over. Uptake soared—not from acing every hire, but from showing its work."},
+        {h: "6. The Stakes—and the Prize"},
+        {p: "Get this wrong, and the future looks bleak: a recruitment landscape ruled by inscrutable black boxes, churning out bias and mistrust. Get it right, and the vista shifts. Imagine AI not just spotting talent but doing so with equity and clarity—matching people to roles in ways that feel less like a lottery and more like a meritocracy. The data hints at the upside: ethical AI adopters see 15% higher productivity from new hires, per a 2024 study. That’s not just good business—it’s a moral win."},
+        {p: "The AI train has left the station, and its speed is dizzying. The choices we make now—between laissez-faire and vigilance, between shortcuts and principles—will reverberate for decades. Will we let algorithms loose to wreak havoc, or steer them toward a purpose that uplifts? The answer isn’t coded in silicon; it’s forged in our resolve to marry technology with conscience. Time’s ticking. What’s the next move?"}
+      ]
+    },
+
+    {
       id: 'checkpoint',
       cat: 'Governance',
       date: '2026-07-28',
