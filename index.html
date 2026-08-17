@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STAIR Digital | Where the Boardroom Meets Frontier AI</title>
 <meta name="description" content="STAIR Digital unites four decades of boardroom experience with over a decade at the frontier of artificial intelligence to build organisations that scale 10X.">
-<meta name="theme-color" content="#0A1614">
+<meta name="theme-color" content="#FAF8F3">
 <link rel="icon" href="assets/stair-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=74">
-<link rel="stylesheet" href="assets/hero.css?v=74">
-<link rel="stylesheet" href="assets/book.css?v=74">
-<link rel="stylesheet" href="assets/home.css?v=74">
+<link rel="stylesheet" href="assets/style.css?v=75">
+<link rel="stylesheet" href="assets/hero.css?v=75">
+<link rel="stylesheet" href="assets/book.css?v=75">
+<link rel="stylesheet" href="assets/home.css?v=75">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
 </head>
 <body>
@@ -58,45 +58,76 @@
 </div>
 
 <!-- ============ HERO: "The Ascent" ============
-     A drawn staircase: the brand name as a picture. Pure SVG stroke
-     animation, so there is no canvas, no pin and no scroll handler in
-     front of the visitor's first read of the page. -->
+     An isometric staircase, the brand name as an object. Three polygons
+     per step (tread, riser, side) in three tints of the brand teal; the
+     projection is computed, not eyeballed, and the steps are painted back
+     to front so they occlude correctly. Geometry notes in hero.css. -->
 <section class="hx" id="hero">
   <div class="hx-art" aria-hidden="true">
-    <svg viewBox="0 0 1240 820" fill="none" preserveAspectRatio="xMidYMid meet">
-      <!-- tread levels: the measured grid the ascent is read against -->
-      <line class="hx-rule" x1="60" y1="590" x2="1180" y2="590"/>
-      <line class="hx-rule" x1="60" y1="500" x2="1180" y2="500"/>
-      <line class="hx-rule" x1="60" y1="410" x2="1180" y2="410"/>
-      <line class="hx-rule" x1="60" y1="320" x2="1180" y2="320"/>
-      <line class="hx-rule" x1="60" y1="230" x2="1180" y2="230"/>
-      <line class="hx-rule" x1="60" y1="140" x2="1180" y2="140"/>
+    <svg viewBox="-182 -83 270 235" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="s3t" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#5FC9BF"/><stop offset="1" stop-color="#12A79D"/>
+        </linearGradient>
+        <linearGradient id="s3r" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0E9C93"/><stop offset="1" stop-color="#0B857D"/>
+        </linearGradient>
+        <linearGradient id="s3s" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0B857D"/><stop offset="1" stop-color="#075F59"/>
+        </linearGradient>
+        <radialGradient id="s3sh" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#0B857D" stop-opacity=".28"/>
+          <stop offset="1" stop-color="#0B857D" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
 
-      <!-- the flight. --len is the measured path length, so the draw is exact -->
-      <path class="hx-step" style="--len:1540"
-            d="M120 680 H270 V590 H420 V500 H570 V410 H720 V320 H870 V230 H1020 V140 H1120"/>
+      <!-- contact shadow on the ground plane -->
+      <ellipse class="s3-shadow" cx="-52" cy="112" rx="112" ry="26" fill="url(#s3sh)"/>
 
-      <circle class="hx-node" cx="270"  cy="590" r="7"/>
-      <circle class="hx-node" cx="420"  cy="500" r="7"/>
-      <circle class="hx-node" cx="570"  cy="410" r="7"/>
-      <circle class="hx-node" cx="720"  cy="320" r="7"/>
-      <circle class="hx-node" cx="870"  cy="230" r="7"/>
-      <circle class="hx-node" cx="1020" cy="140" r="7"/>
+      <g class="s3-step" style="--d:0.00s">
+        <polygon class="s3-side"  points="-67.5,111.0 -93.5,126.0 -93.5,-6.0 -67.5,-21.0"/>
+        <polygon class="s3-riser" points="-129.9,-35.0 -67.5,1.0 -67.5,-21.0 -129.9,-57.0"/>
+        <polygon class="s3-tread" points="-129.9,-57.0 -67.5,-21.0 -93.5,-6.0 -155.9,-42.0"/>
+      </g>
+      <g class="s3-step" style="--d:0.13s">
+        <polygon class="s3-side"  points="-41.6,96.0 -67.5,111.0 -67.5,1.0 -41.6,-14.0"/>
+        <polygon class="s3-riser" points="-103.9,-28.0 -41.6,8.0 -41.6,-14.0 -103.9,-50.0"/>
+        <polygon class="s3-tread" points="-103.9,-50.0 -41.6,-14.0 -67.5,1.0 -129.9,-35.0"/>
+      </g>
+      <g class="s3-step" style="--d:0.26s">
+        <polygon class="s3-side"  points="-15.6,81.0 -41.6,96.0 -41.6,8.0 -15.6,-7.0"/>
+        <polygon class="s3-riser" points="-77.9,-21.0 -15.6,15.0 -15.6,-7.0 -77.9,-43.0"/>
+        <polygon class="s3-tread" points="-77.9,-43.0 -15.6,-7.0 -41.6,8.0 -103.9,-28.0"/>
+      </g>
+      <g class="s3-step" style="--d:0.39s">
+        <polygon class="s3-side"  points="10.4,66.0 -15.6,81.0 -15.6,15.0 10.4,0.0"/>
+        <polygon class="s3-riser" points="-52.0,-14.0 10.4,22.0 10.4,0.0 -52.0,-36.0"/>
+        <polygon class="s3-tread" points="-52.0,-36.0 10.4,0.0 -15.6,15.0 -77.9,-21.0"/>
+      </g>
+      <g class="s3-step" style="--d:0.52s">
+        <polygon class="s3-side"  points="36.4,51.0 10.4,66.0 10.4,22.0 36.4,7.0"/>
+        <polygon class="s3-riser" points="-26.0,-7.0 36.4,29.0 36.4,7.0 -26.0,-29.0"/>
+        <polygon class="s3-tread" points="-26.0,-29.0 36.4,7.0 10.4,22.0 -52.0,-14.0"/>
+      </g>
+      <g class="s3-step" style="--d:0.65s">
+        <polygon class="s3-side"  points="62.4,36.0 36.4,51.0 36.4,29.0 62.4,14.0"/>
+        <polygon class="s3-riser" points="0.0,0.0 62.4,36.0 62.4,14.0 0.0,-22.0"/>
+        <polygon class="s3-tread" points="0.0,-22.0 62.4,14.0 36.4,29.0 -26.0,-7.0"/>
+      </g>
 
       <!-- the summit -->
-      <circle class="hx-halo" cx="1120" cy="140" r="16"/>
-      <circle class="hx-top"  cx="1120" cy="140" r="9"/>
+      <circle class="s3-halo" cx="-111.7" cy="-31.5" r="13"/>
+      <circle class="s3-top"  cx="-111.7" cy="-31.5" r="7"/>
     </svg>
   </div>
 
   <div class="wrap">
-    <p class="hx-k hx-in"><i></i>Governance &middot; Artificial Intelligence &middot; Capital</p>
-    <h1 class="hx-in d1">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</h1>
-    <p class="hx-lead hx-in d2">STAIR is an operating platform for India's largest enterprises,
+    <h1 class="hx-in">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</h1>
+    <p class="hx-lead hx-in d1">STAIR is an operating platform for India's largest enterprises,
       built by people who have sat on the boards and people who have built the systems. One
       partner, one standard, one measurable outcome.</p>
 
-    <div class="hx-figs hx-in d3">
+    <div class="hx-figs hx-in d2">
       <div class="hx-fig">
         <b>4</b>
         <span>Decades in India's boardrooms</span>
@@ -111,7 +142,7 @@
       </div>
     </div>
 
-    <div class="hx-cta hx-in d4">
+    <div class="hx-cta hx-in d3">
       <button class="btn btn-primary" data-consult>Let's Talk
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       <a class="btn hx-ghost" href="capabilities.html">See what we run</a>
@@ -222,61 +253,77 @@
   </div>
 </section>
 
-<!-- ============ THE FOUNDERS ============ -->
+<!-- ============ THE FOUNDERS ============
+     Two stages on purpose. The claim lands on its own screen first, at a
+     size that makes it an assertion rather than a heading; the people who
+     back it arrive on the next scroll. Each card is one big link: there is
+     nothing else on it to click, so a separate button was only a smaller
+     target for the same destination. -->
 <section class="fdr" id="founders">
-  <div class="wrap">
-    <div class="fdr-head rv">
-      <div class="eyebrow">Who you work with</div>
-      <h2>Two founders. <em>One accountable table.</em></h2>
-      <p>Every engagement is owned by a founder. That is why the governance argument and the
-        technical architecture never arrive in separate documents, and why there is always
-        someone named who carries the outcome.</p>
+
+  <div class="fdr-stage">
+    <div class="wrap">
+      <div class="fdr-head rv">
+        <div class="eyebrow">Who you work with</div>
+        <h2>Two founders.<br><em>One accountable table.</em></h2>
+        <p>Every engagement is owned by a founder. That is why the governance argument and the
+          technical architecture never arrive in separate documents, and why there is always
+          someone named who carries the outcome.</p>
+      </div>
     </div>
+    <div class="fdr-cue" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+  </div>
 
-    <div class="fdr-grid">
-      <article class="fdr-card rv" style="--c:#0E9C93">
-        <div class="fdr-shot">
-          <img src="assets/img/team-haribhakti.jpg" alt="Shailesh V. Haribhakti"
-               width="1254" height="1254" loading="lazy" decoding="async">
-        </div>
-        <div class="fdr-body">
-          <h3>Shailesh V. Haribhakti</h3>
-          <p class="fdr-role">Cofounder &amp; Chairman</p>
-          <p class="fdr-bio">Four decades in India's boardrooms and a chartered accountant by
-            training. He chairs and sits on the boards of some of the country's most scrutinised
-            listed companies, which is where the standard STAIR holds itself to comes from.</p>
-          <ul class="fdr-cred">
-            <li>Non&#8209;Executive Chairman: Protean eGov, Aakash, Continuum Green Energy, Mirae Asset India</li>
-            <li>Director: Swiggy, TVS Motor, Adani Total Gas, Bajaj Electricals</li>
-            <li>20+ listed and private boards across finance, technology and ESG</li>
-          </ul>
-        </div>
-      </article>
+  <div class="fdr-people">
+    <div class="fdr-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fdr-grid">
 
-      <article class="fdr-card rv" style="--c:#D96A30">
-        <div class="fdr-shot">
-          <img src="assets/img/team-saraff.jpg" alt="Shubham Saraff"
-               width="1254" height="1254" loading="lazy" decoding="async">
-        </div>
-        <div class="fdr-body">
-          <h3>Shubham Saraff</h3>
-          <p class="fdr-role">Cofounder &amp; Director</p>
-          <p class="fdr-bio">Over a decade at the frontier of AI, from published research through
-            to deployed enterprise systems. He advises the CEO of one of India's largest listed
-            fintechs and serves as CIO to a venture fund and its portfolio companies.</p>
-          <ul class="fdr-cred">
-            <li>MBA, Sa&iuml;d Business School, University of Oxford</li>
-            <li>Youngest ever Board Advisor for Technology Policy and AI at the IET</li>
-            <li>Best Research Paper by Cambridge; IET Global Award; TEDx speaker</li>
-          </ul>
-        </div>
-      </article>
-    </div>
+        <a class="fdr-card rv" href="leadership.html" style="--c:#0E9C93">
+          <span class="fdr-shot">
+            <img src="assets/img/team-haribhakti.jpg" alt=""
+                 width="1254" height="1254" loading="lazy" decoding="async">
+          </span>
+          <span class="fdr-body">
+            <span class="fdr-name">Shailesh V. Haribhakti</span>
+            <span class="fdr-role">Cofounder &amp; Chairman</span>
+            <span class="fdr-bio">Four decades in India's boardrooms and a chartered accountant by
+              training. He chairs and sits on the boards of some of the country's most scrutinised
+              listed companies, which is where the standard STAIR holds itself to comes from.</span>
+            <span class="fdr-cred">
+              <span>Non&#8209;Executive Chairman: Protean eGov, Aakash, Continuum Green Energy</span>
+              <span>Director: Swiggy, TVS Motor, Adani Total Gas, Bajaj Electricals</span>
+              <span>20+ listed and private boards across finance, technology and ESG</span>
+            </span>
+            <span class="fdr-go">Read the full profile
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
 
-    <div class="fdr-foot rv">
-      <a class="btn btn-primary" href="leadership.html">Full profiles
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <span class="fdr-note">Coauthors of <em>The AI Auditor</em></span>
+        <a class="fdr-card rv" href="leadership.html" style="--c:#D96A30">
+          <span class="fdr-shot">
+            <img src="assets/img/team-saraff.jpg" alt=""
+                 width="1254" height="1254" loading="lazy" decoding="async">
+          </span>
+          <span class="fdr-body">
+            <span class="fdr-name">Shubham Saraff</span>
+            <span class="fdr-role">Cofounder &amp; Director</span>
+            <span class="fdr-bio">Over a decade at the frontier of AI, from published research through
+              to deployed enterprise systems. He advises the CEO of one of India's largest listed
+              fintechs and serves as CIO to a venture fund and its portfolio companies.</span>
+            <span class="fdr-cred">
+              <span>MBA, Sa&iuml;d Business School, University of Oxford</span>
+              <span>Youngest ever Board Advisor for Technology Policy and AI at the IET</span>
+              <span>Best Research Paper by Cambridge; IET Global Award; TEDx speaker</span>
+            </span>
+            <span class="fdr-go">Read the full profile
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+
+      </div>
+      <p class="fdr-note rv">Coauthors of <em>The AI Auditor</em></p>
     </div>
   </div>
 </section>
@@ -482,15 +529,15 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="assets/fx-core.js?v=74"></script>
-<script src="assets/perf-probe.js?v=74"></script>
-<script src="assets/lenis-init.js?v=74"></script>
-<script src="assets/site.js?v=74"></script>
-<script src="assets/prism-gradient.js?v=74"></script>
-<script src="assets/hero-ascent.js?v=74"></script>
-<script src="assets/book.js?v=74"></script>
-<script src="assets/kinetic-grid.js?v=74"></script>
-<script src="assets/animated-gradient.js?v=74"></script>
-<script src="assets/liquid-glass.js?v=74"></script>
+<script src="assets/fx-core.js?v=75"></script>
+<script src="assets/perf-probe.js?v=75"></script>
+<script src="assets/lenis-init.js?v=75"></script>
+<script src="assets/site.js?v=75"></script>
+<script src="assets/prism-gradient.js?v=75"></script>
+<script src="assets/hero-ascent.js?v=75"></script>
+<script src="assets/book.js?v=75"></script>
+<script src="assets/kinetic-grid.js?v=75"></script>
+<script src="assets/animated-gradient.js?v=75"></script>
+<script src="assets/liquid-glass.js?v=75"></script>
 </body>
 </html>

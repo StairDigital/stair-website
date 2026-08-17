@@ -1,80 +1,65 @@
 /* ============================================================
    HOME HERO — "The Ascent"
 
-   Replaces the scroll-scrubbed handshake film. That sequence drew a
-   procedural canvas every frame and pinned the page for 300vh before a
-   visitor reached a single word of copy, which is where most of the
-   home page's stickiness came from.
+   An isometric staircase: the brand name as an object. Each step is
+   three flat polygons (tread, riser, side) filled with three tints of
+   the brand teal, which is how solid geometry reads as lit without any
+   3D engine. The projection is a true isometric one, computed rather
+   than eyeballed: X = (y - x)*cos30, Y = (x + y)*sin30 - z, with the
+   steps painted back to front so they occlude each other correctly.
 
-   This is an SVG staircase drawn with stroke-dashoffset: the brand name
-   as a picture, ascending. No canvas, no WebGL, no rAF loop, no pin.
-   The whole animation is four CSS keyframes the compositor owns, so it
-   costs effectively nothing and cannot jank the scroll.
-
-   Line-drawing is deliberately a technique used nowhere else on the
-   site: every other section is canvas or shader work.
+   The animation is one transform and one opacity per step on a stagger.
+   No canvas, no WebGL, no rAF, no scroll pin, and every animated
+   property is compositor-owned, so it stays smooth under load.
    ============================================================ */
 
 .hx{position:relative;min-height:100vh;display:flex;align-items:center;
-  background:#0A1614;overflow:hidden;
+  background:var(--ivory);overflow:hidden;
   padding:calc(var(--nav-h) + clamp(56px,9vh,104px)) 0 clamp(64px,10vh,120px)}
 
-/* ---- the drawn staircase ---- */
-.hx-art{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hx-art svg{position:absolute;right:0;top:50%;transform:translateY(-50%);
-  height:min(96%,900px);width:auto;overflow:visible}
+/* ---- the staircase ---- */
+.hx-art{position:absolute;right:0;top:0;bottom:0;width:min(58%,880px);z-index:0;pointer-events:none}
+.hx-art svg{position:absolute;right:-2%;top:50%;transform:translateY(-50%);
+  height:min(88%,700px);width:auto;overflow:visible}
 
-/* a quiet pocket on the left so the headline always wins */
+/* a soft wash so the type side stays clean and the stair side has depth */
 .hx::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(10,22,20,.97) 0%,rgba(10,22,20,.82) 40%,rgba(10,22,20,.28) 74%,transparent 100%),
-    radial-gradient(80% 60% at 78% 22%,rgba(14,156,147,.15),transparent 68%)}
+    linear-gradient(90deg,var(--ivory) 0%,var(--ivory) 34%,rgba(250,248,243,.72) 52%,rgba(250,248,243,0) 76%),
+    radial-gradient(70% 58% at 76% 34%,rgba(14,156,147,.10),transparent 70%)}
 
 .hx .wrap{position:relative;z-index:2;width:100%}
 
-/* the flight itself */
-.hx-step{fill:none;stroke:#0E9C93;stroke-width:2.4;stroke-linecap:square;stroke-linejoin:miter;
-  stroke-dasharray:var(--len) var(--len);stroke-dashoffset:var(--len);
-  animation:hxDraw 2.6s cubic-bezier(.22,.61,.36,1) .35s forwards}
-@keyframes hxDraw{to{stroke-dashoffset:0}}
+/* the three faces of every step */
+.s3-tread{fill:url(#s3t)}
+.s3-riser{fill:url(#s3r)}
+.s3-side {fill:url(#s3s)}
+/* a hairline between faces stops the gradients banding into each other */
+.s3-tread,.s3-riser,.s3-side{stroke:rgba(250,248,243,.42);stroke-width:.6;stroke-linejoin:round}
 
-/* ledger rules running right from each riser: measurement, not decoration */
-.hx-rule{stroke:rgba(250,248,243,.13);stroke-width:1;opacity:0;
-  animation:hxFade .9s ease forwards}
-.hx-rule:nth-of-type(1){animation-delay:1.0s}
-.hx-rule:nth-of-type(2){animation-delay:1.3s}
-.hx-rule:nth-of-type(3){animation-delay:1.6s}
-.hx-rule:nth-of-type(4){animation-delay:1.9s}
-.hx-rule:nth-of-type(5){animation-delay:2.2s}
-.hx-rule:nth-of-type(6){animation-delay:2.5s}
-@keyframes hxFade{to{opacity:1}}
+.s3-step{opacity:0;transform:translateY(26px);
+  animation:s3Rise .95s cubic-bezier(.22,.61,.36,1) var(--d,0s) forwards}
+@keyframes s3Rise{to{opacity:1;transform:translateY(0)}}
 
-/* a node on every tread */
-.hx-node{fill:#0A1614;stroke:#5FC9BF;stroke-width:2;opacity:0;
-  animation:hxPop .5s cubic-bezier(.34,1.56,.64,1) forwards}
-.hx-node:nth-of-type(1){animation-delay:1.15s}
-.hx-node:nth-of-type(2){animation-delay:1.45s}
-.hx-node:nth-of-type(3){animation-delay:1.75s}
-.hx-node:nth-of-type(4){animation-delay:2.05s}
-.hx-node:nth-of-type(5){animation-delay:2.35s}
-.hx-node:nth-of-type(6){animation-delay:2.65s}
-@keyframes hxPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
-.hx-node{transform-box:fill-box;transform-origin:center}
+.s3-shadow{opacity:0;animation:s3Fade 1.2s ease .5s forwards}
+@keyframes s3Fade{to{opacity:1}}
 
-/* the summit: the only thing that keeps moving, and barely */
-.hx-top{fill:#F0854B;opacity:0;animation:hxPop .5s cubic-bezier(.34,1.56,.64,1) 2.95s forwards}
-.hx-halo{fill:none;stroke:#F0854B;stroke-width:1.5;opacity:0;
+.s3-top{fill:var(--amber);opacity:0;
+  animation:s3Pop .55s cubic-bezier(.34,1.56,.64,1) 1.05s forwards;
+  transform-box:fill-box;transform-origin:center}
+@keyframes s3Pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+.s3-halo{fill:none;stroke:var(--amber);stroke-width:1.6;opacity:0;
   transform-box:fill-box;transform-origin:center;
-  animation:hxHalo 3.4s ease-out 3.3s infinite}
-@keyframes hxHalo{
-  0%{opacity:.55;transform:scale(.55)}
-  70%{opacity:0;transform:scale(2.1)}
-  100%{opacity:0;transform:scale(2.1)}
+  animation:s3Halo 3.6s ease-out 1.5s infinite}
+@keyframes s3Halo{
+  0%{opacity:.6;transform:scale(.5)}
+  70%{opacity:0;transform:scale(2.2)}
+  100%{opacity:0;transform:scale(2.2)}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .hx-step,.hx-rule,.hx-node,.hx-top{animation:none;stroke-dashoffset:0;opacity:1;transform:none}
-  .hx-halo{animation:none;opacity:0}
+  .s3-step,.s3-shadow,.s3-top{animation:none;opacity:1;transform:none}
+  .s3-halo{animation:none;opacity:0}
 }
 
 /* ---- the copy ----
@@ -83,50 +68,43 @@
    only risks a flash of empty page. */
 .hx-in{opacity:0;transform:translateY(18px);
   animation:hxRise .9s cubic-bezier(.22,.61,.36,1) forwards}
-.hx-in.d1{animation-delay:.1s}
-.hx-in.d2{animation-delay:.26s}
-.hx-in.d3{animation-delay:.42s}
-.hx-in.d4{animation-delay:.58s}
-.hx-in.d5{animation-delay:.74s}
+.hx-in.d1{animation-delay:.16s}
+.hx-in.d2{animation-delay:.32s}
+.hx-in.d3{animation-delay:.48s}
 @keyframes hxRise{to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.hx-in{animation:none;opacity:1;transform:none}}
 
-.hx-k{display:flex;align-items:center;gap:12px;font-family:var(--disp);font-size:11px;
-  font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
-.hx-k i{width:28px;height:1px;background:var(--teal);display:block;flex:none}
+.hx h1{font-family:var(--serif);font-weight:800;font-size:clamp(38px,6.2vw,98px);
+  letter-spacing:-.038em;line-height:.98;color:var(--ink);max-width:14ch}
+.hx h1 em{font-style:normal;color:var(--teal-deep)}
 
-.hx h1{font-family:var(--serif);font-weight:800;font-size:clamp(38px,6.4vw,104px);
-  letter-spacing:-.038em;line-height:.98;color:#fff;margin-top:20px;max-width:15ch}
-.hx h1 em{font-style:normal;color:#7FE3D9}
-
-.hx-lead{font-size:clamp(16px,1.32vw,21px);font-weight:300;line-height:1.68;
-  color:rgba(250,248,243,.84);max-width:52ch;margin-top:clamp(22px,3vh,32px)}
+.hx-lead{font-size:clamp(16px,1.28vw,20px);font-weight:400;line-height:1.7;
+  color:var(--ink-soft);max-width:50ch;margin-top:clamp(22px,3vh,32px)}
 
 /* the three numbers that carry the credibility */
-.hx-figs{display:flex;flex-wrap:wrap;gap:clamp(26px,4.4vw,64px);margin-top:clamp(34px,5vh,54px)}
+.hx-figs{display:flex;flex-wrap:wrap;gap:clamp(26px,4.4vw,60px);margin-top:clamp(34px,5vh,54px)}
 .hx-fig{position:relative;padding-left:20px}
 .hx-fig::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;border-radius:2px;
   background:linear-gradient(180deg,var(--teal),rgba(14,156,147,0))}
 .hx-fig b{display:block;font-family:var(--serif);font-weight:800;
-  font-size:clamp(30px,3.6vw,52px);letter-spacing:-.035em;line-height:1;color:#fff}
-.hx-fig b i{font-style:normal;color:var(--amber)}
+  font-size:clamp(30px,3.6vw,52px);letter-spacing:-.035em;line-height:1;color:var(--ink)}
+.hx-fig b i{font-style:normal;color:var(--amber-deep)}
 .hx-fig span{display:block;font-family:var(--disp);font-size:clamp(10px,.82vw,12px);
-  letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,243,.62);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut);
   margin-top:10px;max-width:20ch;line-height:1.5}
 
 .hx-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(34px,5vh,52px)}
-/* the shared .btn-outline is inked for light grounds, so the hero needs its own */
-.hx-ghost{background:transparent;color:rgba(250,248,243,.9);
-  border:1px solid rgba(250,248,243,.26);text-decoration:none;
+.hx-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);
+  text-decoration:none;
   transition:border-color .4s var(--ease),background .4s var(--ease),color .4s}
-.hx-ghost:hover{border-color:var(--teal);color:#fff;background:rgba(14,156,147,.14)}
+.hx-ghost:hover{border-color:var(--teal);color:var(--teal-deep);background:rgba(14,156,147,.06)}
 .hx-ghost:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
 /* scroll cue */
 .hx-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;
   display:flex;flex-direction:column;align-items:center;gap:8px;
   font-family:var(--disp);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(250,248,243,.5);opacity:0;animation:hxFade .8s ease 3.4s forwards}
+  color:var(--ink-mut);opacity:0;animation:s3Fade .8s ease 1.6s forwards}
 .hx-cue svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;
   stroke-linecap:round;stroke-linejoin:round;animation:hxNudge 2.4s ease-in-out infinite}
 @keyframes hxNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
@@ -135,16 +113,17 @@
 }
 
 /* ---- narrow ----
-   Below 900px the staircase would sit behind the numbers and make them
-   hard to read, so it drops to a band across the top instead of a
-   full-height panel on the right. */
-@media(max-width:900px){
-  .hx{min-height:0;padding:calc(var(--nav-h) + 66px) 0 78px}
-  .hx-art svg{right:-10%;top:auto;bottom:2%;transform:none;height:auto;width:130%;opacity:.5}
-  .hx::after{background:
-    linear-gradient(180deg,rgba(10,22,20,.96) 0%,rgba(10,22,20,.9) 52%,rgba(10,22,20,.6) 100%),
-    radial-gradient(90% 46% at 74% 8%,rgba(14,156,147,.16),transparent 70%)}
+   Below 950px the staircase would sit behind the numbers, so it drops to
+   a band under the copy instead of a panel beside it. */
+@media(max-width:950px){
+  .hx{min-height:0;padding:calc(var(--nav-h) + 62px) 0 0;display:block}
+  .hx-art{position:relative;right:auto;top:auto;bottom:auto;width:100%;
+    height:clamp(240px,42vw,340px);margin-top:38px}
+  .hx-art svg{position:absolute;left:50%;right:auto;top:50%;
+    transform:translate(-50%,-50%);height:100%;width:auto}
+  .hx::after{background:radial-gradient(80% 40% at 50% 88%,rgba(14,156,147,.1),transparent 72%)}
   .hx h1{max-width:none}
+  .hx-lead{max-width:none}
   .hx-figs{gap:22px 30px}
   .hx-cue{display:none}
 }

@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=74">
-<link rel="stylesheet" href="assets/brain.css?v=74">
+<link rel="stylesheet" href="assets/style.css?v=75">
+<link rel="stylesheet" href="assets/brain.css?v=75">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
 </head>
 <body>
@@ -45,13 +45,16 @@
 </div>
 
 <!-- ============ HERO ============
-     The synapse field is the argument: nodes hold still, signals travel
-     between them. That is what a memory looks like. -->
+     A glow horizon: four concentric discs, the top one filled with the
+     section's own ground colour so it masks the middle and leaves only
+     glowing rims arcing over the headline. Same construction as the
+     framer-motion component this was modelled on, rebuilt as four divs
+     and one keyframe so it needs no React and no JS. -->
 <section class="eb-hero">
-  <div class="eb-field" data-synapse data-line="#0E9C93" data-node="#5FC9BF" data-hot="#F0854B"
-       data-density="1" data-speed="1" aria-hidden="true"></div>
+  <div class="eb-glow" aria-hidden="true">
+    <span class="g1"></span><span class="g2"></span><span class="g3"></span><span class="g4"></span>
+  </div>
   <div class="wrap">
-    <p class="eyebrow"><i></i>The Enterprise Brain</p>
     <h1>Every enterprise has data.<br><em>Few have a memory.</em></h1>
     <p class="lead">Thirty years of decisions sit in your systems, and almost none of it can be
       recalled when it matters. The Enterprise Brain is the layer that turns that scattered record
@@ -108,7 +111,6 @@
 <section class="eb-sec eb-stack">
   <div class="wrap">
     <div class="eb-head rv">
-      <p class="eyebrow">What it is</p>
       <h2>Three layers. <em>One accountable memory.</em></h2>
       <p>The Enterprise Brain is not another place to put documents. It sits above the systems you
         already run, reads from them continuously, and becomes the single thing that everything
@@ -255,101 +257,6 @@
       </div>
     </div>
 
-    <!-- The comparison is the argument. Renting is the default path every
-         enterprise is currently on, so the case for owning has to be made
-         against it directly rather than in the abstract. -->
-    <div class="eb-cmp rv">
-      <h3 class="eb-cmp-h">What changes when the model is yours</h3>
-      <div class="eb-cmp-grid" role="table" aria-label="Renting a frontier API compared with owning a small language model">
-        <div class="eb-cmp-hd" role="row">
-          <span role="columnheader"></span>
-          <span role="columnheader">Renting a frontier API</span>
-          <span class="on" role="columnheader">An SLM you own</span>
-        </div>
-        <div class="eb-cmp-r" role="row">
-          <span class="k" role="rowheader">Where it runs</span>
-          <span role="cell">Someone else's data centre</span>
-          <span class="on" role="cell">Inside your own estate</span>
-        </div>
-        <div class="eb-cmp-r" role="row">
-          <span class="k" role="rowheader">What a question costs</span>
-          <span role="cell">A meter, per token, indefinitely</span>
-          <span class="on" role="cell">Hardware you have already paid for</span>
-        </div>
-        <div class="eb-cmp-r" role="row">
-          <span class="k" role="rowheader">Who sees the question</span>
-          <span role="cell">The prompt leaves the building</span>
-          <span class="on" role="cell">Nothing leaves</span>
-        </div>
-        <div class="eb-cmp-r" role="row">
-          <span class="k" role="rowheader">When the vendor updates</span>
-          <span role="cell">Your answers change without notice</span>
-          <span class="on" role="cell">Nothing changes until you change it</span>
-        </div>
-        <div class="eb-cmp-r" role="row">
-          <span class="k" role="rowheader">Proving what answered</span>
-          <span role="cell">A version you cannot pin</span>
-          <span class="on" role="cell">A frozen artifact you can re-run</span>
-        </div>
-      </div>
-      <p class="eb-cmp-n">Frontier models still have their place, and we use them: to set the benchmark,
-        to distil from, and for genuinely open-ended work. What they should not be is the thing your
-        close cycle depends on.</p>
-    </div>
-
-    <div class="eb-pledge rv">
-      <p>Your corpus trains your model, and the model belongs to you.
-        <span>It does not train anyone else's, and it does not leave with us. This is the first
-          question every board asks, and it should be. The architecture on this page exists so the
-          answer can be given plainly, in writing, and shown to hold in the deployment itself.</span></p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROVENANCE ============ -->
-<section class="eb-sec eb-prov">
-  <div class="wrap">
-    <div class="eb-head rv">
-      <p class="eyebrow">Why it can be used at board level</p>
-      <h2>An answer you cannot check <em>is not an answer.</em></h2>
-      <p>Most enterprise AI fails its first real test in the same way: it is fluent, it is plausible,
-        and it cannot tell you where it got that from. The brain is built the other way round, with the
-        citation as the point rather than as a footnote.</p>
-    </div>
-
-    <div class="eb-prov-grid">
-      <ul class="eb-checks rv">
-        <li><i></i><div><b>Every claim carries its source</b><span>Answers are assembled from retrieved
-          documents, and each statement links back to the page, clause or line it came from. If a source
-          cannot be shown, the claim is not made.</span></div></li>
-        <li><i></i><div><b>It declines rather than guesses</b><span>Where the memory has nothing to
-          support an answer, the brain says so. A confident wrong answer costs far more than a blank one
-          in the settings we work in.</span></div></li>
-        <li><i></i><div><b>Access is inherited, not granted</b><span>The brain never widens what someone
-          can see. Two people asking the same question get answers drawn only from their own entitlements.</span></div></li>
-        <li><i></i><div><b>The trail survives the answer</b><span>Question, sources, model version and
-          the person who asked are all logged, so an internal auditor can reconstruct any answer months
-          later. This is the same discipline set out in The AI Auditor.</span></div></li>
-      </ul>
-
-      <!-- a worked example, because "traceable" is meaningless in the abstract -->
-      <div class="eb-answer rv">
-        <div class="eb-answer-bar"><i></i><span>Asked of the Enterprise Brain</span></div>
-        <p class="eb-answer-q">Which vendor contracts renew in the next ninety days, and which of
-          those carry an automatic price escalation?</p>
-        <p class="eb-answer-a">Nine agreements fall inside the window. Four contain an escalation
-          clause that applies unless notice is served, and two of those four sit above the delegation
-          threshold the board reset last year, so they need approval before the renewal date rather
-          than after it.</p>
-        <div class="eb-cites">
-          <p>Drawn from</p>
-          <span class="src"><em>Contract</em>Master services agreement, clause 11.4, price review</span>
-          <span class="src"><em>Contract</em>Supply agreement, schedule 2, indexation</span>
-          <span class="src"><em>Minutes</em>Board meeting, delegation of authority, revised limits</span>
-          <span class="src"><em>ERP</em>Vendor master, renewal dates and current spend</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -457,14 +364,13 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="assets/fx-core.js?v=74"></script>
-<script src="assets/perf-probe.js?v=74"></script>
-<script src="assets/lenis-init.js?v=74"></script>
-<script src="assets/site.js?v=74"></script>
-<script src="assets/prism-gradient.js?v=74"></script>
-<script src="assets/synapse-field.js?v=74"></script>
-<script src="assets/kinetic-grid.js?v=74"></script>
-<script src="assets/animated-gradient.js?v=74"></script>
-<script src="assets/liquid-glass.js?v=74"></script>
+<script src="assets/fx-core.js?v=75"></script>
+<script src="assets/perf-probe.js?v=75"></script>
+<script src="assets/lenis-init.js?v=75"></script>
+<script src="assets/site.js?v=75"></script>
+<script src="assets/prism-gradient.js?v=75"></script>
+<script src="assets/kinetic-grid.js?v=75"></script>
+<script src="assets/animated-gradient.js?v=75"></script>
+<script src="assets/liquid-glass.js?v=75"></script>
 </body>
 </html>

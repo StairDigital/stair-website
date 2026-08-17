@@ -160,22 +160,36 @@
 .ssc-front::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,rgba(14,24,22,.12) 0%,rgba(14,24,22,0) 40%,rgba(14,24,22,.4) 100%)}
 
-/* BACK = the discipline card: accent colour, its photo blended in, icon logo, copy */
-.ssc-back{transform:rotateY(180deg);background:var(--c);color:#fff;overflow:hidden}
+/* BACK = the discipline card.
+   This used to be a full-bleed accent colour with the photo laid over it at
+   42% in mix-blend-mode:overlay. Overlay against eight different hues gave
+   eight different, unpredictable grounds, several of them mid-tone, and
+   white copy on a mid-tone is where legibility goes. All eight now share
+   one neutral ground; the photo stays as faint texture at normal blend,
+   and the discipline's colour survives where it cannot hurt reading: the
+   icon chip and a rule above the title. */
+.ssc-back{transform:rotateY(180deg);color:#fff;overflow:hidden;
+  background:linear-gradient(168deg,#153B36 0%,#0D2321 54%,#081513 100%)}
 .ssc-shot{position:absolute;inset:0;background-size:cover;background-position:center;
-  opacity:.42;mix-blend-mode:overlay}
+  opacity:.17;filter:grayscale(.55)}
+/* scrim carries most of the legibility work: transparent at the top so the
+   texture reads, near-solid at the foot where the words are */
 .ssc-back::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(165deg,rgba(255,255,255,.14) 0%,rgba(9,16,15,.06) 42%,rgba(9,16,15,.5) 100%)}
-/* per-discipline icon logo on a soft chip */
+  background:linear-gradient(180deg,rgba(8,21,19,.1) 0%,rgba(8,21,19,.5) 46%,rgba(8,21,19,.93) 100%)}
+/* per-discipline icon logo, tinted in that discipline's colour */
 .ssc-logo{position:absolute;top:20px;left:20px;z-index:2;width:42px;height:42px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.26)}
+  display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--c) 82%,transparent);
+  box-shadow:0 6px 18px -8px color-mix(in srgb,var(--c) 90%,transparent)}
 .ssc-logo svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.6;
   stroke-linecap:round;stroke-linejoin:round}
 .ssc-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 22px}
+/* the accent rule is the only place the discipline's colour touches the copy */
+.ssc-copy::before{content:"";display:block;width:30px;height:3px;border-radius:2px;
+  background:var(--c);margin-bottom:14px}
 .ssc-copy .name{font-family:var(--serif);font-weight:650;font-size:clamp(22px,1.9vw,28px);
-  letter-spacing:-.015em;line-height:1.05;text-shadow:0 2px 14px rgba(9,16,15,.4)}
-.ssc-copy .desc{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.94);margin-top:10px;
-  text-shadow:0 1px 8px rgba(9,16,15,.4)}
+  letter-spacing:-.015em;line-height:1.05;color:#fff}
+.ssc-copy .desc{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.9);margin-top:10px}
 
 /* mobile / reduced-motion: no 3D, no pin — the backs become a flat 2x2 grid of discipline cards */
 @media(max-width:820px){

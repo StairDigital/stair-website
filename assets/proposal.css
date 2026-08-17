@@ -14,34 +14,37 @@
    is a DRAWN proposal, not a stock image: vector, so it is exact at any size,
    weighs nothing, and is built from the brand palette rather than tinted into
    it. It also says what the page does, which a photograph could not. */
+/* Light ground. The drawing below was mint-on-deep-teal; every one of its
+   strokes is re-inked here rather than left to wash out on ivory. */
 .pr-hero{position:relative;min-height:100vh;display:flex;align-items:center;
-  overflow:hidden;background:#0A1614;isolation:isolate}
+  overflow:hidden;isolation:isolate;
+  background:linear-gradient(168deg,var(--ivory) 0%,var(--surface) 58%,var(--surface-2) 100%)}
 .pr-hero-art{position:absolute;right:0;top:0;bottom:0;width:min(52%,760px);z-index:1;
   display:grid;place-items:center;pointer-events:none;padding:0 clamp(10px,3vw,54px)}
 .pr-doodle{width:100%;max-width:560px;height:auto;overflow:visible}
 
 /* the drawn proposal: hairline vector, brand mint on the deep field */
-.pr-doodle .pd-sheet-b{stroke:rgba(127,227,217,.26);stroke-width:1.6;
-  fill:rgba(127,227,217,.035)}
-.pr-doodle .pd-sheet-f rect:first-of-type{stroke:rgba(127,227,217,.72);stroke-width:2;
+.pr-doodle .pd-sheet-b{stroke:rgba(11,133,125,.30);stroke-width:1.6;
+  fill:rgba(11,133,125,.05)}
+.pr-doodle .pd-sheet-f rect:first-of-type{stroke:rgba(11,133,125,.78);stroke-width:2;
   fill:rgba(10,22,20,.72)}
-.pr-doodle .pd-fill{fill:#7FE3D9;stroke:none}
+.pr-doodle .pd-fill{fill:#0B857D;stroke:none}
 .pr-doodle .pd-amber{fill:var(--amber);stroke:none}
-.pr-doodle .pd-lines line{stroke:rgba(127,227,217,.34);stroke-width:3}
-.pr-doodle .pd-axis{stroke:rgba(127,227,217,.24);stroke-width:1.5}
-.pr-doodle .pd-chart{stroke:#7FE3D9;stroke-width:2.6;
+.pr-doodle .pd-lines line{stroke:rgba(11,133,125,.30);stroke-width:3}
+.pr-doodle .pd-axis{stroke:rgba(28,59,56,.22);stroke-width:1.5}
+.pr-doodle .pd-chart{stroke:#0B857D;stroke-width:2.6;
   stroke-dasharray:420;stroke-dashoffset:420;animation:pdDraw 2.2s var(--ease) .5s forwards}
-.pr-doodle .pd-dot{fill:#7FE3D9;stroke:none;opacity:0;animation:pdPop .5s var(--ease) forwards}
+.pr-doodle .pd-dot{fill:#0B857D;stroke:none;opacity:0;animation:pdPop .5s var(--ease) forwards}
 .pr-doodle .pd-dot:nth-of-type(1){animation-delay:1.1s}
 .pr-doodle .pd-dot:nth-of-type(2){animation-delay:1.6s}
 .pr-doodle .pd-dot-a{fill:var(--amber);animation-delay:2.3s}
-.pr-doodle .pd-sign{stroke:rgba(250,248,243,.5);stroke-width:2;
+.pr-doodle .pd-sign{stroke:rgba(28,59,56,.42);stroke-width:2;
   stroke-dasharray:190;stroke-dashoffset:190;animation:pdDraw 1.6s var(--ease) 2.4s forwards}
-.pr-doodle .pd-seal circle{stroke:var(--amber);stroke-width:2;fill:rgba(240,133,75,.1)}
+.pr-doodle .pd-seal circle{stroke:var(--amber);stroke-width:2;fill:rgba(240,133,75,.14)}
 .pr-doodle .pd-check{stroke:var(--amber);stroke-width:2.8;
   stroke-dasharray:52;stroke-dashoffset:52;animation:pdDraw .6s var(--ease) 3.1s forwards}
-.pr-doodle .pd-nodes line{stroke:rgba(127,227,217,.3);stroke-width:1.4}
-.pr-doodle .pd-nodes circle{fill:rgba(127,227,217,.5);stroke:none}
+.pr-doodle .pd-nodes line{stroke:rgba(11,133,125,.32);stroke-width:1.4}
+.pr-doodle .pd-nodes circle{fill:rgba(11,133,125,.55);stroke:none}
 .pr-doodle .pd-node-a{fill:var(--amber)!important}
 .pr-doodle .pd-float{animation:pdFloat 9s ease-in-out infinite alternate;transform-origin:50% 50%}
 @keyframes pdDraw{to{stroke-dashoffset:0}}
@@ -53,8 +56,8 @@
 
 /* a slow teal bloom so the flat field is not inert */
 .pr-hero::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(58% 46% at 74% 34%,rgba(14,156,147,.34),transparent 70%),
-             radial-gradient(46% 38% at 12% 82%,rgba(240,133,75,.16),transparent 72%);
+  background:radial-gradient(58% 46% at 74% 34%,rgba(14,156,147,.16),transparent 70%),
+             radial-gradient(46% 38% at 12% 82%,rgba(240,133,75,.10),transparent 72%);
   animation:prBloom 18s ease-in-out infinite alternate}
 @keyframes prBloom{to{transform:scale(1.08) translateY(-2%)}}
 
@@ -65,22 +68,22 @@
   color:#7FE3D9;font-weight:600}
 .pr-k i{width:6px;height:6px;border-radius:50%;background:var(--amber);
   box-shadow:0 0 0 4px rgba(240,133,75,.22)}
-.pr-hero h1{font-family:var(--serif);font-weight:800;color:#fff;
+.pr-hero h1{font-family:var(--serif);font-weight:800;color:var(--ink);
   font-size:clamp(34px,5.4vw,82px);letter-spacing:-.04em;line-height:1.02;
   margin-top:clamp(16px,2.4vh,26px);max-width:17ch}
-.pr-hero h1 em{font-style:normal;color:#7FE3D9}
+.pr-hero h1 em{font-style:normal;color:var(--teal-deep)}
 .pr-hero .lead{font-size:clamp(15px,1.25vw,19px);line-height:1.7;margin-top:clamp(18px,2.6vh,28px);
-  color:rgba(250,248,243,.78);max-width:52ch}
+  color:var(--ink-soft);max-width:52ch}
 .pr-hero-cue{display:inline-flex;align-items:center;gap:11px;margin-top:clamp(26px,4vh,44px);
   font-family:var(--disp);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(250,248,243,.6)}
+  color:var(--ink-mut)}
 .pr-hero-cue svg{width:18px;height:18px;fill:none;stroke:var(--amber);stroke-width:1.8;
   animation:prBob 2s var(--ease) infinite}
 @keyframes prBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
 /* the decrypting glyphs */
 [data-decrypt] .dt-w{display:inline-block;white-space:pre}
-[data-decrypt] [data-s="scramble"]{color:rgba(127,227,217,.5)}
+[data-decrypt] [data-s="scramble"]{color:rgba(11,133,125,.45)}
 [data-decrypt] [data-s="lock"]{animation:prFlash .42s cubic-bezier(.2,0,0,1)}
 @keyframes prFlash{0%{color:var(--amber);text-shadow:0 0 22px rgba(240,133,75,.7)}
                    100%{text-shadow:0 0 0 transparent}}

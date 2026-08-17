@@ -20,28 +20,50 @@
   --eb-fine:rgba(28,59,56,.88);
 }
 
-/* ============ HERO ============ */
+/* ============ HERO: glow horizon ============
+   Four concentric discs stacked at the top edge. The largest are lit and
+   blurred; the last one is filled with the section's own ground colour and
+   sits on top, masking the middle so only the rims survive as arcs. That
+   masking disc is what turns four blurred circles into a horizon.
+
+   Rebuilt from the framer-motion component as plain CSS: one keyframe on
+   the group for the entrance, static transforms on the discs. Nothing here
+   needs JS, and blur on a handful of static elements is painted once
+   rather than every frame. */
 .eb-hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;
   background:#0A1614}
-.eb-field{position:absolute;inset:0;z-index:0;pointer-events:none}
-/* a quiet pocket on the left so the headline always wins against the lattice */
-.eb-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(10,22,20,.94) 0%,rgba(10,22,20,.74) 42%,rgba(10,22,20,.2) 78%,transparent 100%),
-    linear-gradient(0deg,rgba(10,22,20,.72) 0%,transparent 34%,transparent 72%,rgba(10,22,20,.52) 100%)}
+.eb-glow{position:absolute;left:50%;top:0;z-index:0;pointer-events:none;
+  width:min(168%,2100px);aspect-ratio:2.15/1;isolation:isolate;
+  animation:ghIn 2s cubic-bezier(.16,1,.3,1) both}
+@keyframes ghIn{
+  from{transform:translate(-50%,-100%) scaleY(1.5);opacity:0;filter:blur(15px)}
+  to  {transform:translate(-50%,-52%)  scaleY(1);  opacity:1;filter:blur(0px)}
+}
+.eb-glow span{position:absolute;inset:0;border-radius:100%;display:block}
+/* painted in order: the widest and brightest first, the mask last */
+.eb-glow .g1{transform:scale(1.32);background:#fff;
+  box-shadow:0 -4px 26px 0 rgba(255,255,255,.62)}
+.eb-glow .g2{transform:scale(1.20);background:#5FC9BF;filter:blur(31px)}
+.eb-glow .g3{transform:scale(1.24);background:#0B857D;filter:blur(21px)}
+.eb-glow .g4{transform:scale(1.20);background:#0A1614;filter:blur(51px)}
+@media(prefers-reduced-motion:reduce){.eb-glow{animation:none;transform:translate(-50%,-52%)}}
+
 .eb-hero .wrap{position:relative;z-index:2;padding-top:var(--nav-h)}
-.eb-hero .eyebrow{color:var(--teal)}
-.eb-hero .eyebrow i{width:26px;height:1px;background:var(--teal);display:inline-block}
 .eb-hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(40px,6.2vw,100px);
-  letter-spacing:-.035em;line-height:.99;color:#fff;margin-top:18px}
+  letter-spacing:-.035em;line-height:.99;color:#fff}
 .eb-hero h1 em{font-style:normal;color:#7FE3D9}
 .eb-hero .lead{font-size:clamp(16px,1.3vw,20px);color:rgba(250,248,243,.86);max-width:58ch;
   margin-top:28px;line-height:1.72;font-weight:300}
 .eb-hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
 .eb-hero-meta span{font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(250,248,243,.62);border:1px solid rgba(250,248,243,.2);border-radius:2px;
-  padding:8px 14px;background:rgba(250,248,243,.03)}
-@media(max-width:820px){.eb-hero{min-height:0;padding:calc(var(--nav-h) + 74px) 0 76px}}
+  color:rgba(250,248,243,.72);border:1px solid rgba(250,248,243,.22);border-radius:2px;
+  padding:8px 14px;background:rgba(250,248,243,.04);
+  transition:border-color .4s var(--ease),color .4s,background .4s}
+.eb-hero-meta span:hover{border-color:var(--teal);color:#fff;background:rgba(14,156,147,.16)}
+@media(max-width:820px){
+  .eb-hero{min-height:0;padding:calc(var(--nav-h) + 74px) 0 76px}
+  .eb-glow{width:240%;aspect-ratio:1.7/1}
+}
 
 /* ============ shared section rhythm ============ */
 .eb-sec{padding:clamp(84px,13vh,150px) 0}
@@ -136,90 +158,6 @@
 @media(max-width:820px){.eb-mods{grid-template-columns:1fr}}
 
 /* the one line that matters most on this page, so it gets its own frame */
-.eb-pledge{margin-top:clamp(36px,5vh,60px);border-left:2px solid var(--amber);
-  padding:clamp(20px,2.4vw,30px) clamp(22px,2.6vw,34px);background:rgba(240,133,75,.06);
-  border-radius:0 4px 4px 0;max-width:74ch}
-.eb-pledge p{font-family:var(--serif);font-size:clamp(17px,1.6vw,24px);font-weight:600;
-  letter-spacing:-.02em;line-height:1.45;color:#fff}
-.eb-pledge span{display:block;margin-top:12px;font-size:14px;font-weight:400;
-  letter-spacing:0;color:rgba(250,248,243,.62);line-height:1.7;font-family:var(--font)}
-
-/* ---- rented vs owned ----
-   A table would be the honest markup, but a real <table> fights every attempt
-   to restack on a phone. This is a grid carrying table roles, so it reads
-   correctly to a screen reader and still collapses into cards below 760px. */
-.eb-cmp{margin-top:clamp(40px,6vh,68px)}
-.eb-cmp-h{font-family:var(--serif);font-weight:700;font-size:clamp(19px,1.8vw,26px);
-  letter-spacing:-.02em;color:#fff;margin-bottom:22px}
-.eb-cmp-grid{border:1px solid rgba(250,248,243,.14);border-radius:5px;overflow:hidden}
-.eb-cmp-hd,.eb-cmp-r{display:grid;grid-template-columns:1.05fr 1.2fr 1.2fr;
-  gap:clamp(14px,2vw,28px);padding:15px clamp(16px,2vw,26px);align-items:baseline}
-.eb-cmp-r{border-top:1px solid rgba(250,248,243,.1)}
-/* the owned column is the answer, so it is lit for the whole height of the table */
-.eb-cmp-hd .on,.eb-cmp-r .on{position:relative;color:#fff;font-weight:500}
-.eb-cmp-hd .on::before,.eb-cmp-r .on::before{content:"";position:absolute;
-  left:calc(clamp(14px,2vw,28px) / -2);top:-15px;bottom:-15px;width:1px;
-  background:rgba(14,156,147,.45)}
-.eb-cmp-hd{background:rgba(14,156,147,.1);font-family:var(--disp);font-size:11px;
-  letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,243,.66)}
-.eb-cmp-hd .on{color:var(--teal);font-weight:600}
-.eb-cmp-r .k{font-family:var(--disp);font-size:12.5px;letter-spacing:.02em;
-  color:rgba(250,248,243,.6)}
-.eb-cmp-r span{font-size:14.5px;line-height:1.6;color:rgba(250,248,243,.7)}
-.eb-cmp-r .k{color:rgba(250,248,243,.6)}
-.eb-cmp-r .on{color:#fff}
-.eb-cmp-n{margin-top:20px;font-size:14px;line-height:1.72;max-width:72ch;
-  color:rgba(250,248,243,.62)}
-
-@media(max-width:760px){
-  /* one card per row; the column headings become inline tags on each value,
-     since a header row above a stacked list means nothing */
-  .eb-cmp-hd{display:none}
-  .eb-cmp-r{grid-template-columns:1fr;gap:9px;padding:18px clamp(16px,4vw,22px)}
-  .eb-cmp-r .on::before{display:none}
-  .eb-cmp-r .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--teal);margin-bottom:2px}
-  .eb-cmp-r span:nth-child(2)::before,
-  .eb-cmp-r span:nth-child(3)::before{
-    display:block;font-family:var(--disp);font-size:10px;letter-spacing:.14em;
-    text-transform:uppercase;color:rgba(250,248,243,.42);margin-bottom:3px}
-  .eb-cmp-r span:nth-child(2)::before{content:"Rented"}
-  .eb-cmp-r span:nth-child(3)::before{content:"Owned"}
-}
-
-/* ============ PROVENANCE ============ */
-.eb-prov{background:var(--ivory)}
-.eb-prov-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:start}
-@media(max-width:980px){.eb-prov-grid{grid-template-columns:1fr}}
-.eb-checks{list-style:none}
-.eb-checks li{display:flex;gap:16px;padding:20px 0;border-top:1px solid var(--line-soft)}
-.eb-checks li:first-child{border-top:0;padding-top:0}
-.eb-checks i{flex:0 0 auto;width:21px;height:21px;margin-top:2px;border-radius:50%;
-  background:var(--teal);position:relative}
-.eb-checks i::after{content:"";position:absolute;left:6.5px;top:7px;width:7px;height:3.5px;
-  border-left:1.6px solid #fff;border-bottom:1.6px solid #fff;transform:rotate(-45deg)}
-.eb-checks b{display:block;font-family:var(--serif);font-weight:700;font-size:17px;
-  letter-spacing:-.015em;margin-bottom:5px}
-.eb-checks span{font-size:14.5px;line-height:1.7;color:var(--eb-body)}
-
-/* a worked example of a cited answer, because "traceable" means nothing abstract */
-.eb-answer{border:1px solid var(--line);border-radius:6px;background:#fff;overflow:hidden;
-  box-shadow:0 30px 60px -48px var(--shadow)}
-.eb-answer-bar{display:flex;align-items:center;gap:9px;padding:13px 18px;
-  border-bottom:1px solid var(--line-soft);background:var(--surface-2)}
-.eb-answer-bar i{width:8px;height:8px;border-radius:50%;background:var(--teal);flex:0 0 auto}
-.eb-answer-bar span{font-family:var(--disp);font-size:10.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--eb-note)}
-.eb-answer-q{padding:20px 22px 0;font-size:15px;font-weight:600;color:var(--ink)}
-.eb-answer-a{padding:12px 22px 20px;font-size:15px;line-height:1.75;color:var(--eb-body)}
-.eb-cites{border-top:1px solid var(--line-soft);padding:16px 22px;background:rgba(14,156,147,.035)}
-.eb-cites p{font-family:var(--disp);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--teal-deep);margin-bottom:11px}
-.eb-cites a,.eb-cites span.src{display:flex;gap:10px;align-items:baseline;font-size:13.5px;
-  color:var(--eb-body);padding:5px 0;line-height:1.6}
-.eb-cites em{font-style:normal;font-family:var(--disp);font-size:10px;letter-spacing:.1em;
-  color:var(--teal-deep);flex:0 0 auto;padding-top:2px}
-
 /* ============ HOW IT LANDS ============ */
 .eb-land{background:var(--surface-2);border-top:1px solid var(--line-soft)}
 .eb-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,34px)}
@@ -248,3 +186,45 @@
 .eb-close p{font-size:clamp(15px,1.15vw,18px);color:var(--eb-body);line-height:1.75;
   max-width:56ch;margin:24px auto 0}
 .eb-close-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+
+/* ============ making the flat sections move ============
+   The three bands between the hero and the close were static blocks of
+   type. These give each one something that responds: the frictions lift
+   and light their icon, the phases raise their own colour, and both
+   grounds carry a very cheap tint so the page is not four flat rectangles
+   of ivory in a row. Transform and opacity only. */
+
+/* the gap: a faint field so the ivory band is not dead flat */
+.eb-gap{position:relative;overflow:hidden}
+.eb-gap::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 50% at 88% 0%,rgba(14,156,147,.07),transparent 68%)}
+.eb-gap .wrap{position:relative;z-index:1}
+
+.eb-fr{position:relative;transition:background .5s var(--ease),transform .5s var(--ease)}
+.eb-fr::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:var(--teal);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--ease)}
+.eb-fr:hover{background:#fff}
+.eb-fr:hover::after{transform:scaleX(1)}
+.eb-fr .eb-fr-ic{transition:color .45s var(--ease),transform .55s var(--ease)}
+.eb-fr:hover .eb-fr-ic{color:var(--amber-deep);transform:translateY(-3px) scale(1.06)}
+
+/* the phases: the colour belongs to the phase, so let it arrive on hover */
+.eb-ph{position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.eb-ph::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 12% 0%,color-mix(in srgb,var(--c) 14%,transparent),transparent 62%);
+  opacity:0;transition:opacity .55s var(--ease)}
+.eb-ph:hover{transform:translateY(-5px);
+  border-color:color-mix(in srgb,var(--c) 45%,var(--line));
+  box-shadow:0 34px 60px -44px rgba(28,42,40,.6)}
+.eb-ph:hover::after{opacity:1}
+.eb-ph > *{position:relative;z-index:1}
+
+/* the close: give the last screen the same horizon as the first, quietly */
+.eb-close{position:relative;overflow:hidden}
+.eb-close::before{content:"";position:absolute;left:50%;bottom:-58%;
+  width:min(150%,1700px);aspect-ratio:2.2/1;transform:translateX(-50%);
+  border-radius:100%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(14,156,147,.20),rgba(14,156,147,.05) 58%,transparent 74%)}
+.eb-close .wrap{position:relative;z-index:1}
