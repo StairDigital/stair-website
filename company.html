@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net 'unsafe-inline'; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>STAIR Digital | About</title>
 <meta name="description" content="Not an agency, not a vendor: STAIR is an operating platform uniting four decades of boardroom governance with over a decade at the frontier of AI.">
 <meta name="theme-color" content="#FAF8F3">
@@ -10,9 +12,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=78">
-<link rel="stylesheet" href="assets/company.css?v=78">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
+<link rel="stylesheet" href="assets/style.css?v=80">
+<link rel="stylesheet" href="assets/company.css?v=80">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <body>
 
@@ -29,7 +31,7 @@
 
 <!-- ============ FULLSCREEN MENU ============ -->
 <div class="drawer" id="drawer" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="menu-bg" data-prism data-mouse="false" aria-hidden="true"></div>
+  <div class="menu-bg" aria-hidden="true"></div>
   <nav class="menu-list" aria-label="Primary">
     <a href="company.html">About</a>
     <a href="capabilities.html">Capabilities</a>
@@ -268,17 +270,16 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="assets/fx-core.js?v=78"></script>
-<script src="assets/perf-probe.js?v=78"></script>
-<script src="assets/lenis-init.js?v=78"></script>
-<script src="assets/site.js?v=78"></script>
-<script src="assets/prism-gradient.js?v=78"></script>
-<script src="assets/liquid-hover.js?v=78"></script>
-<script src="assets/split-cards.js?v=78"></script>
-<script src="assets/parallax-hero.js?v=78"></script>
-<script src="assets/liquid-glass.js?v=78"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" integrity="sha384-ClD7pCgIUz5M81HT8aZmMxCsWmfsycmBiwL5gy1pUbdWHvICIbea22N9sTtAFotA" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="assets/fx-core.js?v=80"></script>
+<script src="assets/perf-probe.js?v=80"></script>
+<script src="assets/lenis-init.js?v=80"></script>
+<script src="assets/site.js?v=80"></script>
+<script src="assets/liquid-hover.js?v=80"></script>
+<script src="assets/split-cards.js?v=80"></script>
+<script src="assets/parallax-hero.js?v=80"></script>
+<script src="assets/liquid-glass.js?v=80"></script>
 </body>
 </html>

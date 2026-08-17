@@ -58,6 +58,16 @@ anyone who opens developer tools. The Anthropic key lives only as a Cloudflare
 Worker secret. If the Worker is unreachable the page quietly falls back to the
 sector blueprint, so a visitor always gets a document.
 
+## Security
+
+See [`SECURITY.md`](SECURITY.md) for what is already in place (Subresource
+Integrity on every CDN script, a Content Security Policy, no secrets in the
+tree), the GitHub settings you have to change yourself, and an honest note on
+why "stop people copying the frontend" is not a thing any site can do.
+
+**If you upgrade GSAP or Lenis, regenerate the SRI hash** or the browser will
+refuse to load it. The command is in SECURITY.md.
+
 ## Things that will catch you out
 
 **Case sensitivity.** Windows does not care about case in filenames; GitHub Pages

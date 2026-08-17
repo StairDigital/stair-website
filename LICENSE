@@ -1,0 +1,21 @@
+Copyright (c) 2026 STAIR Digital Private Limited. All rights reserved.
+
+This repository contains the source of the STAIR Digital website, including its
+markup, stylesheets, JavaScript, original artwork and written copy.
+
+No permission is granted to copy, reproduce, publish, distribute, modify or
+create derivative works from any part of it, in whole or in part, for any
+purpose, without prior written permission from STAIR Digital Private Limited.
+
+The repository is public because GitHub Pages requires it in order to serve the
+site. Public visibility is a hosting requirement. It is not a licence, and it
+does not place this work in the public domain.
+
+Third-party libraries loaded by the site (GSAP, Lenis) remain the property of
+their respective authors and are governed by their own licences.
+
+Trade marks, logos and company names appearing in this repository, including
+those of clients and associated organisations, are the property of their
+respective owners and may not be reused.
+
+Enquiries: saraff@stair.digital

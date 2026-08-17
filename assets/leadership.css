@@ -125,9 +125,22 @@
   transform:translateY(20px) scale(.985);transition:transform .45s var(--ease)}
 .ld-modal.open .ld-modal-card{transform:none}
 /* animated gradient field behind the profile */
-.ld-modal-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;border-radius:26px}
-.ld-modal-fx canvas{display:block;width:100%;height:100%}
-.ld-modal-fx.ag-fallback{background:linear-gradient(150deg,#FAF8F3,#DCEDE9 55%,#CFE3F0)}
+/* Was a WebGL animated-gradient. It created a GL context on page load for
+   a dialog most visitors never open. Two drifting blobs, paused until the
+   dialog is actually shown. */
+.ld-modal-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;border-radius:26px;
+  background:linear-gradient(150deg,#FAF8F3,#DCEDE9 55%,#E9F3F8)}
+.ld-modal-fx::before,.ld-modal-fx::after{content:"";position:absolute;
+  width:78%;aspect-ratio:1.2;border-radius:50%;will-change:transform;
+  animation-play-state:paused}
+.ld-modal-fx::before{left:-16%;top:-24%;
+  background:radial-gradient(closest-side,rgba(111,201,191,.62),transparent 72%);
+  animation:agA 20s ease-in-out infinite alternate}
+.ld-modal-fx::after{right:-18%;bottom:-26%;
+  background:radial-gradient(closest-side,rgba(14,156,147,.38),transparent 74%);
+  animation:agB 25s ease-in-out infinite alternate}
+.ld-modal.open .ld-modal-fx::before,.ld-modal.open .ld-modal-fx::after{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.ld-modal-fx::before,.ld-modal-fx::after{animation:none}}
 /* soften it so the copy never fights the field */
 .ld-modal-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:26px;
   background:linear-gradient(180deg,rgba(250,248,243,.78),rgba(250,248,243,.9))}

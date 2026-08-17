@@ -128,11 +128,31 @@ header.nav.scrolled{border-bottom:1px solid var(--line-soft);box-shadow:0 8px 30
   transition:opacity .55s var(--ease),visibility .55s;
 }
 .drawer.open{opacity:1;visibility:visible;pointer-events:auto}
-/* prism field behind the menu, softened so the ink type stays readable */
-.menu-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--ivory)}
-.menu-bg canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.menu-bg::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,rgba(250,248,243,.70) 0%,rgba(250,248,243,.52) 50%,rgba(250,248,243,.70) 100%)}
+/* Field behind the menu.
+   This was a fullscreen WebGL2 shader. It spun a GL context up every time
+   the menu opened, and it was still rendering while the browser navigated
+   away, which is what made clicking a menu item stutter. Two drifting
+   gradient blobs give the same soft field with no context at all, and
+   they only animate while the drawer is open. */
+.menu-bg{position:fixed;inset:0;z-index:0;overflow:hidden;
+  background:linear-gradient(160deg,var(--ivory),#E6F1EE 52%,#F3EFE6)}
+.menu-bg::before{content:"";position:absolute;left:-18%;top:-24%;
+  width:76%;aspect-ratio:1.25;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(95,201,191,.55),transparent 72%);
+  will-change:transform;animation:menuA 22s ease-in-out infinite alternate;
+  animation-play-state:paused}
+.menu-bg::after{content:"";position:absolute;right:-20%;bottom:-26%;
+  width:72%;aspect-ratio:1.3;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(240,133,75,.30),transparent 74%);
+  will-change:transform;animation:menuB 27s ease-in-out infinite alternate;
+  animation-play-state:paused}
+/* nothing moves until the drawer is actually open */
+.drawer.open .menu-bg::before,.drawer.open .menu-bg::after{animation-play-state:running}
+@keyframes menuA{to{transform:translate3d(24%,20%,0) scale(1.18)}}
+@keyframes menuB{to{transform:translate3d(-22%,-18%,0) scale(1.14)}}
+@media(prefers-reduced-motion:reduce){
+  .menu-bg::before,.menu-bg::after{animation:none}
+}
 
 .menu-list{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;
   width:min(720px,86vw)}
@@ -221,7 +241,24 @@ footer.ft{background:var(--surface);border-top:1px solid var(--line-soft);paddin
   box-shadow:0 50px 64px -40px rgba(28,42,40,.5),inset 0 1px 0 rgba(255,255,255,.7);
   transform:translateY(18px) scale(.98);transition:transform .4s var(--ease);text-align:center}
 .chooser.open .chooser-card{transform:none}
-.chooser-grid{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* Was a WebGL animated-gradient. It created a GL context on page load for
+   a dialog most visitors never open. Two drifting blobs, paused until the
+   dialog is actually shown. */
+.chooser-grid{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:linear-gradient(150deg,#FAF8F3,#DCEDE9 55%,#E9F3F8)}
+.chooser-grid::before,.chooser-grid::after{content:"";position:absolute;
+  width:78%;aspect-ratio:1.2;border-radius:50%;will-change:transform;
+  animation-play-state:paused}
+.chooser-grid::before{left:-16%;top:-24%;
+  background:radial-gradient(closest-side,rgba(111,201,191,.62),transparent 72%);
+  animation:agA 20s ease-in-out infinite alternate}
+.chooser-grid::after{right:-18%;bottom:-26%;
+  background:radial-gradient(closest-side,rgba(14,156,147,.38),transparent 74%);
+  animation:agB 25s ease-in-out infinite alternate}
+.chooser.open .chooser-grid::before,.chooser.open .chooser-grid::after{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.chooser-grid::before,.chooser-grid::after{animation:none}}
+@keyframes agA{to{transform:translate3d(22%,20%,0) scale(1.16)}}
+@keyframes agB{to{transform:translate3d(-20%,-18%,0) scale(1.12)}}
 /* NB: exclude .chooser-x here, otherwise this rule beats its position:absolute
    and the close button drops into the centre of the card */
 .chooser-card > *:not(.chooser-grid):not(.chooser-x){position:relative;z-index:1}
