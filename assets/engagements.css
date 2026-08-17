@@ -1,3 +1,6 @@
+.fig-note{margin-top:clamp(24px,3.4vh,38px);font-size:clamp(13px,1vw,15px);
+  line-height:1.72;color:rgba(28,59,56,.76);max-width:86ch}
+
 /* ============================================================
    ENGAGEMENTS — proof, in their own words.
    Full-viewport hero, a spinning 3D ring of sector testimonials
@@ -149,17 +152,19 @@
 .fig-head h2{font-family:var(--serif);font-weight:800;font-size:clamp(28px,3.8vw,50px);
   letter-spacing:-.03em;line-height:1.05;color:var(--ink);margin-top:14px}
 .fig-head h2 em{font-style:italic;color:var(--amber-deep)}
-.fig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;
-  box-shadow:0 40px 70px -50px var(--shadow)}
-.fig-cell{background:rgba(252,250,246,.9);padding:clamp(24px,2.6vw,38px) clamp(20px,2vw,30px);
-  display:flex;flex-direction:column;gap:12px;min-height:200px;
-  transition:background .4s var(--ease)}
+.fig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.fig-cell{background:var(--ivory);padding:clamp(26px,3.2vw,44px) clamp(20px,2.4vw,32px)}
 .fig-cell:hover{background:rgba(241,237,228,.94)}
-.fig-n{font-family:var(--serif);font-weight:800;font-size:clamp(38px,4.6vw,64px);letter-spacing:-.04em;
-  line-height:.9;color:var(--amber-deep)}
-.fig-n small{font-size:.42em;font-weight:700;letter-spacing:-.02em;color:var(--amber)}
-.fig-d{font-size:clamp(13px,1vw,14.5px);color:var(--ink-soft);line-height:1.55;margin-top:auto}
+/* These carry the credibility, so they are set at display size rather than
+   as body figures. 8vw at four across is roughly 100px on a desktop. */
+.fig-n{display:flex;align-items:flex-start;font-family:var(--serif);font-weight:800;
+  font-size:clamp(46px,7.4vw,104px);letter-spacing:-.05em;line-height:.86;
+  color:var(--amber-deep)}
+.fig-n .pre{font-size:.44em;font-weight:700;margin-top:.16em;margin-right:.02em}
+.fig-n small{font-size:.34em;font-weight:700;letter-spacing:-.02em;margin-top:.22em;margin-left:.06em}
+.fig-d{font-size:clamp(13px,1vw,15.5px);line-height:1.62;color:rgba(28,59,56,.80);
+  margin-top:clamp(16px,2vh,24px);max-width:26ch}
 @media(max-width:900px){.fig-grid{grid-template-columns:repeat(2,1fr)}.fig-cell{min-height:170px}}
 @media(max-width:520px){.fig-grid{grid-template-columns:1fr}}
 

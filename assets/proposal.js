@@ -247,6 +247,10 @@
   function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
 
+  /* read back at build time so the sheet can carry who asked for it */
+  function em0() { var e = document.getElementById('prEmail'); return e ? e.value.trim() : ''; }
+  function ph0() { var e = document.getElementById('prPhone'); return e ? e.value.trim() : ''; }
+
   function build(name, company) {
     var C = company, sec = S[detectSector(C)] || S['default'];
     var fill = function (t) { return t.replace(/\{C\}/g, C); };
@@ -257,14 +261,32 @@
       title: titles[hash(C) % titles.length],
       exec: fill(sec.exec), why: fill(sec.why),
       focus: sec.f.map(function (x, i) { return { theme: THEMES[i], title: x[0], detail: fill(x[1]) }; }),
+      /* STAIR's own three phases, the same Ground / Prove / Widen used on
+         the Enterprise Brain, so a visitor meets one method across the site
+         rather than a generic diagnose-pilot-scale that any firm could
+         have written. */
       approach: [
-        { phase: 'Diagnose', detail: 'A focused audit of ' + C + '’s data, processes and quick-win AI opportunities.' },
-        { phase: 'Pilot', detail: 'Build and prove one or two high-impact use cases with measurable outcomes.' },
-        { phase: 'Scale', detail: 'Industrialise what works across ' + C + ' with governance, training and an operating model.' }
+        { phase: 'Ground',
+          detail: 'Map where knowledge actually lives inside ' + C + ', connect the first sources, and stand '
+                + 'the work up against one function, most often finance, audit or legal. Permissions and '
+                + 'provenance are built in here, not retrofitted later.' },
+        { phase: 'Prove',
+          detail: 'Run it against the questions that function is asked every month, beside how they are '
+                + 'answered today. The evaluation harness is written at this point, so improvement at ' + C
+                + ' becomes measurable rather than anecdotal.' },
+        { phase: 'Widen',
+          detail: 'Extend across functions with agents on top, each inside the same permissions and the same '
+                + 'audit trail, so every later initiative at ' + C + ' connects to one memory rather than '
+                + 'adding another silo beside it.' }
       ],
-      governance: 'Every model is deployed with transparency, human oversight and audit trails, so ' + C + '’s board retains full confidence and control.',
+      governance: 'Built to the standard set out in The AI Auditor, the book our founders wrote for the '
+                + 'people who carry the risk. Every claim carries its source, the system declines rather than '
+                + 'guesses, access is inherited rather than granted, and question, sources and model version '
+                + 'are logged so an internal auditor can reconstruct any answer months later. That is what '
+                + 'lets ' + C + '’s board act on the output rather than only admire it.',
       impact: sec.impact,
-      cta: 'Let us map ' + C + '’s AI roadmap together.'
+      cta: 'Let us map ' + C + '’s AI roadmap together.',
+      contact: { email: em0(), phone: ph0() }
     };
   }
 
@@ -339,6 +361,8 @@
     if (!form) return;
     var nameEl = document.getElementById('prName'),
         coEl = document.getElementById('prCo'),
+        emailEl = document.getElementById('prEmail'),
+        phoneEl = document.getElementById('prPhone'),
         err = document.getElementById('prErr'),
         load = document.getElementById('prLoad'),
         bar = document.getElementById('prBar'),
@@ -384,7 +408,21 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var n = nameEl.value.trim(), c = coEl.value.trim();
-      if (!n || !c) { err.textContent = 'Please add your name and your company.'; err.hidden = false; return; }
+      var em = emailEl ? emailEl.value.trim() : '', ph = phoneEl ? phoneEl.value.trim() : '';
+
+      /* All four are required before anything is generated. Validated here
+         as well as with the `required` attribute, because the attribute is
+         trivially removed in devtools and this is the only gate we have. */
+      function fail(msg, el) { err.textContent = msg; err.hidden = false; if (el) el.focus(); }
+      if (!n)  { return fail('Please add your name.', nameEl); }
+      if (!c)  { return fail('Please add your company.', coEl); }
+      if (!em || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) {
+        return fail('Please add a valid work email so we can send this to you.', emailEl);
+      }
+      /* digits only, so +91 00000 00000 and 0000000000 both pass */
+      if (!ph || (ph.replace(/[^\d]/g, '').length < 8)) {
+        return fail('Please add a phone number a founder can reach you on.', phoneEl);
+      }
       err.hidden = true;
       load.hidden = false;
       var i = 0; step.textContent = STEPS[0]; bar.style.width = '10%';
@@ -401,7 +439,7 @@
 
       if (API_ENDPOINT) {
         fetch(API_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: n, company: c }) })
+          body: JSON.stringify({ name: n, company: c, email: em, phone: ph }) })
           .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
           .then(function (d) {
             /* a researched blueprint must actually contain research; anything

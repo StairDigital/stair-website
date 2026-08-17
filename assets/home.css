@@ -126,6 +126,19 @@
   padding:clamp(8px,1.4vh,22px) 0 clamp(70px,10vh,124px)}
 .hbk-k{font-family:var(--disp);font-size:clamp(9.5px,.85vw,11.5px);letter-spacing:.24em;
   text-transform:uppercase;color:var(--ink-mut);margin-bottom:clamp(16px,2.2vh,26px)}
+.hbk-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px}
+.hbk-alt{display:inline-flex;align-items:center;gap:12px;
+  padding:clamp(14px,1.5vw,19px) clamp(22px,2.4vw,30px);border-radius:999px;
+  text-decoration:none;color:var(--ink);border:1px solid var(--line);background:transparent;
+  font-family:var(--disp);font-size:clamp(12.5px,1.05vw,15px);font-weight:600;letter-spacing:.03em;
+  transition:border-color .42s var(--ease),color .42s,background .42s,transform .42s var(--ease)}
+.hbk-alt:hover{border-color:var(--teal);color:var(--teal-deep);
+  background:rgba(14,156,147,.06);transform:translateY(-3px)}
+.hbk-alt:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+.hbk-alt svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .42s var(--ease)}
+.hbk-alt:hover svg{transform:translateX(4px)}
+
 .hbk-go{position:relative;display:inline-flex;align-items:center;gap:14px;
   padding:clamp(14px,1.5vw,19px) clamp(24px,2.6vw,34px);border-radius:999px;
   text-decoration:none;color:#fff;background:var(--grad);
