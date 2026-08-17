@@ -1,0 +1,249 @@
+/* ============================================================
+   INTELLIGENCE BRIEFINGS — cards, reader overlay, and the PDF.
+
+   The PDF is window.print() rather than a bundled generator: no library
+   over the wire, nothing to keep patched, and it stays inside the site's
+   Content Security Policy. The letterhead is rebuilt here in CSS rather
+   than dropped in as the source PNG, because browsers strip background
+   images from print by default and a letterhead that vanishes on half of
+   the world's printers is not a letterhead. Rebuilt, it also stays sharp
+   at any paper size and adds nothing to page weight.
+   ============================================================ */
+
+/* Page-local reading colours.
+   The shared --ink-soft composites to 3.78:1 on ivory and --ink-mut to
+   2.3:1. Those are fine for a one-line caption and not fine for decks,
+   source lists and small-caps metadata, which is most of what this
+   section is made of. Same hue, held at a weight that clears 4.5:1. */
+:root{
+  --ar-body:rgba(28,59,56,.86);
+  --ar-soft:rgba(28,59,56,.80);
+  --ar-mut:rgba(28,59,56,.72);
+  --ar-quote:#0A6E68;
+}
+
+/* ============ SECTION ============ */
+.arts{position:relative;background:var(--ivory);
+  padding:clamp(72px,11vh,130px) 0 clamp(74px,11vh,130px);overflow:hidden}
+.arts::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(58% 46% at 84% 0%,rgba(14,156,147,.08),transparent 68%)}
+.arts .wrap{position:relative;z-index:1;max-width:var(--maxw)}
+.arts-head{max-width:64ch}
+.arts-head h2{font-family:var(--serif);font-weight:800;font-size:clamp(30px,4.2vw,58px);
+  letter-spacing:-.03em;line-height:1.04;color:var(--ink);margin-top:16px}
+.arts-head h2 em{font-style:normal;color:var(--teal-deep)}
+.arts-head p{font-size:clamp(15px,1.15vw,18px);color:var(--ar-soft);line-height:1.74;
+  margin-top:18px;max-width:60ch}
+
+/* ---- filter chips ---- */
+.art-filters{display:flex;flex-wrap:wrap;gap:9px;margin:clamp(28px,4vh,42px) 0 clamp(26px,3.4vh,38px)}
+.art-chip{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ar-soft);
+  padding:9px 17px;border-radius:999px;border:1px solid var(--line);background:transparent;
+  cursor:pointer;transition:color .35s,border-color .35s,background .35s}
+.art-chip:hover{border-color:var(--teal);color:var(--teal-deep)}
+/* teal-deep puts white at exactly 4.5:1, which is the floor rather than a
+   margin, and this is 12px uppercase. A shade darker gives 5.9:1. */
+.art-chip.on{background:#08706A;border-color:#08706A;color:#fff}
+.art-chip:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+/* ---- grid ---- */
+.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px)}
+.art-card.art-hide{display:none}
+/* the newest briefing runs full width, two columns of it as a landscape card */
+.art-card.art-feat{grid-column:1 / -1}
+
+.art-card{position:relative}
+.art-open{display:block;width:100%;text-align:left;cursor:pointer;
+  background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;padding:0;
+  box-shadow:0 26px 52px -46px rgba(28,42,40,.5);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.art-open:hover{transform:translateY(-5px);border-color:rgba(14,156,147,.42);
+  box-shadow:0 40px 70px -44px rgba(28,42,40,.6)}
+.art-open:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+
+.art-shot{display:block;position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--surface-2)}
+.art-shot img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .8s var(--ease)}
+.art-open:hover .art-shot img{transform:scale(1.05)}
+/* a teal veil keeps the photographs in the brand rather than each being its own mood */
+.art-shot::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(165deg,rgba(14,156,147,.30),rgba(10,22,20,.42) 72%);
+  mix-blend-mode:multiply}
+
+.art-body{display:block;padding:clamp(20px,2.2vw,28px)}
+.art-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  font-family:var(--disp);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ar-mut)}
+.art-meta em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+.art-meta i{width:3px;height:3px;border-radius:50%;background:var(--line);display:block}
+.art-title{display:block;font-family:var(--serif);font-weight:750;
+  font-size:clamp(19px,1.75vw,26px);letter-spacing:-.026em;line-height:1.12;
+  color:var(--ink);margin-top:13px}
+.art-deck{display:block;font-size:clamp(13.5px,.98vw,15.5px);color:var(--ar-soft);
+  line-height:1.68;margin-top:11px}
+.art-go{display:inline-flex;align-items:center;gap:9px;margin-top:16px;
+  font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.04em;
+  color:var(--teal-deep);transition:gap .4s var(--ease)}
+.art-open:hover .art-go{gap:15px}
+.art-go svg{width:15px;height:15px}
+
+/* the featured card lays the picture beside the words */
+@media(min-width:861px){
+  .art-feat .art-open{display:grid;grid-template-columns:1.15fr 1fr;align-items:stretch}
+  .art-feat .art-shot{aspect-ratio:auto;height:100%;min-height:330px}
+  .art-feat .art-body{padding:clamp(28px,3.2vw,48px);align-self:center}
+  .art-feat .art-title{font-size:clamp(26px,2.9vw,42px)}
+  .art-feat .art-deck{font-size:clamp(15px,1.15vw,18px);max-width:46ch}
+}
+@media(max-width:1080px){.art-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){.art-grid{grid-template-columns:1fr}}
+
+/* ============ READER OVERLAY ============ */
+.art-reader{position:fixed;inset:0;z-index:220;display:flex;justify-content:center;
+  opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+.art-reader.open{opacity:1;visibility:visible}
+.ar-back{position:absolute;inset:0;background:rgba(10,22,20,.62);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ar-card{position:relative;width:min(880px,100%);height:100%;
+  background:var(--ivory);overflow-y:auto;overscroll-behavior:contain;
+  transform:translateY(22px);transition:transform .5s var(--ease);
+  box-shadow:0 0 90px -20px rgba(10,22,20,.6)}
+.art-reader.open .ar-card{transform:none}
+
+.ar-bar{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;
+  gap:14px;padding:14px clamp(20px,3.4vw,52px);
+  background:rgba(250,248,243,.94);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-soft)}
+.ar-brand{display:flex;align-items:center;gap:10px;
+  font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ar-mut)}
+.ar-brand img{width:22px;height:auto;display:block}
+.ar-bar-r{display:flex;align-items:center;gap:10px}
+.ar-dl{display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+  padding:10px 18px;border-radius:999px;border:0;background:var(--grad);color:#fff;
+  font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.04em;
+  box-shadow:0 16px 32px -16px rgba(11,133,125,.6);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.ar-dl:hover{transform:translateY(-2px);box-shadow:0 22px 40px -16px rgba(11,133,125,.72)}
+.ar-dl svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.ar-x{width:38px;height:38px;flex:none;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line);background:transparent;color:var(--ink);
+  font-size:20px;line-height:1;display:grid;place-items:center;
+  transition:background .35s,border-color .35s}
+.ar-x:hover{background:var(--surface);border-color:var(--teal)}
+.ar-x:focus-visible,.ar-dl:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+.ar-inner{padding:clamp(30px,4.4vw,62px) clamp(20px,3.4vw,52px) clamp(60px,9vh,110px)}
+.ar-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ar-mut)}
+.ar-meta em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+.ar-meta i{width:3px;height:3px;border-radius:50%;background:var(--line);display:block}
+.ar-head h2{font-family:var(--serif);font-weight:800;font-size:clamp(28px,4vw,52px);
+  letter-spacing:-.032em;line-height:1.05;color:var(--ink);margin-top:14px}
+.ar-deck{font-size:clamp(16px,1.35vw,21px);line-height:1.6;color:var(--ar-soft);
+  margin-top:16px;font-weight:400;max-width:54ch}
+.ar-byline{font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ar-mut);margin-top:20px;padding-top:18px;border-top:1px solid var(--line-soft)}
+
+.ar-shot{margin:clamp(26px,3.6vh,40px) 0;border-radius:14px;overflow:hidden;
+  aspect-ratio:16/9;background:var(--surface-2)}
+.ar-shot img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* the reading column: measure held near 68 characters */
+.ar-copy{max-width:66ch}
+.ar-copy p{font-size:clamp(15px,1.12vw,17.5px);line-height:1.78;color:var(--ar-body);
+  margin-top:18px}
+.ar-copy h3{font-family:var(--serif);font-weight:750;font-size:clamp(19px,1.7vw,25px);
+  letter-spacing:-.024em;line-height:1.18;color:var(--ink);margin-top:clamp(30px,4vh,44px)}
+.ar-copy ul{margin-top:18px;list-style:none}
+.ar-copy li{position:relative;padding-left:22px;margin-top:11px;
+  font-size:clamp(14.5px,1.06vw,16.5px);line-height:1.72;color:var(--ar-body)}
+.ar-copy li::before{content:"";position:absolute;left:2px;top:.62em;
+  width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.ar-copy blockquote{margin:clamp(26px,3.4vh,38px) 0;padding:2px 0 2px 24px;
+  border-left:3px solid var(--amber);
+  font-family:var(--serif);font-weight:650;font-size:clamp(17px,1.55vw,23px);
+  line-height:1.42;letter-spacing:-.018em;color:var(--ar-quote)}
+.ar-src{max-width:66ch;margin-top:clamp(40px,5.4vh,62px);padding-top:clamp(22px,3vh,30px);
+  border-top:1px solid var(--line)}
+.ar-src h4{font-family:var(--disp);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ar-mut)}
+.ar-src ul{margin-top:13px;list-style:none}
+.ar-src li{font-size:13.5px;line-height:1.66;color:var(--ar-soft);
+  padding-left:16px;position:relative;margin-top:7px}
+.ar-src li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;
+  background:var(--ar-mut)}
+
+@media(max-width:620px){
+  .ar-bar{padding:12px 18px}
+  .ar-brand span{display:none}
+  .ar-dl{padding:9px 14px;font-size:11px}
+}
+
+/* ============================================================
+   PRINT — the article on the STAIR letterhead.
+
+   Everything on screen is hidden; only #artPrint prints. The header and
+   footer are position:fixed, which in paged media repeats them on every
+   sheet, so a four-page briefing carries the letterhead throughout.
+   ============================================================ */
+.art-print{display:none}
+
+@media print{
+  @page{size:A4;margin:34mm 18mm 26mm}
+
+  html,body{background:#fff !important}
+  body > *{display:none !important}
+  .art-print{display:block !important;position:relative;
+    font-family:var(--font);color:#111;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  /* ---- letterhead, repeated on every sheet ---- */
+  .ap-head{position:fixed;top:-24mm;left:0;right:0;height:20mm;
+    display:flex;align-items:flex-start;justify-content:space-between}
+  .ap-logo{display:flex;flex-direction:column;gap:2mm}
+  .ap-logo img{width:17mm;height:auto;display:block}
+  .ap-logo b{font-family:var(--disp);font-size:10pt;font-weight:700;letter-spacing:.34em;
+    color:#111;line-height:1}
+  .ap-logo span{font-family:var(--disp);font-size:5.6pt;letter-spacing:.44em;
+    color:#B07B3C;line-height:1}
+  .ap-contact{text-align:right;font-size:8pt;line-height:1.5;color:#111;
+    border-bottom:1.6pt solid #111;padding-bottom:2mm;min-width:62mm}
+  .ap-contact b{display:block;font-size:9.5pt;font-weight:700;letter-spacing:.02em;
+    text-transform:uppercase;margin-bottom:1mm}
+
+  .ap-foot{position:fixed;bottom:-19mm;left:0;right:0;
+    font-size:7.6pt;line-height:1.45;color:#333;
+    border-top:1px solid #ddd;padding-top:2mm;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:8mm}
+  .ap-foot em{font-style:normal;color:#777}
+
+  /* ---- the article itself ---- */
+  .ap-kicker{font-family:var(--disp);font-size:8pt;letter-spacing:.2em;text-transform:uppercase;
+    color:#0B857D;margin:0 0 3mm}
+  .art-print h1{font-family:var(--serif);font-size:22pt;font-weight:800;letter-spacing:-.02em;
+    line-height:1.1;color:#0F2A27;margin:0 0 4mm}
+  .ap-deck{font-size:11pt;line-height:1.5;color:#3A4E4B;margin:0 0 6mm;
+    padding-bottom:5mm;border-bottom:1px solid #ddd}
+
+  .ap-copy p{font-size:10pt;line-height:1.62;color:#1a1a1a;margin:0 0 3.4mm;
+    orphans:3;widows:3}
+  .ap-copy h3{font-family:var(--serif);font-size:12.5pt;font-weight:700;color:#0F2A27;
+    margin:7mm 0 2.6mm;break-after:avoid;page-break-after:avoid}
+  .ap-copy ul{margin:0 0 3.4mm;padding-left:5mm}
+  .ap-copy li{font-size:10pt;line-height:1.58;margin-bottom:1.6mm;color:#1a1a1a}
+  .ap-copy blockquote{margin:5mm 0;padding-left:5mm;border-left:2pt solid #E08A3C;
+    font-family:var(--serif);font-size:11.5pt;font-weight:650;line-height:1.36;
+    color:#0B6B64;break-inside:avoid;page-break-inside:avoid}
+  .ap-src{margin-top:8mm;padding-top:4mm;border-top:1px solid #ddd;
+    break-inside:avoid;page-break-inside:avoid}
+  .ap-src h4{font-family:var(--disp);font-size:8pt;letter-spacing:.18em;text-transform:uppercase;
+    color:#777;margin:0 0 2mm}
+  .ap-src li{font-size:8.4pt;line-height:1.5;color:#555;margin-bottom:1.2mm;list-style:none}
+
+  a[href]::after{content:""}   /* no URL dumps in the margins */
+}

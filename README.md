@@ -13,7 +13,7 @@ visitor's browser, so the whole thing can be served by any static host.
 | `capabilities.html` | Capabilities — the six service lines |
 | `enterprise-brain.html` | Enterprise Brain — unified memory and the enterprise SLM capability |
 | `industries.html` | Industries — six sectors |
-| `research.html` | Research — The AI Auditor, Bharat Protect, The ExO Playbook |
+| `research.html` | Research — The AI Auditor, Bharat Protect, The ExO Playbook, and the Intelligence Briefings |
 | `engagements.html` | Engagements — client voices, attributed by sector |
 | `leadership.html` | Leadership — founder profiles |
 | `proposal.html` | Blueprint — visitor enters name and company, gets a downloadable PDF |
@@ -57,6 +57,26 @@ To make each blueprint genuinely researched, deploy the Cloudflare Worker in
 anyone who opens developer tools. The Anthropic key lives only as a Cloudflare
 Worker secret. If the Worker is unreachable the page quietly falls back to the
 sector blueprint, so a visitor always gets a document.
+
+## Intelligence Briefings
+
+The articles on the Research page live in `ARTICLES` at the top of
+`assets/articles.js` — one object each, with the body as an array of blocks
+(`{p:…}` paragraph, `{h:…}` heading, `{q:…}` pull quote, `{ul:[…]}` list). Add an
+entry and it appears in the grid, in the filter chips, in the reader and in the
+PDF; nothing else needs touching.
+
+The PDF is `window.print()` against the print rules at the foot of
+`assets/articles.css`, the same approach the Blueprint page uses. No library, so
+nothing to keep patched and nothing that breaks the Content Security Policy. The
+letterhead is rebuilt in CSS rather than dropped in as the source PNG, because
+browsers strip background images from print by default; `.ap-head` and `.ap-foot`
+are `position:fixed`, which in paged media repeats them on every sheet.
+
+Every figure in the current six articles comes from STAIR's own April and July
+2026 briefings and names the house that published it. **Do not add a statistic
+without a source** — the whole argument of these pieces is that unsourced numbers
+should not be trusted.
 
 ## Security
 
