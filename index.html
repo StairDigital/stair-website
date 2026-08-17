@@ -4,15 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STAIR Digital | Where the Boardroom Meets Frontier AI</title>
-<meta name="description" content="STAIR Digital unites four decades of boardroom experience with 13 years at the frontier of artificial intelligence to build organisations that scale 10X.">
-<meta name="theme-color" content="#FAF8F3">
+<meta name="description" content="STAIR Digital unites four decades of boardroom experience with over a decade at the frontier of artificial intelligence to build organisations that scale 10X.">
+<meta name="theme-color" content="#0A1614">
 <link rel="icon" href="assets/stair-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=73">
-<link rel="stylesheet" href="assets/hero.css?v=73">
-<link rel="stylesheet" href="assets/home.css?v=73">
+<link rel="stylesheet" href="assets/style.css?v=74">
+<link rel="stylesheet" href="assets/hero.css?v=74">
+<link rel="stylesheet" href="assets/book.css?v=74">
+<link rel="stylesheet" href="assets/home.css?v=74">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
 </head>
 <body>
@@ -24,7 +25,7 @@
       <img src="assets/stair-mark.png" alt="STAIR Digital">
       <span class="wm"><b>STAIR</b><span>D I G I T A L</span></span>
     </a>
-    <!-- home only: section buttons fade in once the hero sequence has played out -->
+    <!-- home only: section buttons fade in once the visitor is past the hero -->
     <nav class="nav-links" id="navLinks" aria-label="Sections">
       <a href="company.html">About</a>
       <a href="capabilities.html">Capabilities</a>
@@ -56,69 +57,99 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
 </div>
 
-<!-- ============ HERO (scroll-scrubbed image sequence) ============ -->
-<section class="hero" id="hero">
-  <div class="hero-pin" id="heroPin">
-    <canvas id="heroCanvas" aria-label="An executive and an AI robot walk toward each other and shake hands"></canvas>
-    <div class="hero-ui">
-      <h1 class="hero-title" id="heroTitle">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</h1>
-      <div class="hero-title-docked" id="heroTitleDocked" aria-hidden="true">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</div>
-      <div class="hero-scrim" id="heroScrim"></div>
-      <div class="pulse" id="pulse"></div>
-      <div class="figures" id="figures">
-        <div class="fig l" id="figL">
-          <div class="big"><span id="n40">0</span><i>+</i></div>
-          <div class="lbl">Years in the boardroom</div>
-        </div>
-        <div class="fig c" id="figC">
-          <div class="big"><span id="n100">0</span><i>+</i></div>
-          <div class="lbl">Board &amp; advisory positions</div>
-        </div>
-        <div class="fig r" id="figR">
-          <div class="big"><span id="n13">0</span><i>+</i></div>
-          <div class="lbl">Years at the frontier of AI</div>
-        </div>
+<!-- ============ HERO: "The Ascent" ============
+     A drawn staircase: the brand name as a picture. Pure SVG stroke
+     animation, so there is no canvas, no pin and no scroll handler in
+     front of the visitor's first read of the page. -->
+<section class="hx" id="hero">
+  <div class="hx-art" aria-hidden="true">
+    <svg viewBox="0 0 1240 820" fill="none" preserveAspectRatio="xMidYMid meet">
+      <!-- tread levels: the measured grid the ascent is read against -->
+      <line class="hx-rule" x1="60" y1="590" x2="1180" y2="590"/>
+      <line class="hx-rule" x1="60" y1="500" x2="1180" y2="500"/>
+      <line class="hx-rule" x1="60" y1="410" x2="1180" y2="410"/>
+      <line class="hx-rule" x1="60" y1="320" x2="1180" y2="320"/>
+      <line class="hx-rule" x1="60" y1="230" x2="1180" y2="230"/>
+      <line class="hx-rule" x1="60" y1="140" x2="1180" y2="140"/>
+
+      <!-- the flight. --len is the measured path length, so the draw is exact -->
+      <path class="hx-step" style="--len:1540"
+            d="M120 680 H270 V590 H420 V500 H570 V410 H720 V320 H870 V230 H1020 V140 H1120"/>
+
+      <circle class="hx-node" cx="270"  cy="590" r="7"/>
+      <circle class="hx-node" cx="420"  cy="500" r="7"/>
+      <circle class="hx-node" cx="570"  cy="410" r="7"/>
+      <circle class="hx-node" cx="720"  cy="320" r="7"/>
+      <circle class="hx-node" cx="870"  cy="230" r="7"/>
+      <circle class="hx-node" cx="1020" cy="140" r="7"/>
+
+      <!-- the summit -->
+      <circle class="hx-halo" cx="1120" cy="140" r="16"/>
+      <circle class="hx-top"  cx="1120" cy="140" r="9"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <p class="hx-k hx-in"><i></i>Governance &middot; Artificial Intelligence &middot; Capital</p>
+    <h1 class="hx-in d1">Where the boardroom<br>meets <em>frontier&nbsp;AI</em>.</h1>
+    <p class="hx-lead hx-in d2">STAIR is an operating platform for India's largest enterprises,
+      built by people who have sat on the boards and people who have built the systems. One
+      partner, one standard, one measurable outcome.</p>
+
+    <div class="hx-figs hx-in d3">
+      <div class="hx-fig">
+        <b>4</b>
+        <span>Decades in India's boardrooms</span>
       </div>
-      <div class="outcomes" id="outcomes">
-        <div class="row">
-          <div class="o" id="o1"><div class="v"><span id="n10">0</span><span class="suf">X</span></div><div class="k">Scalable impact via ExO frameworks</div></div>
-          <div class="o" id="o2"><div class="v"><span id="n24">0</span><span class="dash">&ndash;</span><span id="n36">0</span></div><div class="k">Months to institutional grade</div></div>
-          <div class="o" id="o3"><div class="v"><span id="n40b">0</span><span class="dash">&ndash;</span><span id="n70">0</span><span class="suf">%</span></div><div class="k">Reduction in financial close cycles</div></div>
-        </div>
-        <div class="cap" id="cap">Two forces. <em>One measurable outcome.</em></div>
+      <div class="hx-fig">
+        <b>100<i>+</i></b>
+        <span>Board &amp; advisory positions held</span>
       </div>
-      <div class="hero-load" id="heroLoad">Preparing the meeting</div>
+      <div class="hx-fig">
+        <b>10<i>X</i></b>
+        <span>The scale we build toward</span>
+      </div>
+    </div>
+
+    <div class="hx-cta hx-in d4">
+      <button class="btn btn-primary" data-consult>Let's Talk
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <a class="btn hx-ghost" href="capabilities.html">See what we run</a>
     </div>
   </div>
+
+  <div class="hx-cue" aria-hidden="true"><span>Scroll</span>
+    <svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
 </section>
 
-<!-- ============ CLIENT LOGOS ============
-     Sits immediately after the hero film, so the marks land the moment the
-     handshake sequence has finished playing. -->
+<!-- ============ CLIENT LOGOS ============ -->
 <section class="hp-logos" id="clients">
   <div class="wrap">
+    <div class="eyebrow rv">Trusted by</div>
     <h2 class="rv">The enterprises already <em>running on this work.</em></h2>
+    <p class="hp-logos-n rv">Listed groups, regulated institutions and national infrastructure.
+      Engagements are confidential; these are the organisations whose marks we are free to show.</p>
   </div>
   <div class="hp-track-wrap rv">
     <div class="hp-track">
-      <img src="assets/logos/Dinshaws.png" alt="Dinshaws" loading="lazy">
-      <img src="assets/logos/Larsen_and_Toubro.png" alt="Larsen &amp; Toubro" loading="lazy">
-      <img src="assets/logos/ICICI_Securities.png" alt="ICICI Securities" loading="lazy">
-      <img src="assets/logos/Blue_Star.png" alt="Blue Star" loading="lazy">
-      <img src="assets/logos/Agile_Connects.png" alt="Agile Connects" loading="lazy">
-      <img src="assets/logos/Tookitaki.png" alt="Tookitaki" loading="lazy">
-      <img src="assets/logos/Adani_Gas.png" alt="Adani Gas" loading="lazy">
-      <img src="assets/logos/Solus.png" alt="Solus" loading="lazy">
-      <img src="assets/logos/Vakils.png" alt="Vakils" loading="lazy">
-      <img src="assets/logos/Dinshaws.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Larsen_and_Toubro.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/ICICI_Securities.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Blue_Star.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Agile_Connects.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Tookitaki.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Adani_Gas.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Solus.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/Vakils.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/Dinshaws.png" alt="Dinshaws" loading="lazy" decoding="async">
+      <img src="assets/logos/Larsen_and_Toubro.png" alt="Larsen &amp; Toubro" loading="lazy" decoding="async">
+      <img src="assets/logos/ICICI_Securities.png" alt="ICICI Securities" loading="lazy" decoding="async">
+      <img src="assets/logos/Blue_Star.png" alt="Blue Star" loading="lazy" decoding="async">
+      <img src="assets/logos/Agile_Connects.png" alt="Agile Connects" loading="lazy" decoding="async">
+      <img src="assets/logos/Tookitaki.png" alt="Tookitaki" loading="lazy" decoding="async">
+      <img src="assets/logos/Adani_Gas.png" alt="Adani Gas" loading="lazy" decoding="async">
+      <img src="assets/logos/Solus.png" alt="Solus" loading="lazy" decoding="async">
+      <img src="assets/logos/Vakils.png" alt="Vakils" loading="lazy" decoding="async">
+      <img src="assets/logos/Dinshaws.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Larsen_and_Toubro.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/ICICI_Securities.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Blue_Star.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Agile_Connects.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Tookitaki.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Adani_Gas.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Solus.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="assets/logos/Vakils.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -128,9 +159,124 @@
   <div class="wrap">
     <div class="lead-single">
       <div class="eyebrow rv">Who We Are</div>
-      <p class="lead-statement rv">STAIR partners with India's largest listed enterprises, uniting <em>4 decades on the boards</em> of the country's biggest companies with <em>thirteen years at the frontier of AI</em>, to build organisations that scale <span class="hl">10X</span>.</p>
+      <p class="lead-statement rv">STAIR partners with India's largest listed enterprises, uniting <em>4 decades on the boards</em> of the country's biggest companies with <em>over a decade at the frontier of AI</em>, to build organisations that scale <span class="hl">10X</span>.</p>
       <a class="lead-more rv" href="company.html">Explore the firm
         <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE AI AUDITOR ============
+     The book is the firm's most checkable credential, so it sits high on
+     the home page rather than three scrolls into Research. -->
+<section class="bkx" id="bookScroll">
+  <div class="bkx-pin" id="bkxPin">
+    <div class="bkx-stage">
+      <div class="bkx-book" id="bkxBook">
+
+        <!-- the spread underneath, revealed as the cover swings away -->
+        <div class="bkx-spread">
+          <div class="bkx-page bkx-right" id="bkxRight">
+            <p class="bkx-lead">The playbook for building fraud proof, future ready enterprises.</p>
+            <p>Written for the people who carry the risk: CFOs, CROs, audit chairs and assurance
+              partners. A Big 4 partner called it essential reading to stay relevant in a zero
+              trust economy.</p>
+            <div class="bkx-stats">
+              <div><b>40-70%</b><span>Faster close cycles</span></div>
+              <div><b>90%</b><span>Manual checks removed</span></div>
+              <div><b>4</b><span>Lines of defence</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the jacket, hinged at the spine -->
+        <div class="bkx-cover" id="bkxCover">
+          <div class="bkx-cover-face"></div>
+          <div class="bkx-cover-back">
+            <div class="bkx-inner" id="bkxLeft">
+              <div class="bkx-k">Written by the founders</div>
+              <h2>The AI Auditor</h2>
+              <p class="bkx-tag">Future of auditing for Indian organizations</p>
+              <div class="bkx-rule"></div>
+              <p class="bkx-by">Shailesh V. Haribhakti<span>Cofounder &amp; Chairman</span></p>
+              <p class="bkx-by">Shubham Saraff<span>Cofounder &amp; Director</span></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bkx-hint" id="bkxHint" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOK → RESEARCH ============ -->
+<section class="hbk">
+  <div class="wrap">
+    <p class="hbk-k">Doctrine, not decks</p>
+    <a class="hbk-go" href="research.html">Read the research
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ============ THE FOUNDERS ============ -->
+<section class="fdr" id="founders">
+  <div class="wrap">
+    <div class="fdr-head rv">
+      <div class="eyebrow">Who you work with</div>
+      <h2>Two founders. <em>One accountable table.</em></h2>
+      <p>Every engagement is owned by a founder. That is why the governance argument and the
+        technical architecture never arrive in separate documents, and why there is always
+        someone named who carries the outcome.</p>
+    </div>
+
+    <div class="fdr-grid">
+      <article class="fdr-card rv" style="--c:#0E9C93">
+        <div class="fdr-shot">
+          <img src="assets/img/team-haribhakti.jpg" alt="Shailesh V. Haribhakti"
+               width="1254" height="1254" loading="lazy" decoding="async">
+        </div>
+        <div class="fdr-body">
+          <h3>Shailesh V. Haribhakti</h3>
+          <p class="fdr-role">Cofounder &amp; Chairman</p>
+          <p class="fdr-bio">Four decades in India's boardrooms and a chartered accountant by
+            training. He chairs and sits on the boards of some of the country's most scrutinised
+            listed companies, which is where the standard STAIR holds itself to comes from.</p>
+          <ul class="fdr-cred">
+            <li>Non&#8209;Executive Chairman: Protean eGov, Aakash, Continuum Green Energy, Mirae Asset India</li>
+            <li>Director: Swiggy, TVS Motor, Adani Total Gas, Bajaj Electricals</li>
+            <li>20+ listed and private boards across finance, technology and ESG</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="fdr-card rv" style="--c:#D96A30">
+        <div class="fdr-shot">
+          <img src="assets/img/team-saraff.jpg" alt="Shubham Saraff"
+               width="1254" height="1254" loading="lazy" decoding="async">
+        </div>
+        <div class="fdr-body">
+          <h3>Shubham Saraff</h3>
+          <p class="fdr-role">Cofounder &amp; Director</p>
+          <p class="fdr-bio">Over a decade at the frontier of AI, from published research through
+            to deployed enterprise systems. He advises the CEO of one of India's largest listed
+            fintechs and serves as CIO to a venture fund and its portfolio companies.</p>
+          <ul class="fdr-cred">
+            <li>MBA, Sa&iuml;d Business School, University of Oxford</li>
+            <li>Youngest ever Board Advisor for Technology Policy and AI at the IET</li>
+            <li>Best Research Paper by Cambridge; IET Global Award; TEDx speaker</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="fdr-foot rv">
+      <a class="btn btn-primary" href="leadership.html">Full profiles
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="fdr-note">Coauthors of <em>The AI Auditor</em></span>
     </div>
   </div>
 </section>
@@ -138,8 +284,8 @@
 <!-- ============ SECTION PREVIEWS ============
      A slice of each section, so the whole story reads in one scroll. Every
      block links through to the full page, which keeps its own hero and
-     animations untouched. The mark beside each one is a symbol for the
-     section rather than a photograph. -->
+     animations untouched. Research and Leadership are not repeated here:
+     the book and the founder cards above already carry them. -->
 
 <section class="hp" id="p-about">
   <div class="wrap">
@@ -151,7 +297,7 @@
       <div class="hp-body">
         <div class="hp-k">About</div>
         <h2>Not an agency. <em>Not a vendor.</em></h2>
-        <p>An operating platform for the exponential age. Four decades in the boardrooms of India's largest listed companies, joined to thirteen years at the frontier of artificial intelligence, run as one accountable system rather than a set of separate engagements.</p>
+        <p>An operating platform for the exponential age. Four decades in the boardrooms of India's largest listed companies, joined to over a decade at the frontier of artificial intelligence, run as one accountable system rather than a set of separate engagements.</p>
         <ul class="hp-list">
           <li>Governance</li>
           <li>Strategy</li>
@@ -246,34 +392,11 @@
   </div>
 </section>
 
-<section class="hp" id="p-research">
-  <div class="wrap">
-    <article class="hp-row rv" style="--c:#D96A30">
-      <div class="hp-mark" aria-hidden="true">
-        <span class="hp-num">05</span>
-        <svg class="hp-glyph" viewBox="0 0 48 48"><path d="M24 13.5c-4.2-3-9.3-4.5-14.5-4.5v26c5.2 0 10.3 1.5 14.5 4.5"/><path d="M24 13.5c4.2-3 9.3-4.5 14.5-4.5v26c-5.2 0-10.3 1.5-14.5 4.5"/><path d="M24 13.5v25.5"/></svg>
-      </div>
-      <div class="hp-body">
-        <div class="hp-k">Research</div>
-        <h2>Doctrine, <em>not decks.</em></h2>
-        <p>Original frameworks and published work, shaping how India's enterprises think about governance, AI and capital. The flagship is <em>The AI Auditor</em>, written for the people who carry the risk: CFOs, CROs, audit chairs and assurance partners.</p>
-        <ul class="hp-list">
-          <li>The AI Auditor</li>
-          <li>Bharat Protect</li>
-          <li>The ExO Playbook</li>
-        </ul>
-        <a class="hp-go" href="research.html">Read the research
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-  </div>
-</section>
-
 <section class="hp" id="p-engagements">
   <div class="wrap">
-    <article class="hp-row alt rv" style="--c:#B8863B">
+    <article class="hp-row rv" style="--c:#B8863B">
       <div class="hp-mark" aria-hidden="true">
-        <span class="hp-num">06</span>
+        <span class="hp-num">05</span>
         <svg class="hp-glyph" viewBox="0 0 48 48"><path d="M42 29.5a5 5 0 0 1-5 5H17l-9 7.5V13a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5z"/><path d="M17.5 18.5h6.5v6.5a4 4 0 0 1-4 4"/><path d="M27.5 18.5H34V25a4 4 0 0 1-4 4"/></svg>
       </div>
       <div class="hp-body">
@@ -286,28 +409,6 @@
           <div><b>60+</b><span>Leaders interviewed</span></div>
         </div>
         <a class="hp-go" href="engagements.html">Hear from clients
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="hp" id="p-leadership">
-  <div class="wrap">
-    <article class="hp-row rv" style="--c:#1C3B38">
-      <div class="hp-mark" aria-hidden="true">
-        <span class="hp-num">07</span>
-        <svg class="hp-glyph" viewBox="0 0 48 48"><circle cx="17" cy="16.5" r="6.2"/><circle cx="33" cy="18.5" r="5.2"/><path d="M7.5 36c0-5.8 4.2-9.5 9.5-9.5s9.5 3.7 9.5 9.5"/><path d="M28.5 36c0-4.8 2.9-7.8 6.9-7.8s6.6 3 6.6 7.8"/><path d="M5 40.5h38"/></svg>
-      </div>
-      <div class="hp-body">
-        <div class="hp-k">Leadership</div>
-        <h2>Two founders. <em>One accountable table.</em></h2>
-        <p>The boardroom and the frontier, sitting on the same side of the table. Every engagement is owned by a founder, which is why the governance argument and the technical architecture never arrive in separate documents.</p>
-        <ul class="hp-list one">
-          <li>Shailesh V. Haribhakti &middot; Cofounder &amp; Chairman</li>
-          <li>Shubham Saraff &middot; Cofounder &amp; Director</li>
-        </ul>
-        <a class="hp-go" href="leadership.html">Meet the founders
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </article>
@@ -353,7 +454,7 @@
         42, Free Press House,<br>215, Free Press Journal Marg,<br>Nariman Point, Mumbai 400021</div></div>
     </div>
     <div class="ft-bottom">
-      <p>© 2026 STAIR Digital Private Limited. All rights reserved.</p>
+      <p>&copy; 2026 STAIR Digital Private Limited. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -381,15 +482,15 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="assets/fx-core.js?v=73"></script>
-<script src="assets/perf-probe.js?v=73"></script>
-<script src="assets/lenis-init.js?v=73"></script>
-<script src="assets/site.js?v=73"></script>
-<script src="assets/prism-gradient.js?v=73"></script>
-<script src="assets/hero-frames.js?v=73"></script>
-<script src="assets/hero-player.js?v=73"></script>
-<script src="assets/kinetic-grid.js?v=73"></script>
-<script src="assets/animated-gradient.js?v=73"></script>
-<script src="assets/liquid-glass.js?v=73"></script>
+<script src="assets/fx-core.js?v=74"></script>
+<script src="assets/perf-probe.js?v=74"></script>
+<script src="assets/lenis-init.js?v=74"></script>
+<script src="assets/site.js?v=74"></script>
+<script src="assets/prism-gradient.js?v=74"></script>
+<script src="assets/hero-ascent.js?v=74"></script>
+<script src="assets/book.js?v=74"></script>
+<script src="assets/kinetic-grid.js?v=74"></script>
+<script src="assets/animated-gradient.js?v=74"></script>
+<script src="assets/liquid-glass.js?v=74"></script>
 </body>
 </html>

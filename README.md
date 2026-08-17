@@ -8,10 +8,10 @@ visitor's browser, so the whole thing can be served by any static host.
 
 | File | Page |
 |---|---|
-| `index.html` | Home — scroll-scrubbed hero film, then a preview of each section |
+| `index.html` | Home — drawn-staircase hero, client logos, the book, the founders, then a preview of each section |
 | `company.html` | About — parallax hero, split-card disciplines |
 | `capabilities.html` | Capabilities — the six service lines |
-| `enterprise-brain.html` | Enterprise Brain — unified memory and the LLM capability |
+| `enterprise-brain.html` | Enterprise Brain — unified memory and the enterprise SLM capability |
 | `industries.html` | Industries — six sectors |
 | `research.html` | Research — The AI Auditor, Bharat Protect, The ExO Playbook |
 | `engagements.html` | Engagements — client voices, attributed by sector |
@@ -76,3 +76,17 @@ making the site feel slow. New effects should use the same seams.
 
 **Performance probe.** Append `?perf=1` to any page, scroll it slowly, then press
 `P` for a report of what each effect is costing.
+
+**Relative URLs inside CSS custom properties.** A `url()` written into a custom
+property in an HTML `style` attribute resolves against the *stylesheet that
+consumes it*, not the page. `--img:url(assets/img/x.jpg)` used by a rule in
+`assets/research.css` therefore requests `assets/assets/img/x.jpg` and 404s. Write
+it as `url(img/x.jpg)`, relative to `assets/`. This silently broke five images on
+the Research page for a while, because a missing background just looks like a
+design choice.
+
+**Pinned sections cost scroll distance.** A `height:200vh` section with a pinned
+child means two full screens of scrolling where the page does not advance. That
+is what "sticky" means to a visitor. Keep the total across a page modest, and
+prefer entrance animations over scrubbed ones for anything that is not the main
+event.

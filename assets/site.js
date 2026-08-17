@@ -3,9 +3,30 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var hasGsap = !!window.gsap;
 
-  /* ---- nav ---- */
+  /* ---- nav ----
+     A scroll listener here fired on every frame Lenis produced, and each
+     call read window.scrollY. That read can force a layout flush whenever
+     style writes are already queued, which on a page full of canvas work
+     is most frames. A zero-height sentinel at the top of the document
+     gives the same result from IntersectionObserver: the callback runs
+     twice per page (crossing in, crossing out) instead of ~60 times a
+     second, and never measures anything. */
   var nav=document.getElementById('nav');
-  if(nav) window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>30);},{passive:true});
+  if(nav){
+    if(!('IntersectionObserver' in window)){
+      window.addEventListener('scroll',function(){
+        nav.classList.toggle('scrolled',window.scrollY>30);
+      },{passive:true});
+    } else {
+      var sentinel=document.createElement('div');
+      sentinel.setAttribute('aria-hidden','true');
+      sentinel.style.cssText='position:absolute;top:30px;left:0;width:1px;height:1px;pointer-events:none';
+      document.body.prepend(sentinel);
+      new IntersectionObserver(function(e){
+        nav.classList.toggle('scrolled', !e[0].isIntersecting);
+      },{threshold:0}).observe(sentinel);
+    }
+  }
   /* ---- fullscreen menu ---- */
   var burger=document.getElementById('burger'), drawer=document.getElementById('drawer');
   function setMenu(open){

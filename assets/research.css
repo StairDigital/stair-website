@@ -34,50 +34,58 @@
 .res-hero-light .res-hero-meta{color:var(--ink-mut)}
 .res-hero-light .res-hero-meta i{background:rgba(28,59,56,.24)}
 
-/* ============ THE AI AUDITOR: full-screen scroll-open book ============ */
-.bkx{position:relative;height:320vh;background:linear-gradient(180deg,#0a1614 0%,#0d1f1c 18%,var(--ivory) 46%,var(--ivory) 100%)}
-.bkx-pin{position:relative;height:100vh;width:100%;overflow:hidden;
-  display:flex;align-items:center;justify-content:center}
-.bkx-stage{perspective:2200px;perspective-origin:50% 46%;width:100%;display:flex;justify-content:center}
+/* ============ THE AI AUDITOR: the feature ============
+   The scroll-opened 3D book moved to the home page, where it does the job
+   of establishing credibility to a first-time visitor. A reader who has
+   navigated to Research has already been convinced to come looking, so
+   what serves them here is the book presented plainly and immediately,
+   with nothing to scroll through before the buy link. */
+.bkf{background:linear-gradient(180deg,var(--surface-2) 0%,var(--ivory) 46%,var(--ivory) 100%);
+  padding:clamp(70px,10vh,124px) 0 clamp(30px,4vh,52px)}
+.bkf-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr);
+  gap:clamp(30px,4.6vw,74px);align-items:center;max-width:1040px;margin:0 auto}
 
-/* the book starts lying flat on its back, then lifts as it opens */
-.bkx-book{position:relative;transform-style:preserve-3d;will-change:transform;
-  /* height-led so the opened spread can never exceed the pinned viewport */
-  height:min(78vh,660px);aspect-ratio:1880/1360;width:auto;max-width:94vw}
+.bkf-cover{position:relative;border-radius:8px;overflow:hidden;
+  box-shadow:0 40px 70px -34px rgba(12,26,24,.62),0 2px 0 rgba(255,255,255,.5);
+  transform:rotate(-1.6deg);transition:transform .6s var(--ease)}
+.bkf-cover:hover{transform:rotate(0deg) translateY(-5px)}
+.bkf-cover img{width:100%;height:auto;display:block}
+/* the spine edge, so it reads as an object rather than a flat picture */
+.bkf-cover::after{content:"";position:absolute;left:0;top:0;bottom:0;width:11px;
+  background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.06) 60%,transparent);
+  pointer-events:none}
 
-.bkx-spread{position:absolute;left:50%;top:0;width:50%;height:100%;
-  border-radius:0 6px 6px 0;overflow:hidden;background:#fbf9f4;
-  box-shadow:0 34px 30px -28px rgba(12,26,24,.58)}
-/* the gutter shadow that sells the fold */
-/* gutter shading down the bound edge */
-.bkx-spread::after{content:"";position:absolute;left:0;top:0;bottom:0;width:38px;
-  pointer-events:none;background:linear-gradient(90deg,rgba(20,40,38,.16),transparent)}
-.bkx-page{padding:clamp(20px,2.4vw,42px);display:flex;flex-direction:column;justify-content:center;
-  opacity:0}
+.bkf-k{font-family:var(--disp);font-size:clamp(9.5px,.85vw,11.5px);letter-spacing:.24em;
+  text-transform:uppercase;color:var(--teal-deep)}
+.bkf-body h2{font-family:var(--serif);font-weight:800;font-size:clamp(30px,4.2vw,62px);
+  letter-spacing:-.035em;line-height:1;margin-top:12px;color:var(--ink)}
+.bkf-tag{font-size:clamp(13px,1.1vw,17px);color:var(--ink-soft);margin-top:12px;line-height:1.5}
+.bkf-rule{width:52px;height:3px;border-radius:2px;background:var(--amber);margin:clamp(18px,2.4vw,28px) 0}
+.bkf-lead{font-family:var(--serif);font-weight:700;font-size:clamp(17px,1.6vw,26px);
+  letter-spacing:-.022em;line-height:1.26;color:var(--teal-deep)}
+.bkf-body > p:not(.bkf-lead):not(.bkf-tag){font-size:clamp(14px,1.02vw,16.5px);
+  color:var(--ink-soft);line-height:1.72;margin-top:16px;max-width:54ch}
 
-.bkx-k{font-family:var(--disp);font-size:clamp(9px,.85vw,11px);letter-spacing:.24em;text-transform:uppercase;
-  color:var(--teal-deep)}
-.bkx-inner h2{font-family:var(--serif);font-weight:800;font-size:clamp(26px,3.6vw,54px);
-  letter-spacing:-.034em;line-height:1;margin-top:12px}
-.bkx-tag{font-size:clamp(11px,1vw,14px);color:var(--ink-soft);margin-top:12px;line-height:1.5}
-.bkx-rule{width:44px;height:3px;border-radius:2px;background:var(--amber);margin:clamp(14px,2vw,24px) 0}
-.bkx-by{font-family:var(--serif);font-weight:650;font-size:clamp(12px,1.15vw,17px);color:var(--ink);
-  line-height:1.25;margin-top:10px}
-.bkx-by span{display:block;font-family:var(--disp);font-weight:400;
-  font-size:clamp(8.5px,.78vw,11px);letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink-mut);margin-top:3px}
+.bkf-by{display:flex;flex-wrap:wrap;gap:clamp(16px,2.4vw,34px);margin-top:clamp(20px,2.8vh,30px)}
+.bkf-by div{font-family:var(--serif);font-weight:700;font-size:clamp(14px,1.16vw,17px);
+  color:var(--ink);line-height:1.25}
+.bkf-by span{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(9px,.76vw,10.5px);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut);margin-top:4px}
 
-.bkx-lead{font-family:var(--serif);font-weight:700;font-size:clamp(15px,1.35vw,24px);letter-spacing:-.02em;
-  line-height:1.24;color:var(--teal-deep)}
-.bkx-right p:not(.bkx-lead){font-size:clamp(11.5px,.92vw,15px);color:var(--ink-soft);
-  line-height:1.68;margin-top:clamp(10px,1.4vw,18px)}
-.bkx-stats{display:flex;flex-wrap:wrap;gap:clamp(10px,1.5vw,22px) clamp(12px,1.9vw,26px);margin-top:clamp(14px,2vw,26px);
-  padding-top:clamp(12px,1.6vw,20px);border-top:1px solid rgba(28,59,56,.12)}
-.bkx-stats > div{flex:0 1 auto;min-width:max-content}
-.bkx-stats b{display:block;font-family:var(--serif);font-weight:800;font-size:clamp(16px,1.7vw,30px);
-  letter-spacing:-.03em;color:var(--teal-deep);line-height:1;white-space:nowrap}
-.bkx-stats span{display:block;font-family:var(--disp);font-size:clamp(7.5px,.72vw,10px);letter-spacing:.11em;
-  text-transform:uppercase;color:var(--ink-mut);margin-top:7px;white-space:nowrap}
+.bkf-stats{display:flex;flex-wrap:wrap;gap:clamp(16px,2.6vw,38px);
+  margin-top:clamp(20px,2.8vh,30px);padding-top:clamp(16px,2.2vh,24px);
+  border-top:1px solid var(--line)}
+.bkf-stats b{display:block;font-family:var(--serif);font-weight:800;
+  font-size:clamp(20px,2.2vw,34px);letter-spacing:-.03em;color:var(--teal-deep);
+  line-height:1;white-space:nowrap}
+.bkf-stats span{display:block;font-family:var(--disp);font-size:clamp(8px,.74vw,10.5px);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mut);margin-top:7px;white-space:nowrap}
+
+@media(max-width:860px){
+  .bkf-grid{grid-template-columns:1fr;gap:32px;max-width:560px}
+  .bkf-cover{max-width:280px;margin:0 auto}
+}
+
 /* ============ THE AI AUDITOR: standalone buy CTA ============
    Lives in its own section BELOW the pinned book, on static ground, so it is a
    plain always-clickable anchor. No .rv reveal class on purpose: nothing here
@@ -112,44 +120,6 @@
 @media(max-width:560px){
   .bkbuy-btn{width:min(92vw,420px)}
   .bkbuy-tx{flex:1}
-}
-
-/* the jacket: hinged on the spine at the centre of the spread */
-/* the jacket is purely decorative; never let its rotated 3D plane eat clicks
-   meant for the "Read the book" button on the page underneath */
-.bkx-cover{position:absolute;left:50%;top:0;width:50%;height:100%;pointer-events:none;
-  transform-origin:left center;transform-style:preserve-3d;will-change:transform;z-index:3}
-.bkx-spread,.bkx-page,.bkx-right{pointer-events:auto}
-.bkx-cover-face,.bkx-cover-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:4px 7px 7px 4px}
-/* NB: paths here are relative to assets/, so it is img/... not ../img/... */
-.bkx-cover-face{background-image:url(img/ai-auditor-cover.jpg);background-size:cover;background-position:center;
-  box-shadow:0 28px 28px -22px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.12)}
-.bkx-cover-back{transform:rotateY(180deg);border-radius:7px 4px 4px 7px;
-  background-image:linear-gradient(150deg,rgba(10,36,34,.90),rgba(10,26,24,.94)),url(img/ai-auditor-cover.jpg);
-  background-size:cover,cover;background-position:center,center;
-  box-shadow:inset 0 0 26px rgba(0,0,0,.42);
-  display:flex;align-items:center}
-/* the title block lives on the inside cover, so the opened jacket can never hide it */
-.bkx-inner{padding:clamp(20px,2.4vw,42px);width:100%;opacity:0}
-.bkx-inner .bkx-k{color:#7fe3d9}
-.bkx-inner h2{color:#fff}
-.bkx-inner .bkx-tag{color:rgba(250,248,243,.72)}
-.bkx-inner .bkx-by{color:#fff}
-.bkx-inner .bkx-by span{color:rgba(250,248,243,.55)}
-
-.bkx-hint{position:absolute;left:50%;bottom:clamp(24px,4vh,44px);transform:translateX(-50%);pointer-events:none;
-  color:rgba(28,59,56,.5)}
-.bkx-hint svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;
-  stroke-linecap:round;stroke-linejoin:round;animation:bkxBob 2s var(--ease) infinite}
-@keyframes bkxBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-
-@media(max-width:820px){
-  .bkx{height:260vh}
-  .bkx-book{height:min(72vh,560px);width:auto;aspect-ratio:1034/1500;max-width:92vw}
-  .bkx-spread{left:0;width:100%;border-radius:6px}
-  .bkx-spread::after{display:none}
-  /* nothing to hinge against on one column: the jacket covers the whole page */
-  .bkx-cover{left:0;width:100%}
 }
 
 /* ============ THE OTHER TWO WORKS ============ */

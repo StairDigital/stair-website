@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=73">
-<link rel="stylesheet" href="assets/research.css?v=73">
+<link rel="stylesheet" href="assets/style.css?v=74">
+<link rel="stylesheet" href="assets/research.css?v=74">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
 <script type="importmap">
 {"imports":{
@@ -63,56 +63,40 @@
   </div>
 </section>
 
-<!-- ============ THE AI AUDITOR: full screen, opens as you scroll ============ -->
-<section class="bkx" id="bookScroll">
-  <div class="bkx-pin" id="bkxPin">
-    <div class="bkx-stage">
-      <div class="bkx-book" id="bkxBook">
-
-        <!-- the spread underneath, revealed as the cover swings away -->
-        <div class="bkx-spread">
-
-          <div class="bkx-page bkx-right" id="bkxRight">
-            <p class="bkx-lead">The playbook for building fraud proof, future ready enterprises.</p>
-            <p>Written for the people who carry the risk: CFOs, CROs, audit chairs and assurance
-              partners. A Big 4 partner called it essential reading to stay relevant in a zero
-              trust economy.</p>
-            <div class="bkx-stats">
-              <div><b>40-70%</b><span>Faster close cycles</span></div>
-              <div><b>90%</b><span>Manual checks removed</span></div>
-              <div><b>4</b><span>Lines of defence</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- the jacket, hinged at the spine -->
-        <div class="bkx-cover" id="bkxCover">
-          <div class="bkx-cover-face"></div>
-          <div class="bkx-cover-back">
-            <div class="bkx-inner" id="bkxLeft">
-            <div class="bkx-k">Flagship publication</div>
-            <h2>The AI Auditor</h2>
-            <p class="bkx-tag">Future of auditing for Indian organizations</p>
-            <div class="bkx-rule"></div>
-            <p class="bkx-by">Shailesh V. Haribhakti<span>Cofounder &amp; Chairman</span></p>
-            <p class="bkx-by">Shubham Saraff<span>Cofounder &amp; Director</span></p>
-            </div>
-          </div>
-        </div>
-
+<!-- ============ THE AI AUDITOR ============
+     The scroll-opened 3D book now leads the home page. A reader who has
+     navigated here already came looking, so this presents it plainly. -->
+<section class="bkf" id="aiAuditor">
+  <div class="wrap">
+    <div class="bkf-grid">
+      <div class="bkf-cover rv">
+        <img src="assets/img/ai-auditor-cover.jpg" alt="The AI Auditor, by Shailesh V. Haribhakti and Shubham Saraff"
+             width="1034" height="1500" loading="lazy" decoding="async">
       </div>
-    </div>
-
-    <div class="bkx-hint" id="bkxHint" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      <div class="bkf-body rv">
+        <div class="bkf-k">Flagship publication</div>
+        <h2>The AI Auditor</h2>
+        <p class="bkf-tag">Future of auditing for Indian organizations</p>
+        <div class="bkf-rule"></div>
+        <p class="bkf-lead">The playbook for building fraud proof, future ready enterprises.</p>
+        <p>Written for the people who carry the risk: CFOs, CROs, audit chairs and assurance
+          partners. A Big 4 partner called it essential reading to stay relevant in a zero
+          trust economy.</p>
+        <div class="bkf-by">
+          <div>Shailesh V. Haribhakti<span>Cofounder &amp; Chairman</span></div>
+          <div>Shubham Saraff<span>Cofounder &amp; Director</span></div>
+        </div>
+        <div class="bkf-stats">
+          <div><b>40-70%</b><span>Faster close cycles</span></div>
+          <div><b>90%</b><span>Manual checks removed</span></div>
+          <div><b>4</b><span>Lines of defence</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ THE AI AUDITOR: buy CTA ============
-     Deliberately OUTSIDE the pinned book: inside it the anchor sat in a rotated
-     preserve-3d subtree within a GSAP pin, which made it unreliable to click.
-     Here it is a plain anchor on static ground, so it always works. -->
+<!-- ============ THE AI AUDITOR: buy CTA ============ -->
 <section class="bkbuy">
   <div class="wrap">
     <p class="bkbuy-k">Available now</p>
@@ -135,7 +119,11 @@
   </div>
 </section>
 
-<!-- ============ THE OTHER TWO: BHARAT PROTECT + EXO PLAYBOOK ============ -->
+<!-- ============ THE OTHER TWO: BHARAT PROTECT + EXO PLAYBOOK ============
+     NB: --bg holds a url() that is consumed by .wk in assets/research.css, and
+     a relative URL in a custom property resolves against the stylesheet that
+     USES it, not this document. So the path is img/... (relative to assets/),
+     not assets/img/... which would resolve to assets/assets/img/ and 404. -->
 <section class="works" id="works">
   <div class="wrap">
     <div class="works-intro">
@@ -144,7 +132,7 @@
     </div>
 
     <div class="works-grid">
-      <article class="wk rv lg" style="--c:#0E9C93;--bg:url(assets/img/wk-bharat.jpg)">
+      <article class="wk rv lg" style="--c:#0E9C93;--bg:url(img/wk-bharat.jpg)">
         <div class="wk-morph" data-fluidmorph data-duration="4"
              data-bg="#0d3a36" data-colors="#0E9C93,#0B857D,#14504a,#1d6b63,#5FC9BF,#127a72,#0a4a44"
              aria-hidden="true"></div>
@@ -164,7 +152,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </article>
 
-      <article class="wk rv lg" style="--c:#D96A30;--bg:url(assets/img/wk-exo.jpg)">
+      <article class="wk rv lg" style="--c:#D96A30;--bg:url(img/wk-exo.jpg)">
         <div class="wk-morph" data-fluidmorph data-duration="4.6"
              data-bg="#5c2a12" data-colors="#D96A30,#F0854B,#8a4520,#a8541f,#FFA06B,#b85c2a,#7a3a18"
              aria-hidden="true"></div>
@@ -237,8 +225,9 @@
         and a number attached. The engagements are where the proof sits.</p>
     </div>
 
+    <!-- --img resolves relative to assets/research.css: see the note above -->
     <div class="eng-proof">
-      <a class="ep rv" style="--c:#0E9C93;--img:url(assets/img/eng-fmcg.jpg)" href="engagements.html">
+      <a class="ep rv" style="--c:#0E9C93;--img:url(img/eng-fmcg.jpg)" href="engagements.html">
         <span class="ep-shot" aria-hidden="true"></span>
         <span class="ep-top"><span class="ep-n">01</span><span class="ep-k">FMCG</span></span>
         <span class="ep-mid">
@@ -249,7 +238,7 @@
         <span class="ep-go">Read the engagement
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="ep rv" style="--c:#F0854B;--img:url(assets/img/eng-media.jpg)" href="engagements.html">
+      <a class="ep rv" style="--c:#F0854B;--img:url(img/eng-media.jpg)" href="engagements.html">
         <span class="ep-shot" aria-hidden="true"></span>
         <span class="ep-top"><span class="ep-n">02</span><span class="ep-k">Media</span></span>
         <span class="ep-mid">
@@ -260,7 +249,7 @@
         <span class="ep-go">Read the engagement
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="ep rv" style="--c:#3D6B8A;--img:url(assets/img/eng-bfsi.jpg)" href="engagements.html">
+      <a class="ep rv" style="--c:#3D6B8A;--img:url(img/eng-bfsi.jpg)" href="engagements.html">
         <span class="ep-shot" aria-hidden="true"></span>
         <span class="ep-top"><span class="ep-n">03</span><span class="ep-k">BFSI</span></span>
         <span class="ep-mid">
@@ -331,17 +320,17 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="assets/fx-core.js?v=73"></script>
-<script src="assets/perf-probe.js?v=73"></script>
-<script src="assets/lenis-init.js?v=73"></script>
-<script src="assets/site.js?v=73"></script>
-<script src="assets/prism-gradient.js?v=73"></script>
-<script src="assets/gradient-wave.js?v=73"></script>
-<script src="assets/fluid-morph.js?v=73"></script>
-<script src="assets/research.js?v=73"></script>
-<script src="assets/kinetic-grid.js?v=73"></script>
-<script src="assets/animated-gradient.js?v=73"></script>
-<script src="assets/liquid-glass.js?v=73"></script>
-<script type="module" src="assets/wave-grid.js?v=73"></script>
+<script src="assets/fx-core.js?v=74"></script>
+<script src="assets/perf-probe.js?v=74"></script>
+<script src="assets/lenis-init.js?v=74"></script>
+<script src="assets/site.js?v=74"></script>
+<script src="assets/prism-gradient.js?v=74"></script>
+<script src="assets/gradient-wave.js?v=74"></script>
+<script src="assets/fluid-morph.js?v=74"></script>
+<script src="assets/research.js?v=74"></script>
+<script src="assets/kinetic-grid.js?v=74"></script>
+<script src="assets/animated-gradient.js?v=74"></script>
+<script src="assets/liquid-glass.js?v=74"></script>
+<script type="module" src="assets/wave-grid.js?v=74"></script>
 </body>
 </html>
