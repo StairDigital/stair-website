@@ -18,9 +18,11 @@
   padding:calc(var(--nav-h) + clamp(56px,9vh,104px)) 0 clamp(64px,10vh,120px)}
 
 /* ---- the staircase ---- */
-.hx-art{position:absolute;right:0;top:0;bottom:0;width:min(58%,880px);z-index:0;pointer-events:none}
-.hx-art svg{position:absolute;right:-2%;top:50%;transform:translateY(-50%);
-  height:min(88%,700px);width:auto;overflow:visible}
+/* The flight climbs out of the bottom of the section and finishes at the
+   top right, so the art box is anchored to that corner rather than centred. */
+.hx-art{position:absolute;right:0;top:0;bottom:0;width:min(60%,940px);z-index:0;pointer-events:none}
+.hx-art svg{position:absolute;right:0;bottom:-4%;
+  height:min(104%,820px);width:auto;overflow:visible}
 
 /* a soft wash so the type side stays clean and the stair side has depth */
 .hx::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -34,32 +36,23 @@
 .s3-tread{fill:url(#s3t)}
 .s3-riser{fill:url(#s3r)}
 .s3-side {fill:url(#s3s)}
-/* a hairline between faces stops the gradients banding into each other */
-.s3-tread,.s3-riser,.s3-side{stroke:rgba(250,248,243,.42);stroke-width:.6;stroke-linejoin:round}
+/* A hairline on every face edge is what separates one step from the next.
+   Without it the six blocks fuse into a single wedge, which is exactly how
+   the first build read. */
+.s3-tread,.s3-riser,.s3-side{stroke-linejoin:round}
+.s3-tread{stroke:rgba(255,255,255,.55);stroke-width:.8}
+.s3-riser{stroke:rgba(255,255,255,.22);stroke-width:.7}
+.s3-side {stroke:rgba(4,42,39,.30);stroke-width:.7}
 
-.s3-step{opacity:0;transform:translateY(26px);
+.s3-step{opacity:0;transform:translate(-14px,22px);
   animation:s3Rise .95s cubic-bezier(.22,.61,.36,1) var(--d,0s) forwards}
-@keyframes s3Rise{to{opacity:1;transform:translateY(0)}}
+@keyframes s3Rise{to{opacity:1;transform:translate(0,0)}}
 
 .s3-shadow{opacity:0;animation:s3Fade 1.2s ease .5s forwards}
 @keyframes s3Fade{to{opacity:1}}
 
-.s3-top{fill:var(--amber);opacity:0;
-  animation:s3Pop .55s cubic-bezier(.34,1.56,.64,1) 1.05s forwards;
-  transform-box:fill-box;transform-origin:center}
-@keyframes s3Pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
-.s3-halo{fill:none;stroke:var(--amber);stroke-width:1.6;opacity:0;
-  transform-box:fill-box;transform-origin:center;
-  animation:s3Halo 3.6s ease-out 1.5s infinite}
-@keyframes s3Halo{
-  0%{opacity:.6;transform:scale(.5)}
-  70%{opacity:0;transform:scale(2.2)}
-  100%{opacity:0;transform:scale(2.2)}
-}
-
 @media(prefers-reduced-motion:reduce){
-  .s3-step,.s3-shadow,.s3-top{animation:none;opacity:1;transform:none}
-  .s3-halo{animation:none;opacity:0}
+  .s3-step,.s3-shadow{animation:none;opacity:1;transform:none}
 }
 
 /* ---- the copy ----

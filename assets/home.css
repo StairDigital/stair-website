@@ -185,9 +185,9 @@
   border-color:color-mix(in srgb,var(--c) 45%,var(--line));
   box-shadow:0 44px 76px -46px rgba(28,42,40,.62)}
 .fdr-card:focus-visible{outline:2px solid var(--c);outline-offset:4px}
-.fdr-shot{display:block;width:clamp(84px,8.4vw,112px);aspect-ratio:1;
+.fdr-shot{display:block;width:clamp(116px,11.5vw,158px);aspect-ratio:1;
   border-radius:50%;overflow:hidden;background:var(--surface-2);
-  border:3px solid #fff;box-shadow:0 12px 26px -14px rgba(28,42,40,.5);margin-bottom:22px}
+  border:4px solid #fff;box-shadow:0 16px 34px -16px rgba(28,42,40,.55);margin-bottom:24px}
 .fdr-shot img{width:100%;height:100%;object-fit:cover;object-position:center 16%;display:block;
   transition:transform .7s var(--ease)}
 .fdr-card:hover .fdr-shot img{transform:scale(1.06)}
@@ -200,12 +200,9 @@
 .fdr-bio{display:block;font-size:clamp(13.5px,.98vw,15.5px);color:var(--ink-soft);
   line-height:1.72;margin-top:16px}
 
-.fdr-cred{display:block;margin-top:18px;border-top:1px solid var(--line-soft)}
-.fdr-cred > span{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft);
-  font-size:clamp(12.5px,.92vw,14px);color:var(--ink);line-height:1.5}
-.fdr-cred > span::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;
-  background:var(--c);margin-top:.55em}
-
+/* The credentials list lived here and now lives only on the leadership
+   page. On the home page the job is a face, a name and one paragraph; the
+   detail is what the click is for. */
 .fdr-go{display:inline-flex;align-items:center;gap:10px;margin-top:20px;
   font-family:var(--disp);font-size:clamp(11.5px,.92vw,13px);font-weight:600;letter-spacing:.03em;
   color:var(--c);transition:gap .4s var(--ease)}

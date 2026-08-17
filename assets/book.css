@@ -30,7 +30,7 @@
 /* gutter shading down the bound edge, which is what sells the fold */
 .bkx-spread::after{content:"";position:absolute;left:0;top:0;bottom:0;width:38px;
   pointer-events:none;background:linear-gradient(90deg,rgba(20,40,38,.16),transparent)}
-.bkx-page{padding:clamp(20px,2.4vw,42px);display:flex;flex-direction:column;justify-content:center;
+.bkx-page{padding:clamp(18px,2.1vw,36px);display:flex;flex-direction:column;justify-content:center;
   opacity:0;transform:translateY(14px);
   transition:opacity .8s ease .95s,transform .8s var(--ease) .95s}
 .bkx.open .bkx-page{opacity:1;transform:none}
@@ -51,13 +51,18 @@
   line-height:1.24;color:var(--teal-deep)}
 .bkx-right p:not(.bkx-lead){font-size:clamp(11.5px,.92vw,15px);color:var(--ink-soft);
   line-height:1.68;margin-top:clamp(10px,1.4vw,18px)}
-.bkx-stats{display:flex;flex-wrap:wrap;gap:clamp(10px,1.5vw,22px) clamp(12px,1.9vw,26px);margin-top:clamp(14px,2vw,26px);
-  padding-top:clamp(12px,1.6vw,20px);border-top:1px solid rgba(28,59,56,.12)}
-.bkx-stats > div{flex:0 1 auto;min-width:max-content}
-.bkx-stats b{display:block;font-family:var(--serif);font-weight:800;font-size:clamp(16px,1.7vw,30px);
+/* Flex-wrap put the third figure on its own line, which pushed it past the
+   bottom of the page and clipped it against .bkx-spread's overflow:hidden.
+   A three-column grid cannot wrap, so all three always fit. */
+.bkx-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(8px,1.2vw,16px);margin-top:clamp(12px,1.8vw,22px);
+  padding-top:clamp(10px,1.4vw,18px);border-top:1px solid rgba(28,59,56,.12)}
+.bkx-stats > div{min-width:0}
+.bkx-stats b{display:block;font-family:var(--serif);font-weight:800;font-size:clamp(15px,1.5vw,26px);
   letter-spacing:-.03em;color:var(--teal-deep);line-height:1;white-space:nowrap}
-.bkx-stats span{display:block;font-family:var(--disp);font-size:clamp(7.5px,.72vw,10px);letter-spacing:.11em;
-  text-transform:uppercase;color:var(--ink-mut);margin-top:7px;white-space:nowrap}
+/* the labels may wrap; the figures may not */
+.bkx-stats span{display:block;font-family:var(--disp);font-size:clamp(7px,.66vw,9.5px);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-mut);margin-top:6px;line-height:1.35}
 
 /* the jacket: hinged on the spine at the centre of the spread.
    Purely decorative, so its rotated 3D plane must never eat clicks. */
