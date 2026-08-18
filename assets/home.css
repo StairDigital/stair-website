@@ -56,22 +56,18 @@
    These marks are the page's strongest credibility signal, so the strip is
    given real height rather than treated as a footnote.
 
-   Sizing note. The source PNGs are small: ICICI Securities is 237x37 and
-   Blue Star 164x46, against L&T at 148x148. Two consequences drive the
-   rules below.
+   Each logo sits in a fixed box with object-fit:contain. Sizing by height
+   alone would make the square marks tower over the wide wordmarks; a box
+   normalises them by area, which is how a reader actually perceives them,
+   and nothing is distorted.
 
-   1) Sizing by height alone makes the square marks tower over the wide
-      ones. Each logo instead sits in a fixed box with object-fit:contain,
-      so they are normalised by area the way a reader actually perceives
-      them, and nothing is distorted.
-   2) The box is sized so contain never has to enlarge a bitmap. At the
-      widest step (172x60) the worst case is Blue Star at 1.05x and every
-      other mark is scaled DOWN, which is where raster art looks sharpest.
-      A taller box would start stretching the small ones into mush.
-
-   That makes the strip about 58% taller than the 38px it was, and sharper
-   rather than softer. Going bigger again needs the marks re-supplied as
-   SVG or at 2x; this is the ceiling for the files we have. */
+   The box height is set by the SMALLEST source we have. ICICI Securities
+   is 237x37 and Blue Star 164x46, so anything taller than ~60px starts
+   upscaling those two into mush while everything else stays sharp. The
+   newer marks (L&T Defence, Protean, ZingHR, IBS FINtech, EMA, Hydron)
+   are 620px wide and render at about 0.18x, so they have headroom to
+   spare - the ceiling is the old files, not the new ones. Re-supply ICICI
+   and Blue Star at 2x and the whole strip can grow. */
 .hp-logos{background:var(--ivory);padding:clamp(64px,9vh,120px) 0 clamp(40px,5vh,68px)}
 .hp-logos .wrap{max-width:var(--maxw)}
 .hp-logos .eyebrow{justify-content:flex-start}
