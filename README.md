@@ -78,6 +78,31 @@ Every figure in the current six articles comes from STAIR's own April and July
 without a source** — the whole argument of these pieces is that unsourced numbers
 should not be trusted.
 
+## Where blueprint enquiries go
+
+Nowhere, until you set one variable.
+
+`proposal.html` asks for a name, company, work email and phone, and validates
+all four. With `LEAD_ENDPOINT` blank at the top of `assets/proposal.js`, those
+details are used to build the document and then discarded when the tab closes.
+This is a static site: there is no server to receive them.
+
+To capture them, set `LEAD_ENDPOINT` to any URL that accepts a JSON POST:
+
+- **Your Cloudflare Worker** (`worker/DEPLOY.md`) - the same one that researches
+  blueprints can email you or append to a sheet.
+- **A form service** such as Formspree or Web3Forms - no code, paste the
+  endpoint they give you.
+
+**Then add that host to `connect-src` in the Content-Security-Policy meta tag in
+`proposal.html`**, or the browser will block the request and you will see nothing.
+The policy is currently `connect-src 'self'`.
+
+Until then, every generated blueprint carries a **Send this to STAIR** button
+that opens a prefilled mail with the visitor's own details. That depends on the
+visitor clicking, so it is not capture - it is a way for an interested reader to
+reach you, not a record of everyone who tried.
+
 ## Security
 
 See [`SECURITY.md`](SECURITY.md) for what is already in place (Subresource

@@ -214,6 +214,14 @@
 .pr-mark{height:30px;width:auto;opacity:.85}
 .pr-actions{max-width:860px;margin:26px auto 0;display:flex;gap:12px;justify-content:center;
   flex-wrap:wrap}
+.pr-send{display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 26px;border-radius:999px;text-decoration:none;
+  border:1px solid var(--teal);color:var(--teal-deep);background:rgba(14,156,147,.06);
+  font-family:var(--disp);font-size:13.5px;font-weight:600;letter-spacing:.03em;
+  transition:background .4s var(--ease),transform .4s var(--ease)}
+.pr-send:hover{background:rgba(14,156,147,.14);transform:translateY(-2px)}
+.pr-send:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+@media print{.pr-send{display:none !important}}
 .pr-again{border:1px solid var(--line);background:transparent;border-radius:999px;cursor:pointer;
   font-family:var(--disp);font-size:12.5px;font-weight:600;letter-spacing:.06em;color:var(--ink);
   padding:11px 20px;transition:border-color .3s,color .3s}

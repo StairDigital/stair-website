@@ -152,9 +152,11 @@
 .fig-head h2{font-family:var(--serif);font-weight:800;font-size:clamp(28px,3.8vw,50px);
   letter-spacing:-.03em;line-height:1.05;color:var(--ink);margin-top:14px}
 .fig-head h2 em{font-style:italic;color:var(--amber-deep)}
-.fig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.fig-cell{background:var(--ivory);padding:clamp(26px,3.2vw,44px) clamp(20px,2.4vw,32px)}
+/* The bordered grid put four framed cells around figures that are strong
+   enough to stand on open ground. Rules between them, nothing around them. */
+.fig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.fig-cell{padding:clamp(20px,2.6vw,34px) clamp(18px,2.2vw,30px) clamp(20px,2.6vw,34px) 0}
+.fig-cell + .fig-cell{padding-left:clamp(24px,2.8vw,40px);border-left:1px solid var(--line)}
 .fig-cell:hover{background:rgba(241,237,228,.94)}
 /* These carry the credibility, so they are set at display size rather than
    as body figures. 8vw at four across is roughly 100px on a desktop. */

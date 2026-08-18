@@ -35,18 +35,6 @@
 .arts-head p{font-size:clamp(15px,1.15vw,18px);color:var(--ar-soft);line-height:1.74;
   margin-top:18px;max-width:60ch}
 
-/* ---- filter chips ---- */
-.art-filters{display:flex;flex-wrap:wrap;gap:9px;margin:clamp(28px,4vh,42px) 0 clamp(26px,3.4vh,38px)}
-.art-chip{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--ar-soft);
-  padding:9px 17px;border-radius:999px;border:1px solid var(--line);background:transparent;
-  cursor:pointer;transition:color .35s,border-color .35s,background .35s}
-.art-chip:hover{border-color:var(--teal);color:var(--teal-deep)}
-/* teal-deep puts white at exactly 4.5:1, which is the floor rather than a
-   margin, and this is 12px uppercase. A shade darker gives 5.9:1. */
-.art-chip.on{background:#08706A;border-color:#08706A;color:#fff}
-.art-chip:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
-
 /* ---- the index ----
    Rules, not boxes. A card grid put six framed rectangles on a page that
    already has plenty; a ruled list reads as an index of published work,
@@ -54,7 +42,7 @@
    own colour with a glyph standing for its argument - no photography,
    because the stock available had nothing to do with any of these pieces
    and generic imagery on a briefing undercuts the briefing. */
-.art-grid{border-top:1px solid var(--line)}
+.art-grid{border-top:1px solid var(--line);margin-top:clamp(30px,4.4vh,48px)}
 .art-row{border-bottom:1px solid var(--line)}
 .art-row.art-hide{display:none}
 

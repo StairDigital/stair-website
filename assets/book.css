@@ -101,11 +101,15 @@
   background-size:cover;background-position:center;
   image-rendering:auto;
   box-shadow:0 28px 28px -22px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.12)}
-.bkx-cover-back{transform:rotateY(180deg);border-radius:7px 4px 4px 7px;
-  background-image:linear-gradient(150deg,rgba(10,36,34,.90),rgba(10,26,24,.94)),url(img/ai-auditor-cover.jpg);
-  background-size:cover,cover;background-position:center,center;
-  box-shadow:inset 0 0 26px rgba(0,0,0,.42);
-  display:flex;align-items:center}
+/* The inside face used to carry a 90-94% dark wash over the cover art,
+   which is why the jacket read as a murky blend rather than as the book.
+   Now it is the printed cover, clean, mirrored back so it faces the reader
+   the right way round once the jacket has swung open. */
+.bkx-cover-back{border-radius:7px 4px 4px 7px;
+  transform:rotateY(180deg) scaleX(-1);
+  background-image:url(img/ai-auditor-cover.jpg);
+  background-size:cover;background-position:center;
+  box-shadow:0 28px 28px -22px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
 /* The inside cover is a plain board. Its title block moved out from under
    the jacket to sit below the book, where it is read rather than glimpsed
    through a rotating 3D plane. */

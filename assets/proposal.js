@@ -24,6 +24,22 @@
      Either way the page works: if the Worker fails, we fall back locally. */
   var API_ENDPOINT = "";
 
+  /* WHERE THE ENQUIRY GOES.
+     Leave this blank and nothing is captured: the name, company, email and
+     phone are validated in the browser and then discarded when the tab
+     closes. Set it to a URL that accepts a JSON POST and every generated
+     blueprint sends the enquiry there. Two ways to fill it:
+
+       1. Your own Cloudflare Worker (worker/DEPLOY.md), which can email
+          you or append to a sheet. Same Worker that researches blueprints.
+       2. A form service such as Formspree or Web3Forms, which needs no
+          code at all - paste the endpoint they give you here.
+
+     Whichever you choose, its host must also be added to connect-src in
+     the Content-Security-Policy meta tag in proposal.html, or the browser
+     will block the request. */
+  var LEAD_ENDPOINT = "";
+
   /* ---------- 1. decrypt-text (vanilla port of the React component) ----------
      The real string is in the DOM first and stays in an sr-only span, so the
      text is readable by search engines and screen readers and survives JS
@@ -247,6 +263,20 @@
   function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
 
+  /* Fire-and-forget: a failed enquiry post must never stop the visitor
+     getting their blueprint, so nothing here is awaited or surfaced. */
+  function sendLead(lead) {
+    if (!LEAD_ENDPOINT) return;
+    try {
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead),
+        keepalive: true          /* survives the tab being closed straight after */
+      }).catch(function () {});
+    } catch (e) { /* ignore */ }
+  }
+
   /* read back at build time so the sheet can carry who asked for it */
   function em0() { var e = document.getElementById('prEmail'); return e ? e.value.trim() : ''; }
   function ph0() { var e = document.getElementById('prPhone'); return e ? e.value.trim() : ''; }
@@ -347,8 +377,31 @@
     '</div>' +
     '<div class="pr-actions">' +
       '<button class="pr-dl" data-print>Download proposal (PDF)</button>' +
+      '<a class="pr-send" href="' + mailtoLead(d) + '">Send this to STAIR</a>' +
       '<button class="pr-again" data-again>Draft another</button>' +
     '</div>';
+  }
+
+  /* A prefilled mail to the firm carrying the visitor's own details. This
+     is the stopgap while LEAD_ENDPOINT is blank: it depends on the visitor
+     clicking, so it is not lead capture, but it means an interested reader
+     always has a one-tap way to reach a founder. */
+  function mailtoLead(d) {
+    var c = d.contact || {};
+    var body = [
+      'I generated an AI blueprint on stair.digital and would like to discuss it.',
+      '',
+      'Name: ' + (d.name || ''),
+      'Company: ' + (d.company || ''),
+      'Email: ' + (c.email || ''),
+      'Phone: ' + (c.phone || ''),
+      'Sector read: ' + (d.sector || ''),
+      '',
+      'Blueprint: ' + (d.title || '')
+    ].join('\n');
+    return 'mailto:saraff@stair.digital'
+         + '?subject=' + encodeURIComponent('AI blueprint enquiry: ' + (d.company || ''))
+         + '&body=' + encodeURIComponent(body);
   }
 
   /* ---------- 4. wire up ---------- */
@@ -424,6 +477,8 @@
         return fail('Please add a phone number a founder can reach you on.', phoneEl);
       }
       err.hidden = true;
+      sendLead({ name: n, company: c, email: em, phone: ph,
+                 page: 'blueprint', at: new Date().toISOString() });
       load.hidden = false;
       var i = 0; step.textContent = STEPS[0]; bar.style.width = '10%';
       var t = setInterval(function () {
@@ -447,6 +502,8 @@
             if (!d || d.error || !Array.isArray(d.focus)) { finish(build(n, c)); return; }
             d.why = d.why || d.whyNow;       /* the backend names this whyNow */
             d.name = d.name || n;
+            d.company = d.company || c;
+            d.contact = d.contact || { email: em, phone: ph };
             finish(d);
           })
           .catch(function () { finish(build(n, c)); });   /* never leave the user stuck */

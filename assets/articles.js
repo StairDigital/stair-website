@@ -411,7 +411,6 @@
 
   /* ---------------- render ---------------- */
   var grid = document.getElementById('artGrid');
-  var filters = document.getElementById('artFilters');
   if (!grid) return;
 
   function el(tag, cls, html) {
@@ -449,24 +448,6 @@
   }
 
   ARTICLES.forEach(function (a, i) { grid.appendChild(row(a, i)); });
-
-  /* category filter */
-  if (filters) {
-    var cats = ['All'].concat(ARTICLES.map(function (a) { return a.cat; })
-      .filter(function (v, i, s) { return s.indexOf(v) === i; }));
-    cats.forEach(function (cat, i) {
-      var b = el('button', 'art-chip' + (i === 0 ? ' on' : ''), cat);
-      b.addEventListener('click', function () {
-        filters.querySelectorAll('.art-chip').forEach(function (x) { x.classList.remove('on'); });
-        b.classList.add('on');
-        grid.querySelectorAll('.art-row').forEach(function (c) {
-          var show = cat === 'All' || c.getAttribute('data-cat') === cat;
-          c.classList.toggle('art-hide', !show);
-        });
-      });
-      filters.appendChild(b);
-    });
-  }
 
   /* ---------------- reader ---------------- */
   var reader = document.getElementById('artReader');
