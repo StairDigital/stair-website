@@ -47,7 +47,7 @@
      While the key is blank nothing is sent, and the visitor still gets
      their blueprint and the "Send this to STAIR" mail button.
      --------------------------------------------------------------- */
-  var LEAD_ACCESS_KEY = "";
+  var LEAD_ACCESS_KEY = "c72aadf5-46c7-4582-96d6-a6a5fc16403e";
   var LEAD_ENDPOINT   = "https://api.web3forms.com/submit";
   var LEAD_INBOX      = "devraj@stair.digital";
 
