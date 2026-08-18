@@ -177,13 +177,14 @@
    PRINT — the article on the STAIR letterhead.
 
    Everything on screen is hidden; only #artPrint prints. The header and
-   footer are position:fixed, which in paged media repeats them on every
-   sheet, so a four-page briefing carries the letterhead throughout.
+   footer sit in the flow, so nothing can land on top of the copy.
    ============================================================ */
 .art-print{display:none}
 
 @media print{
-  @page{size:A4;margin:34mm 18mm 26mm}
+  /* Ordinary margins. The letterhead is in the flow now, so it does not
+     need the page box padded out to make room for a fixed element. */
+  @page{size:A4;margin:16mm 18mm 18mm}
 
   html,body{background:#fff !important}
   body > *{display:none !important}
@@ -191,9 +192,20 @@
     font-family:var(--font);color:#111;
     -webkit-print-color-adjust:exact;print-color-adjust:exact}
 
-  /* ---- letterhead, repeated on every sheet ---- */
-  .ap-head{position:fixed;top:-24mm;left:0;right:0;height:20mm;
-    display:flex;align-items:flex-start;justify-content:space-between}
+  /* ---- letterhead ----
+     These were position:fixed, which in paged media is supposed to repeat
+     them on every sheet. Browsers disagree about whether a fixed element in
+     print is positioned against the page box or the content box, and Chrome
+     put both of them into the middle of the flowing text: the logo landed
+     across a heading and the address across a paragraph.
+
+     They are ordinary flow elements now - masthead first, sign-off last -
+     so the alignment is whatever the page margins say and nothing can
+     overlap the copy. The trade is that on a three-page briefing the
+     letterhead appears once rather than on each sheet, which is how a
+     printed letter behaves anyway. */
+  .ap-head{display:flex;align-items:flex-start;justify-content:space-between;
+    gap:10mm;margin-bottom:9mm;break-inside:avoid;page-break-inside:avoid}
   .ap-logo{display:flex;flex-direction:column;gap:2mm}
   .ap-logo img{width:17mm;height:auto;display:block}
   .ap-logo b{font-family:var(--disp);font-size:10pt;font-weight:700;letter-spacing:.34em;
@@ -205,10 +217,11 @@
   .ap-contact b{display:block;font-size:9.5pt;font-weight:700;letter-spacing:.02em;
     text-transform:uppercase;margin-bottom:1mm}
 
-  .ap-foot{position:fixed;bottom:-19mm;left:0;right:0;
+  .ap-foot{margin-top:10mm;padding-top:3mm;
     font-size:7.6pt;line-height:1.45;color:#333;
-    border-top:1px solid #ddd;padding-top:2mm;
-    display:flex;justify-content:space-between;align-items:flex-end;gap:8mm}
+    border-top:1px solid #ddd;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:8mm;
+    break-inside:avoid;page-break-inside:avoid}
   .ap-foot em{font-style:normal;color:#777}
 
   /* ---- the article itself ---- */

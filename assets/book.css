@@ -101,12 +101,14 @@
   background-size:cover;background-position:center;
   image-rendering:auto;
   box-shadow:0 28px 28px -22px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.12)}
-/* The inside face used to carry a 90-94% dark wash over the cover art,
-   which is why the jacket read as a murky blend rather than as the book.
-   Now it is the printed cover, clean, mirrored back so it faces the reader
-   the right way round once the jacket has swung open. */
+/* The inside face is the printed cover, clean - it used to carry a 90-94%
+   dark wash, which read as a murky blend rather than as the book.
+   rotateY(180deg) alone is the back-face technique: paired with
+   backface-visibility:hidden it presents the art the right way round once
+   the jacket has swung open. An extra scaleX(-1) here was double-correcting
+   and printed the title in mirror writing. */
 .bkx-cover-back{border-radius:7px 4px 4px 7px;
-  transform:rotateY(180deg) scaleX(-1);
+  transform:rotateY(180deg);
   background-image:url(img/ai-auditor-cover.jpg);
   background-size:cover;background-position:center;
   box-shadow:0 28px 28px -22px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}

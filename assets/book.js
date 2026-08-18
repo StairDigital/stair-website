@@ -19,9 +19,15 @@
 
   io.observe(bkx);
 
-  /* If rAF is throttled or the observer never fires for any reason, the book
-     must not sit shut forever with its content invisible behind the jacket. */
-  setTimeout(function () {
-    if (!bkx.classList.contains('open')) bkx.classList.add('open');
-  }, 4000);
+  /* Failsafe, so the book can never sit shut with its content hidden behind
+     the jacket if the observer misfires. It used to fire unconditionally
+     four seconds after load, which meant that on a long page the book had
+     already opened by the time anyone scrolled to it and the animation
+     appeared never to happen. Now it only forces the issue if the section
+     is actually on screen and still shut. */
+  setInterval(function () {
+    if (bkx.classList.contains('open')) return;
+    var r = bkx.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.8 && r.bottom > 0) bkx.classList.add('open');
+  }, 1200);
 })();

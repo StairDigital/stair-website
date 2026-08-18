@@ -423,12 +423,21 @@ a,button,summary,[role="button"],input,select,textarea,label{touch-action:manipu
    the page underneath, which reads as the page "jumping" mid gesture. */
 .drawer,.chooser-card,.ld-modal-card,.cap-panel{overscroll-behavior:contain}
 
-/* 3. Let the browser skip layout and paint for sections that are far off
-   screen. contain-intrinsic-size keeps a placeholder height so the scrollbar
-   never jumps as they are skipped and restored.
-   Deliberately NOT applied to pinned/scrubbed sections (.hero, .bkx, .ti-*,
-   .ind-*), where skipping work would fight ScrollTrigger's measurements. */
-.hp,.works,.lab,.assoc,.ft{content-visibility:auto;contain-intrinsic-size:auto 700px}
+/* 3. content-visibility:auto was here, on the repeated below-fold blocks,
+   so the browser could skip layout and paint for sections nobody had
+   scrolled to. REMOVED.
+
+   Excluding the pinned sections themselves was not enough. GSAP
+   ScrollTrigger measures every pin's start and end once, at load. A
+   contained section reports its placeholder contain-intrinsic-size until it
+   is realised, so any pin BELOW one shifted as the visitor scrolled past.
+   .assoc sits directly above the pinned split cards on the About page,
+   which is what put the card panels over the logo strip.
+
+   The saving was modest and the breakage was visible. The performance work
+   that mattered was removing the WebGL contexts, and that stands. If this
+   is revisited, call ScrollTrigger.refresh() on realisation and keep
+   containment off any page that pins at all. */
 
 /* 4. Promote the things that actually move, and only those.
    A compositor layer is cheap to move but costs memory, so this is kept to the
