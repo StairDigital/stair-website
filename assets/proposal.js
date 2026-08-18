@@ -24,21 +24,32 @@
      Either way the page works: if the Worker fails, we fall back locally. */
   var API_ENDPOINT = "";
 
-  /* WHERE THE ENQUIRY GOES.
-     Leave this blank and nothing is captured: the name, company, email and
-     phone are validated in the browser and then discarded when the tab
-     closes. Set it to a URL that accepts a JSON POST and every generated
-     blueprint sends the enquiry there. Two ways to fill it:
+  /* ---------------------------------------------------------------
+     WHERE THE ENQUIRY EMAIL GOES
 
-       1. Your own Cloudflare Worker (worker/DEPLOY.md), which can email
-          you or append to a sheet. Same Worker that researches blueprints.
-       2. A form service such as Formspree or Web3Forms, which needs no
-          code at all - paste the endpoint they give you here.
+     Every finished blueprint is emailed to STAIR with the enquirer's
+     name, company, work email and phone, and the full text of the
+     document they were shown.
 
-     Whichever you choose, its host must also be added to connect-src in
-     the Content-Security-Policy meta tag in proposal.html, or the browser
-     will block the request. */
-  var LEAD_ENDPOINT = "";
+     This posts to Web3Forms, which turns a JSON body into an email. No
+     server of ours, no library on the page, and one host added to the
+     Content-Security-Policy.
+
+     TO TURN IT ON, one step:
+       1. Go to web3forms.com, enter devraj@stair.digital, and they email
+          back an access key (a UUID).
+       2. Paste it between the quotes below.
+
+     The key is public by design - it only permits sending TO the address
+     it was created for, so it cannot be used to mail anyone else. The
+     inbox is set by whoever created the key, not by this file.
+
+     While the key is blank nothing is sent, and the visitor still gets
+     their blueprint and the "Send this to STAIR" mail button.
+     --------------------------------------------------------------- */
+  var LEAD_ACCESS_KEY = "";
+  var LEAD_ENDPOINT   = "https://api.web3forms.com/submit";
+  var LEAD_INBOX      = "devraj@stair.digital";
 
   /* ---------- 1. decrypt-text (vanilla port of the React component) ----------
      The real string is in the DOM first and stays in an sr-only span, so the
@@ -265,13 +276,60 @@
 
   /* Fire-and-forget: a failed enquiry post must never stop the visitor
      getting their blueprint, so nothing here is awaited or surfaced. */
-  function sendLead(lead) {
-    if (!LEAD_ENDPOINT) return;
+  /* Flatten the blueprint into something readable in an inbox. The email
+     should be enough to act on without opening the site. */
+  function blueprintText(d) {
+    var L = [];
+    L.push(d.title || 'AI blueprint');
+    L.push('Sector read: ' + (d.sector || 'general'));
+    L.push('');
+    L.push('EXECUTIVE SUMMARY');
+    L.push(d.exec || '');
+    if (d.why) { L.push(''); L.push('WHY NOW'); L.push(d.why); }
+    if (d.focus && d.focus.length) {
+      L.push(''); L.push('FOCUS AREAS');
+      d.focus.forEach(function (f) {
+        L.push('- ' + (f.theme ? f.theme + ' | ' : '') + (f.title || ''));
+        if (f.detail) L.push('  ' + f.detail);
+      });
+    }
+    if (d.approach && d.approach.length) {
+      L.push(''); L.push('APPROACH');
+      d.approach.forEach(function (a) {
+        L.push('- ' + (a.phase || '') + ': ' + (a.detail || ''));
+      });
+    }
+    if (d.governance) { L.push(''); L.push('GOVERNANCE'); L.push(d.governance); }
+    if (d.impact && d.impact.length) {
+      L.push(''); L.push('EXPECTED IMPACT');
+      d.impact.forEach(function (x) { L.push('- ' + x); });
+    }
+    return L.join('\n');
+  }
+
+  /* Fire-and-forget. A failed send must never stop the visitor getting
+     their blueprint, so nothing here is awaited or surfaced to them. */
+  function sendLead(d, contact) {
+    if (!LEAD_ACCESS_KEY) return;
+    var payload = {
+      access_key: LEAD_ACCESS_KEY,
+      subject: 'AI blueprint enquiry: ' + (d.company || 'unknown company'),
+      from_name: 'STAIR Digital website',
+      /* Web3Forms uses this as the Reply-To, so hitting reply in the
+         inbox answers the enquirer directly. */
+      email: contact.email || '',
+      name: d.name || '',
+      company: d.company || '',
+      phone: contact.phone || '',
+      submitted_at: new Date().toISOString(),
+      page: 'proposal.html',
+      blueprint: blueprintText(d)
+    };
     try {
       fetch(LEAD_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
         keepalive: true          /* survives the tab being closed straight after */
       }).catch(function () {});
     } catch (e) { /* ignore */ }
@@ -399,7 +457,7 @@
       '',
       'Blueprint: ' + (d.title || '')
     ].join('\n');
-    return 'mailto:saraff@stair.digital'
+    return 'mailto:' + LEAD_INBOX
          + '?subject=' + encodeURIComponent('AI blueprint enquiry: ' + (d.company || ''))
          + '&body=' + encodeURIComponent(body);
   }
@@ -477,8 +535,6 @@
         return fail('Please add a phone number a founder can reach you on.', phoneEl);
       }
       err.hidden = true;
-      sendLead({ name: n, company: c, email: em, phone: ph,
-                 page: 'blueprint', at: new Date().toISOString() });
       load.hidden = false;
       var i = 0; step.textContent = STEPS[0]; bar.style.width = '10%';
       var t = setInterval(function () {
@@ -488,6 +544,12 @@
       }, API_ENDPOINT ? 2600 : 560);
 
       var finish = function (d) {
+        d.name = d.name || n;
+        d.company = d.company || c;
+        d.contact = d.contact || { email: em, phone: ph };
+        /* sent here rather than on submit, so the email carries the
+           document the visitor was actually shown */
+        sendLead(d, d.contact);
         clearInterval(t); bar.style.width = '100%';
         setTimeout(function () { load.hidden = true; bar.style.width = '0'; show(d); }, 320);
       };

@@ -80,28 +80,34 @@ should not be trusted.
 
 ## Where blueprint enquiries go
 
-Nowhere, until you set one variable.
+To **devraj@stair.digital**, as soon as one key is pasted in.
 
-`proposal.html` asks for a name, company, work email and phone, and validates
-all four. With `LEAD_ENDPOINT` blank at the top of `assets/proposal.js`, those
-details are used to build the document and then discarded when the tab closes.
-This is a static site: there is no server to receive them.
+`proposal.html` asks for a name, company, work email and phone, validates all
+four, and then emails the finished blueprint with those details attached. The
+send goes to Web3Forms, which turns a JSON POST into an email: no server of
+ours, no library on the page, one host added to the CSP.
 
-To capture them, set `LEAD_ENDPOINT` to any URL that accepts a JSON POST:
+**To switch it on:**
 
-- **Your Cloudflare Worker** (`worker/DEPLOY.md`) - the same one that researches
-  blueprints can email you or append to a sheet.
-- **A form service** such as Formspree or Web3Forms - no code, paste the
-  endpoint they give you.
+1. Go to web3forms.com and enter `devraj@stair.digital`. They email back an
+   access key (a UUID).
+2. Paste it into `LEAD_ACCESS_KEY` at the top of `assets/proposal.js`.
 
-**Then add that host to `connect-src` in the Content-Security-Policy meta tag in
-`proposal.html`**, or the browser will block the request and you will see nothing.
-The policy is currently `connect-src 'self'`.
+That is the whole setup. `connect-src` in `proposal.html` already allows
+`https://api.web3forms.com`.
 
-Until then, every generated blueprint carries a **Send this to STAIR** button
-that opens a prefilled mail with the visitor's own details. That depends on the
-visitor clicking, so it is not capture - it is a way for an interested reader to
-reach you, not a record of everyone who tried.
+The key is public by design: it only permits sending **to** the address it was
+created for, so it cannot be used to mail anyone else, and the destination is
+set by whoever created the key rather than by this file. That is why it is safe
+in a public repo, unlike an API key.
+
+While `LEAD_ACCESS_KEY` is blank **nothing is sent** and nothing is recorded.
+The visitor still gets their blueprint, and still gets the "Send this to STAIR"
+button, which opens a prefilled mail carrying their own details.
+
+The email arrives with the enquirer as Reply-To, so hitting reply answers them
+directly, and carries the full blueprint text: executive summary, why now, focus
+areas, approach, governance and expected impact.
 
 ## Security
 
