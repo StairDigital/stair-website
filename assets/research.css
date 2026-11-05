@@ -385,3 +385,10 @@
 .eng-go-in svg{width:19px;height:19px}
 
 @media(max-width:880px){.eng-proof{grid-template-columns:1fr}}
+
+
+/* "Request the brief" measured 134x17 - a text button with no padding, which
+   is hard to hit on a phone. Padding it out leaves the type where it is. */
+@media(max-width:820px){
+  .wk-cta{padding:12px 0}
+}

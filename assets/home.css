@@ -312,3 +312,11 @@
   .hp-row.alt .hp-body{order:0}
   .hp-mark{aspect-ratio:16/9}
 }
+
+
+/* The strap under the client marks bottoms out at 11px on a phone, which is
+   below comfortable reading size. The clamp keeps the desktop size exactly
+   as it was. */
+@media(max-width:820px){
+  .hp-logos .hp-logos-n{font-size:12.5px}
+}

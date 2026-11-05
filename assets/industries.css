@@ -174,3 +174,9 @@
 @media(max-width:880px){
   .tr-ring{height:clamp(260px,60vw,340px)}
 }
+
+
+/* Sector bullets sat at 11.5px on a phone. */
+@media(max-width:820px){
+  .ind-pts li{font-size:13px}
+}

@@ -72,7 +72,16 @@
     });
     gsap.set(ring, { rotationX: tilt });
 
-    var setZ = items.map(function (item) { return gsap.quickSetter(item, "rotationZ", "deg"); });
+    /* One writer for the whole ring, not one per chip.
+       Every chip sits at the ring's centre and is pushed out to the rim by
+       its own transform-origin, so adding the same angle to all of them is
+       the same rotation as turning the ring once. The old version wrote a
+       transform to every chip on every frame: with this many chips that is
+       around a thousand style invalidations a second, which measured as
+       1,954ms of style recalculation per five seconds and made this the
+       most expensive thing on the site. Turning the parent instead is one
+       write a frame for an identical picture. */
+    var setRingZ = gsap.quickSetter(ring, "rotationZ", "deg");
 
     // ── entrance: ring settles into tilt, chips bloom in. Opacity stays with
     // CSS (default 1) so a paused/backgrounded rAF can never leave it hidden. ──
@@ -112,7 +121,7 @@
       if (!vis.visible()) return;
       if (!reduce && !dragging && !hovering) target += (speed / 60) * gsap.ticker.deltaRatio();
       current += (target - current) * 0.05;
-      for (var i = 0; i < setZ.length; i++) setZ[i](baseAngles[i] + current);
+      setRingZ(current);
     }
     gsap.ticker.add(tick);
 

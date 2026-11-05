@@ -116,13 +116,25 @@
 .eb-d-flow.d4{animation-delay:2.5s}
 @keyframes ebFlow{from{stroke-dashoffset:155}to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.eb-d-flow{animation:none;stroke-dasharray:none;opacity:.45}}
-/* Below this width the diagram would scale its 9px labels down to about 5px,
-   which is not a diagram any more. Hold it at its natural size and let the box
-   scroll instead: the page itself never scrolls sideways. */
+/* Two drawings of the same diagram, one shown at a time.
+
+   The wide one is three rows of three and four columns. Below ~620px that
+   either scales its 9px labels down to about 5px, or - which is what this
+   used to do - holds its natural 460px width inside a box that scrolls
+   sideways. In practice nobody discovers the scroll: the right-hand column
+   simply looks chopped off, so "Permissions", the model line and "Contracts"
+   were all cut in half on a phone.
+
+   The narrow one stacks the same boxes in a single column, so it fits the
+   screen at a readable size with nothing hidden. */
+/* Selectors are qualified with .eb-diagram because the base rule above is
+   `.eb-diagram svg{display:block}` - a bare `.eb-d-narrow{display:none}`
+   loses to it on specificity whatever the order, so both drawings showed. */
+.eb-diagram svg.eb-d-narrow{display:none}
 @media(max-width:620px){
-  .eb-diagram{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
-    padding:20px}
-  .eb-diagram svg{min-width:460px}
+  .eb-diagram{padding:18px}
+  .eb-diagram svg.eb-d-wide{display:none}
+  .eb-diagram svg.eb-d-narrow{display:block}
 }
 
 /* the layer key beside it */
